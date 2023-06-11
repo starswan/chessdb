@@ -1,0 +1,26 @@
+// $Id$
+
+.nice-table-layout {
+  @extend .table;
+  @extend .table-striped;
+  @extend .table-sm;
+  @extend .table-responsive;
+}
+
+.show-button {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-outline-primary;
+}
+
+.edit-button {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-outline-primary;
+}
+
+.delete-button {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-outline-danger;
+}
