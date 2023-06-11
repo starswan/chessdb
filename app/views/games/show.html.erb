@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+<%= render 'game', game: @game %>
+<div class="columns">
+  <div class="column">
+    <%= render 'board', position: @position %>
+  </div>
+  <%= render 'moves/move_list', moves: @game.moves %>
+</div>
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>

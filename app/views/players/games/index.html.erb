@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Games Played by <%= player_name(@player) %>(<%= @games.count %>)</h1>
+
+<table class="nice-table-layout">
+  <thead>
+  <tr>
+    <th align="center">White</th>
+    <th align="center">Black</th>
+    <th>Date</th>
+    <th>Opening</th>
+    <th>Variation</th>
+    <th>ECO Code</th>
+    <th>Moves</th>
+    <th>Result</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @games.each do |game| %>
+    <tr>
+      <td><%= game.white.first_name %>&nbsp;<%= game.white.last_name %></td>
+      <td><%= game.black.first_name %>&nbsp;<%= game.black.last_name %></td>
+      <td><%= game.date %></td>
+      <td><%= game.opening.name %></td>
+      <td><%= game.opening.variation %></td>
+      <td><%= game.opening.ecocode %></td>
+      <td><%= link_to game.number_of_moves, game_path(game) %></td>
+      <td><%= game.result %></td>
+      <td><%= link_to 'Show', game_moves_path(game), class: 'show-button' %></td>
+      <td><%= link_to 'Edit', edit_game_path(game), class: 'edit-button' %></td>
+      <td><%= link_to 'Destroy', game, class: 'delete-button', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Game', new_game_path %>

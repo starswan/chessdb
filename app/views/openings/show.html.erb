@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ecocode:</strong>
+  <%= @opening.ecocode %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @opening.name %>
+</p>
+
+<p>
+  <strong>Variation:</strong>
+  <%= @opening.variation %>
+</p>
+
+<%= link_to 'Edit', edit_opening_path(@opening) %> |
+<%= link_to 'Back', openings_path %>

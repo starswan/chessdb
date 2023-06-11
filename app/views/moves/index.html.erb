@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<%= render 'games/game', game: @game %>
+<div class="row">
+  <div class="col-3">
+    <%= render 'games/board', position: position_for([]) %>
+    <%= link_to '>>', @game.moves.first %>
+  </div>
+  <div class="col-4">
+    <%= render 'moves/move_list', moves: @game.moves %>
+  </div>
+</div>
+
+<%= link_to 'Back', games_path %>

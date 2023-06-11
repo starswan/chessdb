@@ -1,0 +1,28 @@
+<table class="nice-table-layout">
+  <tr>
+    <td><strong>White:</strong><%= player_name(game.white) %> (<%= game.white_elo %>)</td>
+    <td><strong>Black:</strong><%= player_name(game.black) %> (<%= game.black_elo %>)</td>
+    <td>
+      <strong>Date:</strong>
+      <%= link_to game.date.to_s(:long), game %>
+    </td>
+    <td>
+      <strong>Site</strong>
+      <%= game.site %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Opening:</strong>
+      <%= game.opening.name %>/<%= game.opening.variation %>
+    </td>
+    <td>
+      <strong>Ecocode:</strong>
+      <%= game.opening.ecocode %>
+    </td>
+    <td>
+      <strong>Result:</strong>
+      <%= game.result %>
+    </td>
+  </tr>
+</table>
