@@ -88,6 +88,11 @@ group :development, :test do
   gem 'rspec-rails', '>= 4'
   gem 'guard'
   gem 'guard-rspec'
+
+  gem "faraday-retry"
+  gem "pronto"
+  gem "pronto-rubocop"
+  gem "pronto-undercover"
 end
 
 # Use debugger
@@ -115,10 +120,10 @@ gem 'addressable', require: 'addressable/uri'
 # maybe revisit if it's the best option left, but needs quite a bit of a think. Nice parser though
 # gem 'treetop'
 # gem 'bchess', git: 'https://github.com/PadawanBreslau/bchess'
-gem 'bchess', path: "#{ENV['HOME']}/github/bchess"
-# gem "treetop"
-# gem 'bchess', git: "https://github.com/starswan/bchess", branch: 'fix-pgn-bugs'
+# gem 'bchess', path: "#{ENV['HOME']}/github/bchess"
+gem "treetop"
+gem 'bchess', git: "https://github.com/starswan/bchess", branch: 'fix-pgn-bugs'
 gem 'backup-task'
-gem 'chess_openings'
+# gem 'chess_openings'
 # successor to yaml_db - can't cope with foreign keys though, defaults to truncation
-gem 'activerecord_dumper', git: 'https://github.com/spijet/activerecord_dumper', branch: 'master', require: 'ar_dumper'
+# gem 'activerecord_dumper', git: 'https://github.com/spijet/activerecord_dumper', branch: 'master', require: 'ar_dumper'

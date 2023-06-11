@@ -62,7 +62,9 @@ class PgnImportJob < ApplicationJob
         tags = {
           White: pgn.header.player_white, Black: pgn.header.player_black,
           WhiteElo: pgn.header.elo_white, BlackElo: pgn.header.elo_black,
-          ECO: pgn.header.eco, Opening: pgn.header.opening, Variation: pgn.header.variation,
+          ECO: pgn.header.eco,
+          Opening: pgn.header.opening,
+          Variation: pgn.header.variation,
           Date: pgn.header.date, Site: pgn.header.site
         }
         if Game.find_from_tags(tags, pgn.raw_pgn).blank?

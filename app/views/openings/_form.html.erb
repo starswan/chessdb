@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :ecocode %>
-    <%= form.select :ecocode, Opening.distinct(:ecocode).order(:ecocode).pluck(:ecocode) %>
+    <%= form.select :ecocode, ChessOpening.distinct(:ecocode).order(:ecocode).pluck(:ecocode) %>
   </div>
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.select :name, Opening.distinct(:name).order(:name).pluck(:name) %>
+    <%= form.select :name, ChessOpening.distinct(:name).order(:name).pluck(:name) %>
   </div>
 
   <div class="field">
