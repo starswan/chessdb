@@ -1,0 +1,2 @@
+# chessdb
+Chess knowledge database
