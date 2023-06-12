@@ -11,7 +11,7 @@ gem 'rails', '~> 6.0', '< 6.1'
 # now. Maybe look at pgsql?
 # gem 'mysql2', platforms: :ruby
 gem 'pg', platforms: :ruby
-#gem 'sqlite3'
+# gem 'sqlite3'
 #gem 'mysql2', group: :development
 #gem 'sqlite3', group: [:test, :production]
 # Use SCSS for stylesheets
@@ -121,9 +121,9 @@ gem 'addressable', require: 'addressable/uri'
 # gem 'treetop'
 # gem 'bchess', git: 'https://github.com/PadawanBreslau/bchess'
 # gem 'bchess', path: "#{ENV['HOME']}/github/bchess"
-gem "treetop"
+# gem "treetop"
 gem 'bchess', git: "https://github.com/starswan/bchess", branch: 'fix-pgn-bugs'
 gem 'backup-task'
-# gem 'chess_openings'
+gem 'chess_openings'
 # successor to yaml_db - can't cope with foreign keys though, defaults to truncation
 # gem 'activerecord_dumper', git: 'https://github.com/spijet/activerecord_dumper', branch: 'master', require: 'ar_dumper'
