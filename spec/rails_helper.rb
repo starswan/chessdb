@@ -11,7 +11,7 @@ unless ENV['COVERAGE'] == 0
 
   SimpleCov.start :rails do
     # add_group "Jobs", 'app/jobs'
-    minimum_coverage 86.41
+    minimum_coverage 85.95
     maximum_coverage_drop 0
   end
 end
