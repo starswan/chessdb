@@ -6,8 +6,10 @@ GIT
     activerecord_dumper (0.8.0g)
       activerecord (>= 3.2.22, < 7.1)
 
-PATH
-  remote: /home/stephen/github/bchess
+GIT
+  remote: https://github.com/starswan/bchess
+  revision: f63ff11e21c30bac3c76b7f128a5730d9306bb0e
+  branch: fix-pgn-bugs
   specs:
     bchess (0.1.4)
       treetop (~> 1.6, >= 1.6.11)
@@ -340,7 +342,7 @@ GEM
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    treetop (1.6.11)
+    treetop (1.6.12)
       polyglot (~> 0.3)
     tzinfo (1.2.10)
       thread_safe (~> 0.1)

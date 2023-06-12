@@ -115,9 +115,9 @@ gem 'addressable', require: 'addressable/uri'
 # maybe revisit if it's the best option left, but needs quite a bit of a think. Nice parser though
 # gem 'treetop'
 # gem 'bchess', git: 'https://github.com/PadawanBreslau/bchess'
-gem 'bchess', path: "#{ENV['HOME']}/github/bchess"
+# gem 'bchess', path: "#{ENV['HOME']}/github/bchess"
 # gem "treetop"
-# gem 'bchess', git: "https://github.com/starswan/bchess", branch: 'fix-pgn-bugs'
+gem 'bchess', git: "https://github.com/starswan/bchess", branch: 'fix-pgn-bugs'
 gem 'backup-task'
 gem 'chess_openings'
 # successor to yaml_db - can't cope with foreign keys though, defaults to truncation
