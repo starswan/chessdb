@@ -107,8 +107,6 @@ group :test do
 end
 # gem 'twitter-bootstrap-rails'
 gem 'rails_config'
-gem 'backburner'
-gem 'addressable', require: 'addressable/uri'
 
 # gem 'foundation-rails'
 # PGN gem - based on Whittle, can't cope with PGN annotations
@@ -128,3 +126,6 @@ gem 'backup-task'
 gem 'chess_openings'
 # successor to yaml_db - can't cope with foreign keys though, defaults to truncation
 # gem 'activerecord_dumper', git: 'https://github.com/spijet/activerecord_dumper', branch: 'master', require: 'ar_dumper'
+
+gem "backburner", "~> 1.6"
+gem "addressable", "~> 2.8"
