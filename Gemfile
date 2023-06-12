@@ -130,4 +130,4 @@ gem 'chess_openings'
 gem "backburner", "~> 1.6"
 gem "addressable", "~> 2.8"
 # pin psych to prevent issue when loading database.yml multi-database on ruby 3.1 and above
-gem 'psych', '< 4.0.0'
+# gem 'psych', '< 4.0.0'
