@@ -18,7 +18,5 @@ module Angularchess
     #
     config.active_job.queue_adapter = :backburner
     config.time_zone = "London"
-
-    config.active_record.suppress_multiple_database_warning = true
   end
 end
