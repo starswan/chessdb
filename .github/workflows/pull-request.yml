@@ -63,6 +63,10 @@ jobs:
 
       - name: Setup test db
         run: bundle exec rake db:create db:schema:load
+        env:
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: 123rails!
+          POSTGRES_HOST: localhost
 
       - name: Install Node 14
         uses: actions/setup-node@v3
@@ -76,6 +80,9 @@ jobs:
         run: bundle exec rake spec
         env:
           COVERAGE: true
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: 123rails!
+          POSTGRES_HOST: localhost
 
 #      - name: Pronto Undercover
 #        run: bundle exec pronto run -r undercover -f github_pr -c origin/${{ github.base_ref }}

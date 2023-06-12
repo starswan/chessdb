@@ -14,7 +14,7 @@
 #
 default: &default
   adapter: postgresql
-  host: localhost
+  host: <%= ENV['POSTGRES_HOST'] %>
 
 development:
   <<: *default
@@ -39,8 +39,8 @@ ford:
 test:
   <<: *default
   database: chessdb_test
-  username: rails
-  password: 123rails!
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 #  host: chessdb.c8u8igpysemu.eu-west-1.rds.amazonaws.com
 #  port: 3306
