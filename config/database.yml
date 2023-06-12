@@ -40,7 +40,7 @@ test:
   <<: *default
   database: chessdb_test
   username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>!
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 #  host: chessdb.c8u8igpysemu.eu-west-1.rds.amazonaws.com
 #  port: 3306
