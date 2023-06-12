@@ -1,0 +1,87 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
+# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+
+name: Ruby
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        ruby-version: ['2.7']
+
+    services:
+      postgres:
+        # Docker Hub image
+        image: postgres
+        env:
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: 123rails!
+          POSTGRES_DATABASE: chessdb_test
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    env:
+      RAILS_ENV: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up CMake for undercover gem
+        uses: lukka/get-cmake@latest
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+#      - name: Pronto Rubocop
+#        run: bundle exec pronto run -r rubocop -f github_pr -c origin/${{ github.base_ref }}
+#        env:
+#          RUBOCOP_CONFIG: .rubocopl.yml
+#          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
+#          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
+
+      - name: Setup test db
+        run: bundle exec rake db:create db:schema:load
+
+      - name: Install Node 14
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Yarn install
+        run: yarn install
+
+      - name: Ruby tests
+        run: bundle exec rake spec
+        env:
+          COVERAGE: true
+
+#      - name: Pronto Undercover
+#        run: bundle exec pronto run -r undercover -f github_pr -c origin/${{ github.base_ref }}
+#        env:
+#          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
+#          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
+
+      - name: Run undercover natively
+        run: bundle exec undercover -c origin/${{ github.base_ref }}
