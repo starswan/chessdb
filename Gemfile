@@ -99,6 +99,7 @@ end
 # gem 'debugger', group: [:development, :test]
 group :test do
   gem 'simplecov', require: false
+  gem 'simplecov-lcov', require: false
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'database_cleaner'

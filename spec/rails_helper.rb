@@ -8,6 +8,19 @@ ENV['RAILS_ENV'] ||= 'test'
 
 unless ENV['COVERAGE'] == 0
   require 'simplecov'
+  require "simplecov-lcov"
+
+  # This allows both LCOV and HTML formatting -
+  # lcov for undercover gem and cc-test-reporter, HTML for humans
+  class SimpleCov::Formatter::MergedFormatter
+    def format(result)
+      SimpleCov::Formatter::HTMLFormatter.new.format(result)
+      SimpleCov::Formatter::LcovFormatter.new.format(result)
+    end
+  end
+
+  SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
+  SimpleCov.formatter = SimpleCov::Formatter::MergedFormatter
 
   SimpleCov.start :rails do
     # add_group "Jobs", 'app/jobs'
