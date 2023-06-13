@@ -6,7 +6,7 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 
-unless (ENV['COVERAGE']).zero?
+unless (ENV['COVERAGE']).to_i.zero?
   require 'simplecov'
   require "simplecov-lcov"
 
