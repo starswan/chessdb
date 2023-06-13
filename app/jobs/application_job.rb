@@ -9,4 +9,3 @@ class ApplicationJob < ActiveJob::Base
   # not much can be done on a missing file
   discard_on Errno::ENOENT
 end
-#
