@@ -7,6 +7,7 @@ class ChessOpening < ApplicationRecord
   self.table_name = :openings
 
   OPENING_ALIASES = {
+    'Amar gambit' => 'Amar (Paris) opening',
     'Benoni defence' => 'Benoni',
     "Bird's opening" => 'Bird',
     'Budapest defence' => 'Budapest gambit',
@@ -15,6 +16,7 @@ class ChessOpening < ApplicationRecord
     'Czech Benoni defence' => 'Czech Benoni',
     'Benoni Defense: Czech Benoni Defense' => 'Czech Benoni',
     'Dutch defence' => 'Dutch',
+    "Dunst (Sleipner, Heinrichsen) opening" => "Dunst (Sleipner,Heinrichsen) opening",
     'Evans gambit declined' => 'Evans gambit',
     'English opening' => 'English',
     'French defence' => 'French',
@@ -70,6 +72,7 @@ class ChessOpening < ApplicationRecord
     "Semi-Benoni (`blockade variation')" => "Semi-Benoni ('blockade variation')",
   }.freeze
   VARIATION_ALIASES = {
+    "Benko's opening, reversed Alekhine" => "reversed Alekhine",
     'Charlick (Englund) gambit' => 'Englund gambit',
     'Franco-Indian (Keres) defence' => 'Keres defence',
     'Four Knights Game: Gunsberg Variation' => 'Gunsberg variation',
@@ -79,10 +82,12 @@ class ChessOpening < ApplicationRecord
     'Pelikan (Lasker/Sveshnikov) variation' => 'Sveshnikov variation',
     'Scheveningen, classical main line' => 'Scheveningen, classical',
     'French Defense: Steinitz Variation/ Boleslavsky Variation' => 'Steinitz, Boleslavsky variation',
+    "Grob, Fritz gambit" => "Fritz gambit",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
     'Benko gambit half accepted' => 'Benko gambit',
+    "Benko's opening, reversed Alekhine" => "Benko's opening",
     'Mujannah opening' => 'Bird',
     'Blumenfeld counter-gambit accepted' => 'Blumenfeld counter-gambit',
     'Budapest defence declined' => 'Budapest gambit',
@@ -101,6 +106,7 @@ class ChessOpening < ApplicationRecord
     'Evans gambit declined' => 'Evans gambit',
     'Evans counter-gambit' => 'Evans gambit',
     'French Defense: Steinitz Variation' => 'French',
+    "Grob, Fritz gambit" => "Grob's attack",
     'Gruenfeld with e3 & Qb3' => 'Gruenfeld',
     'Gruenfeld with e3 Bd3' => 'Gruenfeld',
     'Gruenfeld with Bf4 e3' => 'Gruenfeld',
@@ -163,16 +169,16 @@ class ChessOpening < ApplicationRecord
       end
     end
 
-    def move_text(move)
-      if move
-        piece = move.fetch(:piece)
-        dest_square = Bchess::Pawn.new("w", move.fetch(:column), move.fetch(:row)).to_s.last(2)
-        if piece.name == ''
-          "#{dest_square}"
-        else
-          "#{piece.to_s.first}#{dest_square}"
-        end
-      end
-    end
+    # def move_text(move)
+    #   if move
+    #     piece = move.fetch(:piece)
+    #     dest_square = Bchess::Pawn.new("w", move.fetch(:column), move.fetch(:row)).to_s.last(2)
+    #     if piece.name == ''
+    #       "#{dest_square}"
+    #     else
+    #       "#{piece.to_s.first}#{dest_square}"
+    #     end
+    #   end
+    # end
   end
 end
