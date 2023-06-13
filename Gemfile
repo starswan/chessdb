@@ -44,7 +44,7 @@ gem 'sprockets', '< 4'
 # gem 'spring',        group: :test
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.18'
 
 gem "auto_strip_attributes"
 gem 'bootsnap'
