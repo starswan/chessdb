@@ -25,7 +25,7 @@ gem 'coffee-rails'
 #gem 'activerecord-jdbc-adapter',  platforms: :jruby
 #
 # bootstrap 4.x
-gem "bootstrap", '~> 4.4'
+gem "bootstrap", '~> 5.2'
 gem "rails-assets-tether"
 
 # Use jquery as the JavaScript library
