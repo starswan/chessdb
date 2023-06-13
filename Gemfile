@@ -93,7 +93,6 @@ group :development, :test do
   gem "pronto"
   gem "pronto-rubocop"
   gem "pronto-undercover"
-  gem "undercover"
 end
 
 # Use debugger

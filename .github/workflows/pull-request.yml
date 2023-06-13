@@ -79,7 +79,7 @@ jobs:
       - name: Ruby tests
         run: bundle exec rake spec
         env:
-          COVERAGE: true
+          COVERAGE: 1
           POSTGRES_USER: rails
           POSTGRES_PASSWORD: 123rails!
           POSTGRES_HOST: localhost

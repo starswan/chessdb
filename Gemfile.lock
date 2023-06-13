@@ -477,7 +477,6 @@ DEPENDENCIES
   simplecov-lcov
   sprockets (< 4)
   uglifier (>= 1.3.0)
-  undercover
 
 BUNDLED WITH
    2.3.26
