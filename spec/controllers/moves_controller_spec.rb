@@ -32,7 +32,7 @@ RSpec.describe MovesController, type: :controller do
   it "creates move" do
     expect {
       post :create, params: { game_id: chessmove.game, move: { number: chessmove.number, move: chessmove.move,
-                            from: chessmove.from, to: 'e4', piece: 'P', fen: chessmove.fen } }
+                                                               from: chessmove.from, to: 'e4', piece: 'P', fen: chessmove.fen } }
     }.to change(Move, :count).by(1)
 
     assert_redirected_to move_path(assigns(:move))

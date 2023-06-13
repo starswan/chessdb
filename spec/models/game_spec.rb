@@ -153,10 +153,10 @@ EOF
     games.map do |pgn|
       # puts "#{filename} #{index} #{pgn.tags['White']} vs #{pgn.tags['Black']}"
       Game.from_tags_and_moves({
-                                 White: pgn.header.player_white, Black: pgn.header.player_black,
-                                 WhiteElo: pgn.header.elo_white, BlackElo: pgn.header.elo_black,
-                                 ECO: pgn.header.eco, Opening: pgn.header.opening, Variation: pgn.header.variation,
-                                 Date: pgn.header.date }, pgn.moves, filedata).tap do |game|
+        White: pgn.header.player_white, Black: pgn.header.player_black,
+        WhiteElo: pgn.header.elo_white, BlackElo: pgn.header.elo_black,
+        ECO: pgn.header.eco, Opening: pgn.header.opening, Variation: pgn.header.variation,
+        Date: pgn.header.date }, pgn.moves, filedata).tap do |game|
         game.pgn = filedata
       end
       # puts "#{index} #{game.white.name} vs #{game.black.name} Opening #{game.opening}/#{game.variation}(#{game.ecocode}) on #{game.date} result #{game.result}"

@@ -78,8 +78,8 @@ group :development do
   gem 'listen'
   gem 'pry-rails'
 
-  gem "rubocop", '< 0.77'
-  gem "rubocop-govuk", '< 2'
+  # gem "rubocop"
+  gem "rubocop-govuk", "> 4"
   gem "rubocop-performance"
   gem 'rubocop-rails'
 end

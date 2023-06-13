@@ -10,10 +10,10 @@ class PgnImportJob < ApplicationJob
   #                  'Echecs', 'Sachy', 'Samara', 'Novy', 'GRACIENCA', 'LIMMONT',
   #                  'VUKOVAR', 'SK Dama', 'BARCELONISTA', 'MISLATA', 'Glek']
   REPLACEMENTS = {
-      "- \n" => "\n",
-      '00-1' => '0-1',
-      "-\n" => "\n",
-      '2014.10."' => '2014.10.01"',
+    "- \n" => "\n",
+    '00-1' => '0-1',
+    "-\n" => "\n",
+    '2014.10."' => '2014.10.01"',
   }
 
   def perform(comment, game_text)
