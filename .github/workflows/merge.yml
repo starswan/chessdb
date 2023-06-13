@@ -38,7 +38,6 @@ jobs:
 
     env:
       RAILS_ENV: test
-      RAPID_API_KEY: test
 
     steps:
       - name: Checkout whole repository
@@ -48,9 +47,6 @@ jobs:
 
       - name: Set up CMake for undercover gem
         uses: lukka/get-cmake@latest
-
-      - name: Install libcurl for 'curb' gem
-        run: sudo apt install libcurl4-openssl-dev
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
