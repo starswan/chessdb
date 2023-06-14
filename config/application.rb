@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Angularchess
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.1
+    config.load_defaults 6.0
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -18,5 +18,6 @@ module Angularchess
     #
     config.active_job.queue_adapter = :backburner
     config.time_zone = "London"
+    # config.active_record.legacy_connection_handling = true
   end
 end
