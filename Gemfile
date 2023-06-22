@@ -67,7 +67,7 @@ group :development do
   gem 'binding_of_caller'
   #gem 'byebug'
 
-  gem 'capistrano', '~> 2.15.5'
+  gem 'capistrano', '~> 2.15.11'
   gem 'capistrano-ext'
   gem 'capistrano-rails'
   gem 'rvm-capistrano', require: false
