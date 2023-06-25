@@ -15,7 +15,7 @@ module MovesHelper
     EIGHT_BLANKS,
     PAWN_ROW.each_char.map(&:upcase).join,
     PIECE_ROW.each_char.map(&:upcase).join,
-  ]
+  ].freeze
 
   CASTLING_MOVES = { 'e1g1' => ['h1','f1'].freeze,
                      'e1c1' => ['a1','d1'].freeze,

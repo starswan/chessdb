@@ -163,8 +163,8 @@ EOF
     end.first
   end
 
-  CRAP_TWICS = [1091]
-  PGN_DIR = ENV['HOME'] + '/archive/Chess/Twic/'
+  CRAP_TWICS = [1091].freeze
+  PGN_DIR = (ENV['HOME'] + '/archive/Chess/Twic/').freeze
 
   xit "can import a full set of PGN files" do
     Dir.entries(PGN_DIR).select { |k| k.ends_with? '.pgn' }.reject { |f| CRAP_TWICS.map { |t| "twic#{t}.pgn" }.include?(f) }.each do |f|
