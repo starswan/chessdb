@@ -5,7 +5,7 @@
 class PgnImportJob < ApplicationJob
   queue_priority 10
 
-  FOREIGN_WORDS = ['Chess960', '+[Result "0-1"]', '} 0-1', '} 1-0', 'SetUp']
+  FOREIGN_WORDS = ['Chess960', '+[Result "0-1"]', '} 0-1', '} 1-0', 'SetUp'].freeze
   # FOREIGN_WORDS = ['Sparkasse', 'Strelec', 'Chess960', 'Schachgesellschaft',
   #                  'Echecs', 'Sachy', 'Samara', 'Novy', 'GRACIENCA', 'LIMMONT',
   #                  'VUKOVAR', 'SK Dama', 'BARCELONISTA', 'MISLATA', 'Glek']
@@ -14,7 +14,7 @@ class PgnImportJob < ApplicationJob
     '00-1' => '0-1',
     "-\n" => "\n",
     '2014.10."' => '2014.10.01"',
-  }
+  }.freeze
 
   def perform(comment, game_text)
     # disable the query cache, otherwise it is liable to grow w/o bound

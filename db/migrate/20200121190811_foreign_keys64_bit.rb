@@ -1,5 +1,5 @@
 class ForeignKeys64Bit < ActiveRecord::Migration[5.2]
-  TABLES = [:games, :moves, :openings, :players]
+  TABLES = [:games, :moves, :openings, :players].freeze
   def up
     TABLES.each do |table|
       change_column table, :id, :bigint, unique: true, null: false, auto_increment: true

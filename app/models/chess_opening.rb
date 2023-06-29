@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 #
 # $Id$
 #
@@ -134,7 +133,7 @@ class ChessOpening < ApplicationRecord
 
   has_many :games, foreign_key: :opening_id, dependent: :destroy
 
-  validates :ecocode, format: { with: /\A[A-Z]\d{2}\z/.freeze }
+  validates :ecocode, format: { with: /\A[A-Z]\d{2}\z/ }
   # Try not to allow openings with just an ECO Code
   validates_presence_of :name
 

@@ -7,7 +7,7 @@ class PgnFileImportJob < ApplicationJob
   queue_priority 20
 
   class PgnReader
-    BAD_STRINGS = ['* *','+/- +/-', 'ff', '-/+ -/+', '+[Result "0-1"]', 'Chess960', 'SetUp']
+    BAD_STRINGS = ['* *','+/- +/-', 'ff', '-/+ -/+', '+[Result "0-1"]', 'Chess960', 'SetUp'].freeze
     include Enumerable
 
     def initialize(file, logger)
