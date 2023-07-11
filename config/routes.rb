@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :games do
     resources :moves, only: :index
   end
-  resources :moves, except: :index
+  resources :moves, only: [:new, :create, :show]
   resources :players do
     resources :games, only: :index, controller: 'players/games'
   end

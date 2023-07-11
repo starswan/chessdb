@@ -85,7 +85,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '>= 4'
+  gem 'rspec-rails', '< 6'
   gem 'guard'
   gem 'guard-rspec'
 

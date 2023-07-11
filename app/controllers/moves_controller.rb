@@ -26,10 +26,6 @@ class MovesController < ApplicationController
     @move = @game.moves.new
   end
 
-  # GET /moves/1/edit
-  def edit
-  end
-
   # POST /moves
   # POST /moves.json
   def create
@@ -43,30 +39,6 @@ class MovesController < ApplicationController
         format.html { render :new }
         format.json { render json: @move.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PATCH/PUT /moves/1
-  # PATCH/PUT /moves/1.json
-  def update
-    respond_to do |format|
-      if @move.update(move_params)
-        format.html { redirect_to @move, notice: 'Move was successfully updated.' }
-        format.json { render :show, status: :ok, location: @move }
-      else
-        format.html { render :edit }
-        format.json { render json: @move.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /moves/1
-  # DELETE /moves/1.json
-  def destroy
-    @move.destroy
-    respond_to do |format|
-      format.html { redirect_to moves_url, notice: 'Move was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

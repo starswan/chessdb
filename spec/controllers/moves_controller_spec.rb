@@ -42,22 +42,4 @@ RSpec.describe MovesController, type: :controller do
     get :show, params: { id: chessmove }
     expect(response).to be_successful
   end
-
-  it "gets edit" do
-    get :edit, params: { id: chessmove }
-    expect(response).to be_successful
-  end
-
-  it "updates move" do
-    patch :update, params: { id: chessmove, move: { game_id: chessmove.game_id, number: chessmove.number, move: chessmove.move } }
-    assert_redirected_to move_path(assigns(:move))
-  end
-
-  it "destroys move" do
-    expect {
-      delete :destroy, params: { id: chessmove }
-    }.to change(Move, :count).by(-1)
-
-    assert_redirected_to moves_path
-  end
 end
