@@ -17,7 +17,7 @@ set :rvm_ruby_string, '3.1.4@chessdb'
 set :rails_env, 'arthur'
 # RVM now installed on arthur via an apt package
 # Debian 11 (bullseye) gone back to non-apt
-# set :rvm_type, "/usr/share/rvm"
+set :rvm_type, "/usr/share/rvm"
 
 # Extended Server Syntax
 # ======================

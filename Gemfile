@@ -5,7 +5,7 @@
 source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1', '< 7'
+gem 'rails', '>= 6.1.7', '< 7'
 # Use mysql as the database for Active Record (Dev) - but sqlite3 for test and pi?
 # Turns out sqlite doesn't really do concurrency, so have had to go back to mysql for
 # now. Maybe look at pgsql?

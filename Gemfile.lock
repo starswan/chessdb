@@ -470,7 +470,7 @@ DEPENDENCIES
   pronto-rubocop
   pronto-undercover
   pry-rails
-  rails (~> 6.1, < 7)
+  rails (>= 6.1.7, < 7)
   rails-assets-tether
   rails-controller-testing
   rails_config
