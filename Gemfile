@@ -15,8 +15,7 @@ gem 'pg', platforms: :ruby
 #gem 'mysql2', group: :development
 #gem 'sqlite3', group: [:test, :production]
 # Use SCSS for stylesheets
-# gem 'sass-rails', '~> 5.0'
-gem 'sassc-rails'
+gem "sass-rails", "~> 6"
 # Use Uglifier as compressor for JavaScript assets
 # At the moment, don't compress JavaScript assets as its slow and doesn't work on the RPi2
 gem 'uglifier', '>= 1.3.0'
@@ -39,7 +38,8 @@ gem 'jbuilder', '~> 2.0'
 
 # something doesn't like sprockets 4.x
 # gem 'sprockets', '< 4'
-gem 'sprockets'
+# gem 'sprockets'
+gem "webpacker", ">= 5", "< 6"
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 #gem 'spring',        group: :development
 # gem 'spring',        group: :test
