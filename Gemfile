@@ -50,7 +50,7 @@ group :development do
   gem 'binding_of_caller'
   #gem 'byebug'
 
-  gem 'capistrano', '~> 2.15.11'
+  gem 'capistrano', '~> 3.17.3'
   gem 'capistrano-ext'
   gem 'capistrano-rails'
   gem 'rvm-capistrano', require: false
