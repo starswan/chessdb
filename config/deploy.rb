@@ -4,8 +4,8 @@
 # RVM bootstrap
 #
 require 'capistrano/ext/multistage'
-set :stages, %w(alice pifive athur nx6325 ford)
-set :default_stage, 'alice'
+set :stages, %w(alice pifive arthur ford)
+set :default_stage, 'arthur'
 
 require 'rvm/capistrano'
 #set :rvm_ruby_string, '2.2.4'
