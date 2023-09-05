@@ -30,8 +30,15 @@ set :deploy_via, :copy
 set :use_sudo, false
 
 # repo details
-set :scm, :subversion
-set :repository, "http://subversion/svn/starswan/trunk/projects/chessdb"
+if ENV.key? "BRANCH"
+  set :scm, :git
+  set :repository, "git@github.com:starswan/chessdb.git"
+  set :branch, ENV.fetch("BRANCH")
+else
+  # repo details
+  set :scm, :subversion
+  set :repository, "http://subversion/svn/starswan/trunk/projects/chessdb"
+end
 
 # runtime dependencies
 #depend :remote, :gem, "bundler", ">=1.0.0.rc.2"
