@@ -121,7 +121,8 @@ gem 'rails_config'
 # gem 'bchess', git: 'https://github.com/PadawanBreslau/bchess'
 # gem 'bchess', path: "#{ENV['HOME']}/github/bchess"
 # gem "treetop"
-gem 'bchess', git: "https://github.com/starswan/bchess", branch: 'fix-pgn-bugs'
+# gem 'bchess', git: "https://github.com/starswan/bchess", branch: 'fix-pgn-bugs'
+gem 'bchess'
 gem 'backup-task'
 gem 'chess_openings'
 # successor to yaml_db - can't cope with foreign keys though, defaults to truncation
