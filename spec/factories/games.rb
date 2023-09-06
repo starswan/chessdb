@@ -13,7 +13,7 @@ FactoryBot.define do
       letter = 'ABCDE'[n / 100]
       "#{letter}%02d" % ( n % 100)
     end
-    name { 'Anything you like' }
+    sequence(:name) { "Chess Opening #{_1}" }
   end
 
   factory :game do

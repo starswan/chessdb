@@ -93,6 +93,9 @@ group :development, :test do
   gem "pronto"
   gem "pronto-rubocop"
   gem "pronto-undercover"
+  gem 'capybara'
+  gem "selenium-webdriver"
+  gem "puma"
 end
 
 # Use debugger
@@ -104,6 +107,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'database_cleaner'
   gem 'faker'
+
 end
 # gem 'twitter-bootstrap-rails'
 gem 'rails_config'
