@@ -261,7 +261,7 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
-    pg (1.5.3)
+    pg (1.5.4)
     pgn (0.1.1)
       whittle
     polyglot (0.3.5)
