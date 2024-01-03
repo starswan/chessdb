@@ -4,57 +4,40 @@
 # Yet again I have no secrets from the government about which gems I'm using
 source 'http://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1', '< 7'
-# Use mysql as the database for Active Record (Dev) - but sqlite3 for test and pi?
-# Turns out sqlite doesn't really do concurrency, so have had to go back to mysql for
-# now. Maybe look at pgsql?
-# gem 'mysql2', platforms: :ruby
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
+gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
+
+gem 'mysql2'
+
 gem 'pg', platforms: :ruby
-# gem 'sqlite3'
-#gem 'mysql2', group: :development
-#gem 'sqlite3', group: [:test, :production]
-# Use SCSS for stylesheets
-# gem 'sass-rails', '~> 5.0'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '~> 5.0'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.7'
+# Use Active Model has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
+
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
+
+gem 'auto_strip_attributes'
+
 gem 'sassc-rails'
+# gem 'sprockets', '~> 4'
 # Use Uglifier as compressor for JavaScript assets
 # At the moment, don't compress JavaScript assets as its slow and doesn't work on the RPi2
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails'
-#gem 'activerecord-jdbc-adapter',  platforms: :jruby
-#
+
+gem 'jquery-rails'
+
 # bootstrap 4.x
 gem "bootstrap", '~> 5.3'
 gem "rails-assets-tether"
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-#gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-# gem 'sdoc', '~> 0.4.0',          group: :doc
-
-# something doesn't like sprockets 4.x
-gem 'sprockets', '< 4'
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-#gem 'spring',        group: :development
-# gem 'spring',        group: :test
-
-# Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.19'
-
-gem "auto_strip_attributes"
-gem 'bootsnap'
-
-# Use unicorn as the app server in production
-# using mod_passenger now with Apache2
-# gem 'unicorn', group: :production, platforms: :ruby
-#gem 'puma', group: :production, platforms: :jruby
-
 gem 'kaminari'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.4', require: false
 # gem 'bootstrap-sass'
 # Interesting CSS toolkit Ross from MoJ showed me..https://bulma.io/alternative-to-bootstrap/
 # gem 'bulma-rails'
@@ -109,7 +92,6 @@ group :test do
   gem 'rails-controller-testing'
   gem 'database_cleaner'
   gem 'faker'
-
 end
 # gem 'twitter-bootstrap-rails'
 gem 'rails_config'

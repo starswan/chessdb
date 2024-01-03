@@ -236,6 +236,7 @@ GEM
     minitest (5.22.3)
     msgpack (1.7.2)
     multi_xml (0.6.0)
+    mysql2 (0.5.5)
     nenv (0.3.0)
     net-imap (0.4.10)
       date
@@ -500,6 +501,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen
+  mysql2
   pg
   pronto
   pronto-rubocop

@@ -94,4 +94,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Keeps the Last 5 log files which are rotated at every 50MB
+  config.logger = Logger.new(config.paths['log'].first, 5, 50.megabytes)
 end

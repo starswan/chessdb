@@ -3,7 +3,7 @@
 # $Id$
 #
 export HOME=`echo ~`
-source $HOME/.bash_profile
+source $HOME/.profile
 dirname=`dirname $0`
 cd $dirname
 program=$1
