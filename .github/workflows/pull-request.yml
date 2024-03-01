@@ -61,6 +61,9 @@ jobs:
 #          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
 #          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
 
+      - name: Setup log directory
+        run: mkdir -p log
+
       - name: Setup test db
         run: bundle exec rake db:create db:schema:load
         env:
@@ -76,7 +79,7 @@ jobs:
       - name: Yarn install
         run: yarn install
 
-# Run ruby tests in headless mode
+      # Run ruby tests in headless mode
       - name: Ruby tests
         uses: GabrielBB/xvfb-action@v1
         with:
