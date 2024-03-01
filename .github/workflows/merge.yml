@@ -54,6 +54,9 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
+      - name: Setup log directory
+        run: mkdir -p log
+
       - name: Setup test db
         run: bundle exec rake db:create db:schema:load
         env:
@@ -68,9 +71,6 @@ jobs:
 
       - name: Yarn install
         run: yarn install
-
-      - name: Setup log directory
-        run: mkdir -p log
 
       # Run ruby tests in headless mode
       - name: Ruby tests
