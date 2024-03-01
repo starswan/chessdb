@@ -76,7 +76,10 @@ jobs:
       - name: Yarn install
         run: yarn install
 
-# Run ruby tests in headless mode
+      - name: Setup log directory
+        run: mkdir -p log
+
+      # Run ruby tests in headless mode
       - name: Ruby tests
         uses: GabrielBB/xvfb-action@v1
         with:
