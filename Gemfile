@@ -86,8 +86,10 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '< 7'
-  gem 'guard'
-  gem 'guard-rspec'
+
+  gem "guard-bundler"
+  gem "guard-rspec"
+  gem "guard-rubocop"
 
   gem "faraday-retry"
   gem "pronto"
@@ -134,5 +136,4 @@ gem 'chess_openings'
 
 gem "backburner", "~> 1.6"
 gem "addressable", "~> 2.8"
-# pin psych to prevent issue when loading database.yml multi-database on ruby 3.1 and above
-# gem 'psych', '< 4.0.0'
+gem "yaml_db"
