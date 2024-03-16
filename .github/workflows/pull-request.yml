@@ -22,7 +22,7 @@ jobs:
     services:
       postgres:
         # Docker Hub image
-        image: postgres
+        image: timescale/timescaledb:latest-pg14
         env:
           POSTGRES_USER: rails
           POSTGRES_PASSWORD: 123rails!
@@ -34,7 +34,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         ports:
-          - 5432:5432
+          - 5442:5432
 
     env:
       RAILS_ENV: test

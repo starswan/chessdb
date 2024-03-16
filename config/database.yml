@@ -21,12 +21,20 @@ development:
 #  reconnect: true
   adapter: postgresql
   database: chessdb_development
+  host: localhost
+  port: 5442
+  username: rails
+  password: 123rails!
 
 arthur:
 #  <<: *default
 #  reconnect: true
   adapter: postgresql
   database: chessdb_development
+  host: localhost
+  port: 5442
+  username: rails
+  password: 123rails!
 
 ford:
 #  <<: *default
@@ -43,9 +51,10 @@ test:
 #  <<: *default
   adapter: postgresql
   database: chessdb_test
-  host: <%= ENV['POSTGRES_HOST'] %>
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  host: localhost
+  port: 5442
+  username: rails
+  password: 123rails!
 
 #  host: chessdb.c8u8igpysemu.eu-west-1.rds.amazonaws.com
 #  port: 3306
@@ -73,7 +82,7 @@ production:
   encoding: utf8
   database: starswan_chessdb
   username: starswan
-  password: rabbit
+  password: <%= ENV['MYSQL_STARSWAN_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
 #  reconnect: true
   host: localhost
