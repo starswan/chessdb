@@ -14,11 +14,13 @@ RSpec.describe Game, type: :model do
   #   # The Bc3 is probably the issue here - I suspect this is wrong as Nd5 isn't possible if the N is captured and Bc3 should be Bxc3
   #   game_from_moves moves
   # end
-
+  #
   context 'games from moves' do
     let(:white_player) { 'Bloggs, Fred' }
     let(:black_player) { 'Smith, Jim' }
-    let(:game) { game_from_moves moves, white_player, black_player }
+    let(:white_elo) { 2000 }
+    let(:black_elo) { 2000 }
+    let(:game) { game_from_moves moves, white_player, black_player, white_elo, black_elo }
 
     describe "create a game from a sample PGN" do
       let(:moves) do
@@ -60,6 +62,18 @@ RSpec.describe Game, type: :model do
 
       it 'parses correctly' do
         expect(game.pgn.size).to eq(762)
+      end
+
+      it 'creates players' do
+        expect(Player.count).to eq(2)
+      end
+
+      describe "game mismatch" do
+        let(:black_elo) { 1000 }
+
+        it 'doesnt create players' do
+          expect(Player.count).to eq(0)
+        end
       end
     end
 
@@ -125,9 +139,9 @@ RSpec.describe Game, type: :model do
     end
   end
 
-  def game_from_moves(moves, white_player, black_player)
+  def game_from_moves(moves, white_player, black_player, white_elo, black_elo)
     # pgn = PGN::Game.new moves
-    tags = { White: white_player, Black: black_player, Date: Date.today.to_s, Opening: 'blah', ECO: "A00", WhiteElo: 2000, BlackElo: 2000 }
+    tags = { White: white_player, Black: black_player, Date: Date.today.to_s, Opening: 'blah', ECO: "A00", WhiteElo: white_elo, BlackElo: black_elo }
     # Game.from_tags_and_moves(tags, pgn.moves).tap do |game|
     #   game.update!(result: '1-0', site: 'somewhere')
     # end
