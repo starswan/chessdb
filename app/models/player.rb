@@ -17,9 +17,9 @@ class Player < ApplicationRecord
   class << self
     def find_player(name, fide_id)
       if name.include?(',')
-        last, first = name.split(',')
+        last, first = name.split(',').map(&:strip)
       elsif name.include?(' ')
-        first, last = name.split(' ')
+        first, last = name.split(' ').map(&:strip)
       else
         first, last = nil, name
       end
