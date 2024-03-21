@@ -18,7 +18,8 @@ class PgnImportJob < ApplicationJob
 
   def perform(comment, game_text)
     # disable the query cache, otherwise it is liable to grow w/o bound
-    ActiveRecord::Base.connection.disable_query_cache!
+    # maybe this is a bad idea?
+    # ActiveRecord::Base.connection.disable_query_cache!
     if FOREIGN_WORDS.any? { |word| game_text.include?(word) }
       logger.warn('Probably Chess960 Game')
     else

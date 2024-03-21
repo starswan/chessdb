@@ -51,8 +51,8 @@ class Game < ApplicationRecord
   end
 
   def self.find_from_tags tags, raw_pgn
-    white = find_player(tags.fetch(:White), tags[:WhiteFideId])
-    black = find_player(tags.fetch(:Black), tags[:BlackFideId])
+    white = Player.find_player(tags.fetch(:White), tags[:WhiteFideId])
+    black = Player.find_player(tags.fetch(:Black), tags[:BlackFideId])
     opening = ChessOpening.find_opening(tags.fetch(:ECO), tags.fetch(:Opening), tags.fetch(:Variation), raw_pgn)
     date = Date.parse(tags.fetch(:Date))
 
@@ -60,8 +60,8 @@ class Game < ApplicationRecord
   end
 
   def self.from_tags_and_moves tags, moves, raw_pgn
-    white = find_player(tags.fetch(:White), tags[:WhiteFideId])
-    black = find_player(tags.fetch(:Black), tags[:BlackFideId])
+    white = Player.find_player(tags.fetch(:White), tags[:WhiteFideId])
+    black = Player.find_player(tags.fetch(:Black), tags[:BlackFideId])
 
     opening = ChessOpening.find_opening(tags.fetch(:ECO), tags.fetch(:Opening), tags.fetch(:Variation), raw_pgn)
     white_elo = tags.fetch(:WhiteElo, 0).to_i
@@ -155,16 +155,4 @@ private
     fen_line.each_char.map { |c| c.to_i > 0 ? (' ' * c.to_i) : c }.join.each_char.to_a
   end
 
-  def self.find_player(name, fide_id)
-    if name.include?(',')
-      last, first = name.split(',')
-    elsif name.include?(' ')
-      first, last = name.split(' ')
-    else
-      first, last = nil, name
-    end
-    Player.find_or_create_by(first_name: first, last_name: last) do |p|
-      p.fideid = fide_id
-    end
-  end
 end

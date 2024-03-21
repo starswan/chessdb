@@ -16,7 +16,9 @@ RSpec.describe Game, type: :model do
   # end
 
   context 'games from moves' do
-    let(:game) { game_from_moves moves }
+    let(:white_player) { 'Bloggs, Fred' }
+    let(:black_player) { 'Smith, Jim' }
+    let(:game) { game_from_moves moves, white_player, black_player }
 
     describe "create a game from a sample PGN" do
       let(:moves) do
@@ -45,9 +47,11 @@ RSpec.describe Game, type: :model do
         %w{d4 Nf6 c4 g6 Nc3 Bg7 e4 d6 Be2 O-O Nf3 e5 Be3 Nc6 d5 Ne7 Nd2 Nd7 f3 f5 b4 b6 Nb3 Nf6 c5 f4 Bf2 g5 a4 h5 a5 bxc5 bxc5 Ng6 a6 g4 Na5 Nh7 Nc6 Qg5 Nb5 g3 Bg1 Nh4 Kd2 Nxg2 Nxc7 Bd7 Nxa8 Rxa8 Qb3 Nf6 Kc2 Ne1+ Rxe1 g2 Bf2 gxh1=Q Rxh1 Qg2 Rf1 dxc5 Qb7 Re8 Qxa7 Bxc6 dxc6 Ng4 Qd7
          Ne3+ Kc3 Nxf1 Qxe8+ Bf8 Bc4+ Kh7 Qxh5+ Bh6 c7 Qxf2 Qf5+}
       }
+      let(:white_player) { 'De Jong' }
+      let(:black_player) { 'Verlinde' }
 
       it 'parses correctly' do
-        expect(game.pgn.size).to eq(629)
+        expect(game.pgn.size).to eq(622)
       end
     end
 
@@ -121,9 +125,9 @@ RSpec.describe Game, type: :model do
     end
   end
 
-  def game_from_moves(moves)
+  def game_from_moves(moves, white_player, black_player)
     # pgn = PGN::Game.new moves
-    tags = { White: 'Bloggs, Fred', Black: 'Smith, Jim', Date: Date.today.to_s, Opening: 'blah', ECO: "A00", WhiteElo: 2000, BlackElo: 2000 }
+    tags = { White: white_player, Black: black_player, Date: Date.today.to_s, Opening: 'blah', ECO: "A00", WhiteElo: 2000, BlackElo: 2000 }
     # Game.from_tags_and_moves(tags, pgn.moves).tap do |game|
     #   game.update!(result: '1-0', site: 'somewhere')
     # end
@@ -164,7 +168,7 @@ EOF
   end
 
   CRAP_TWICS = [1091].freeze
-  PGN_DIR = (ENV['HOME'] + '/archive/Chess/Twic/').freeze
+  PGN_DIR = (ENV['HOME'] + '/chessdb/shared/Twic/').freeze
 
   xit "can import a full set of PGN files" do
     Dir.entries(PGN_DIR).select { |k| k.ends_with? '.pgn' }.reject { |f| CRAP_TWICS.map { |t| "twic#{t}.pgn" }.include?(f) }.each do |f|
