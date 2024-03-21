@@ -14,11 +14,13 @@ RSpec.describe Game, type: :model do
   #   # The Bc3 is probably the issue here - I suspect this is wrong as Nd5 isn't possible if the N is captured and Bc3 should be Bxc3
   #   game_from_moves moves
   # end
-
+  #
   context 'games from moves' do
     let(:white_player) { 'Bloggs, Fred' }
     let(:black_player) { 'Smith, Jim' }
-    let(:game) { game_from_moves moves, white_player, black_player }
+    let(:white_elo) { 2000 }
+    let(:black_elo) { 2000 }
+    let(:game) { game_from_moves moves, white_player, black_player, white_elo, black_elo }
 
     describe "create a game from a sample PGN" do
       let(:moves) do
@@ -27,6 +29,10 @@ RSpec.describe Game, type: :model do
         moves += %w{Nh2 Rf8 Ng4 Rf7 h4 Rd8 h5 g5 h6+ Kf8 Ne5 Bxe5 R1xe5 Rf6}
         moves += %w{Qxg5 Qxe6 Rxe6 Rxe6 Qf5+ Rf6 Qxh7 Ke8 g4 Kd7 g5 Rff8 g6 Rh8 Qxh8 Rxh8 g7 Rg8 Kf1}
         moves
+      end
+
+      before do
+        game.save
       end
 
       it 'parses correctly' do
@@ -58,8 +64,26 @@ RSpec.describe Game, type: :model do
     describe "Ayala Pena vs Atoufi" do
       let(:moves) { %w{d4 Nf6 c4 g6 Nc3 Bg7 e4 O-O Be3 d6 f3 a6 Qd2 Nbd7 Nh3 c5 Nf2 e6 Be2 b6 O-O Bb7 Rfd1 Re8 Rac1 Qe7 Bf1 Red8 b3 Qf8 d5 e5 Rb1 Nh5 b4 Bc8 bxc5 bxc5 Na4 f5 exf5 gxf5 Bg5 Re8 Nb6 Nxb6 Rxb6 h6 Bh4 e4 Qc2 e3 Nd3 Bd4 Be2 f4 Nb4 Bf5 Qa4 a5 Nc6 Bf6 Be1 Kh8 Bd3 e2 Bxf5 exd1=Q Qxd1 Qg7 Be6 a4 Kf1 Qh7 a3 Rf8 Bf2 Rae8 Ra6 Ng7 Bd7 Ra8 Rxa8 Rxa8 g4 h5 Kg2 hxg4 Bxg4 Bb2 Be1 Nf5 Qe2 Ne3+ Kg1 Qc2 Kf2 Qxe2+ Kxe2 Nxc4 Bf5 Nxa3 Na5 Nb5} }
 
+      before do
+        game.save
+      end
+
       it 'parses correctly' do
         expect(game.pgn.size).to eq(762)
+      end
+
+      it 'creates players' do
+        expect(game).to be_valid
+        expect(Player.count).to eq(2)
+      end
+
+      describe "game mismatch" do
+        let(:black_elo) { 1000 }
+
+        it 'doesnt create players' do
+          expect(game).not_to be_valid
+          expect(Player.count).to eq(0)
+        end
       end
     end
 
@@ -113,6 +137,10 @@ RSpec.describe Game, type: :model do
     describe 'read Nikolovski vs Zlatanovic' do
       let(:moves) { %w{f4 g6 Nf3 Bg7 e3 d6 Nc3 e5 fxe5 dxe5 Bc4 Nh6 e4 Bg4 d3 Nc6 h3 Bxf3 Qxf3 Nd4 Qf2 O-O g4 Bf6 O-O Bg5 Nd5 Kg7 Bxg5 Qxg5 Nf6 Qf4 c3 Ne6 Qe1 Kxf6 Rxf4+ Nxf4 Qh4+ Kg7 g5 Ng8 d4 Rae8 dxe5 Ne6 Rf1 Re7 Rf6 Rfe8 Bxe6 Rxe6 Rxe6 Rxe6 Qf2 b6 Qd4 h6 gxh6+ Nxh6 Qd7 g5 Qxc7 a6 Kg2 Ng8 b4 Ne7 a4 Ng6 c4 Nxe5 Qc8 a5 bxa5 bxa5 Qc5 f6 Qxa5 Rc6 c5 Kg6 Qb5 f5 exf5+ Kxf5 a5 Re6 a6 Nc6 Qa4} }
 
+      before do
+        game.save!
+      end
+
       it 'parses correctly' do
         expect(game.pgn.size).to eq(690)
       end
@@ -125,9 +153,9 @@ RSpec.describe Game, type: :model do
     end
   end
 
-  def game_from_moves(moves, white_player, black_player)
+  def game_from_moves(moves, white_player, black_player, white_elo, black_elo)
     # pgn = PGN::Game.new moves
-    tags = { White: white_player, Black: black_player, Date: Date.today.to_s, Opening: 'blah', ECO: "A00", WhiteElo: 2000, BlackElo: 2000 }
+    tags = { White: white_player, Black: black_player, Date: Date.today.to_s, Opening: 'blah', ECO: "A00", WhiteElo: white_elo, BlackElo: black_elo }
     # Game.from_tags_and_moves(tags, pgn.moves).tap do |game|
     #   game.update!(result: '1-0', site: 'somewhere')
     # end
@@ -148,7 +176,7 @@ EOF
     move_pgn = "\n" + move_data.join(" ")
     game_pgn = tag_pgn + move_pgn
     parse_pgn(game_pgn).tap do |game|
-      game.update!(result: '1-0', site: 'somewhere')
+      game.assign_attributes(result: '1-0', site: 'somewhere')
     end
   end
 

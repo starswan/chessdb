@@ -23,9 +23,16 @@ unless (ENV['COVERAGE']).to_i.zero?
   SimpleCov.formatter = SimpleCov::Formatter::MergedFormatter
 
   SimpleCov.start :rails do
-    # add_group "Jobs", 'app/jobs'
-    minimum_coverage 85.95
-    maximum_coverage_drop 0
+    enable_coverage :branch
+    primary_coverage :branch
+
+    add_filter "lib/tasks/db/yaml_load"
+
+    # Only set minimum coverage locally - CI uses Pronto::Undercover
+    unless ENV.key? "CI"
+      minimum_coverage line: 88.03, branch: 62.99
+      maximum_coverage_drop 0
+    end
   end
 end
 
