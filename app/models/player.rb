@@ -13,4 +13,19 @@ class Player < ApplicationRecord
   # this pattern lets us put a counter cache in with no change to clients
   delegate :count, to: :white_games, prefix: true
   delegate :count, to: :black_games, prefix: true
+
+  class << self
+    def find_player(name, fide_id)
+      if name.include?(',')
+        last, first = name.split(',')
+      elsif name.include?(' ')
+        first, last = name.split(' ')
+      else
+        first, last = nil, name
+      end
+      Player.find_or_initialize_by(first_name: first, last_name: last) do |p|
+        p.fideid = fide_id
+      end
+    end
+  end
 end
