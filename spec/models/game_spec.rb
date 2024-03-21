@@ -73,6 +73,7 @@ RSpec.describe Game, type: :model do
       end
 
       it 'creates players' do
+        expect(game).to be_valid
         expect(Player.count).to eq(2)
       end
 
@@ -80,6 +81,7 @@ RSpec.describe Game, type: :model do
         let(:black_elo) { 1000 }
 
         it 'doesnt create players' do
+          expect(game).not_to be_valid
           expect(Player.count).to eq(0)
         end
       end
