@@ -65,6 +65,7 @@ RSpec.describe Game, type: :model do
       end
 
       it 'creates players' do
+        expect(game).to be_valid
         expect(Player.count).to eq(2)
       end
 
@@ -72,6 +73,7 @@ RSpec.describe Game, type: :model do
         let(:black_elo) { 1000 }
 
         it 'doesnt create players' do
+          expect(game).not_to be_valid
           expect(Player.count).to eq(0)
         end
       end
@@ -162,7 +164,7 @@ EOF
     move_pgn = "\n" + move_data.join(" ")
     game_pgn = tag_pgn + move_pgn
     parse_pgn(game_pgn).tap do |game|
-      game.update!(result: '1-0', site: 'somewhere')
+      game.update(result: '1-0', site: 'somewhere')
     end
   end
 
