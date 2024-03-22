@@ -8,7 +8,7 @@ class Player < ApplicationRecord
 
   validates_presence_of :last_name
 
-  auto_strip_attributes :first_name, :last_name
+  # auto_strip_attributes :first_name, :last_name
 
   # this pattern lets us put a counter cache in with no change to clients
   delegate :count, to: :white_games, prefix: true
