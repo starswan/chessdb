@@ -1,5 +1,5 @@
-  <table class="nice-table-layout">
-    <tr><th>&nbsp;</th><th>White</th><th>Black</th></tr>
+<table class="table table-striped table-sm table-responsive">
+  <tr><th>&nbsp;</th><th>White</th><th>Black</th></tr>
     <% moves.in_groups_of(2) do |white_move, black_move| %>
       <tr>
         <td><%= 1 + (white_move.number / 2) %>.</td>
@@ -7,4 +7,4 @@
         <td><%= link_to black_move.move, black_move if black_move %></td>
       </tr>
     <% end %>
-  </table>
+</table>
