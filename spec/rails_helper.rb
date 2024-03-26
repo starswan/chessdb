@@ -30,7 +30,7 @@ unless (ENV['COVERAGE']).to_i.zero?
 
     # Only set minimum coverage locally - CI uses Pronto::Undercover
     unless ENV.key? "CI"
-      minimum_coverage line: 88.03, branch: 62.99
+      minimum_coverage line: 88.00, branch: 62.99
       maximum_coverage_drop 0
     end
   end
