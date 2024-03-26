@@ -1,4 +1,4 @@
 check process chessdb_queue
    with pidfile /home/stephen/chessdb/current/tmp/pids/queue.pid
-   start = "/usr/bin/env RAILS_ENV=arthur /home/stephen/chessdb/current/queue_start.sh"
-   stop  = "/usr/bin/env RAILS_ENV=arthur /home/stephen/chessdb/current/prog_stop.sh queue"
+   start = "/usr/bin/env RAILS_ENV=arthur RVM_DIR=/usr/share/rvm /home/stephen/chessdb/current/queue.sh start"
+   stop  = "/usr/bin/env RAILS_ENV=arthur RVM_DIR=/usr/share/rvm /home/stephen/chessdb/current/prog_stop.sh queue"

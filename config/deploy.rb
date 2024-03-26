@@ -6,10 +6,11 @@
 require 'capistrano/ext/multistage'
 set :stages, %w(alice pifive athur nx6325 ford)
 set :default_stage, 'alice'
+set :linked_dirs, %w{node_modules}
 
 require 'rvm/capistrano'
 #set :rvm_ruby_string, '2.2.4'
-set :rvm_type, :user
+# set :rvm_type, :user
 #set :rvm_install_type, '1.26.10'
 # Using distcc this number can maybe go higher
 #set :rvm_install_ruby_threads, 3
@@ -28,10 +29,18 @@ set :application, "chessdb"
 set :deploy_via, :copy
 #set :user, "starswan"
 set :use_sudo, false
+set :rvm_type, "/usr/share/rvm"
 
 # repo details
-set :scm, :subversion
-set :repository, "http://subversion/svn/starswan/trunk/projects/chessdb"
+if ENV.key? "BRANCH"
+  set :scm, :git
+  set :repository, "git@github.com:starswan/chessdb.git"
+  set :branch, ENV.fetch("BRANCH")
+else
+  set :scm, :subversion
+  set :repository, "http://subversion/svn/starswan/trunk/projects/chessdb"
+end
+
 
 # runtime dependencies
 #depend :remote, :gem, "bundler", ">=1.0.0.rc.2"
