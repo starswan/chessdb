@@ -164,7 +164,7 @@ class ChessOpening < ApplicationRecord
         logger.info "Opening #{chess_opening}"
         ChessOpening.find_or_create_by! ecocode: ecocode, name: chess_opening.name
       else
-        ChessOpening.find_or_create_by! ecocode: ecocode, name: name.gsub(', ', ','), variation: variation&.gsub("`", "'")
+        ChessOpening.find_or_create_by! ecocode: ecocode, name: name.gsub(', ', ','), variation: variation.gsub("`", "'")
       end
     end
 

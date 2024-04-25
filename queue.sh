@@ -13,7 +13,7 @@ pidfile="tmp/pids/$program.pid"
 logfile="log/$program.log"
 case $1 in
    start)
-      rake backburner:threading:work 2>&1 >>$logfile &
+      nice rake backburner:simple:work 2>&1 >>$logfile &
       echo $! >$pidfile
       ;;
    stop)

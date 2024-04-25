@@ -10,7 +10,8 @@ Backburner.configure do |config|
   # retrying a job is unlikely to work unless its a deadlock issue
   config.max_job_retries = 15
   # some big file parsing takes longer than 2 minutes - 166 seconds measured for 1.4Gb
-  config.respond_timeout = 300
+  # under load, 5 minute timeout isn't enough
+  config.respond_timeout = 600
   # This ought to be the correct error handling strategy, except that sometimes BeanStalk reports connection closed
   # and I'm not quite sure how to reset the connection for that case
   config.on_error = lambda { |ex| Rails.logger.error(ex); ActiveRecord::Base.connection.reconnect! }

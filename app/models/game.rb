@@ -14,6 +14,9 @@ class Game < ApplicationRecord
   # would be useful to understand non-played moves though...?
   MIN_GRADE = 1200
 
+  # don't store quick draws - GMs (and IMs) have a habit of 'agreeing' quick draws
+  MIN_DRAWN_GAME_LENGTH = 20
+
   has_many :moves, inverse_of: :game, dependent: :destroy
   belongs_to :white, class_name: 'Player', foreign_key: :white_id, counter_cache: :white_games_count
   belongs_to :black, class_name: 'Player', foreign_key: :black_id, counter_cache: :black_games_count
@@ -33,8 +36,7 @@ class Game < ApplicationRecord
   # validates_numericality_of :number_of_moves, greater_than_or_equal_to: 15, less_than_or_equal_to: MAX_GAME_LENGTH, unless: ->(x) { x.result == DRAW_RESULT }
   # validates_numericality_of :number_of_moves, only_integer: true, less_than_or_equal_to: MAX_GAME_LENGTH
   validates_numericality_of :number_of_moves, only_integer: true
-  # don't store quick draws - GMs (and IMs) have a habit of agreeing quick draws sometimes
-  validates_numericality_of :number_of_moves, greater_than_or_equal_to: 20, if: ->(x) { x.result == DRAW_RESULT }
+  validates_numericality_of :number_of_moves, greater_than_or_equal_to: MIN_DRAWN_GAME_LENGTH, if: ->(x) { x.result == DRAW_RESULT }
 
   validates_numericality_of :white_elo, :black_elo, only_integer: true, greater_than_or_equal_to: MIN_GRADE, allow_nil: true
   validates_presence_of :opening, :site, :pgn

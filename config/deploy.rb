@@ -5,7 +5,7 @@
 #
 require 'capistrano/ext/multistage'
 set :stages, %w(alice pifive athur nx6325 ford)
-set :default_stage, 'alice'
+set :default_stage, 'arthur'
 set :linked_dirs, %w{node_modules}
 
 require 'rvm/capistrano'
