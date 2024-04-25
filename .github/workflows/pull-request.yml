@@ -71,10 +71,10 @@ jobs:
           POSTGRES_PASSWORD: 123rails!
           POSTGRES_HOST: localhost
 
-      - name: Install Node 14
+      - name: Install Node 16
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
 
       - name: Yarn install
         run: yarn install
