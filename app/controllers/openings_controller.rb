@@ -2,7 +2,7 @@ class OpeningsController < ApplicationController
   # GET /openings
   # GET /openings.json
   def index
-    @openings = ChessOpening.includes(:games).order(:ecocode, :name, :variation).select { |o| o.games.any? }
+    @openings = ChessOpening.where.not(games_count: 0).order(:ecocode, :name, :variation)
   end
 
   def edit

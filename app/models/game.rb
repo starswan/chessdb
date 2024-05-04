@@ -20,7 +20,7 @@ class Game < ApplicationRecord
   has_many :moves, inverse_of: :game, dependent: :destroy
   belongs_to :white, class_name: 'Player', foreign_key: :white_id, counter_cache: :white_games_count
   belongs_to :black, class_name: 'Player', foreign_key: :black_id, counter_cache: :black_games_count
-  belongs_to :opening, class_name: 'ChessOpening', required: true
+  belongs_to :opening, class_name: 'ChessOpening', required: true, counter_cache: true
 
   scope :by_player, ->(player) {
     white = where(white: player)

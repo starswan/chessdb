@@ -19,7 +19,7 @@
         <td><%= opening.ecocode %></td>
         <td><%= opening.name %></td>
         <td><%= opening.variation %></td>
-        <td><%= link_to opening.games.size, opening_games_path(opening) %></td>
+        <td><%= link_to opening.games_count, opening_games_path(opening) %></td>
         <td><%= link_to 'Edit', edit_opening_path(opening) %></td>
         <td><%= link_to 'Destroy', opening_path(opening), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
