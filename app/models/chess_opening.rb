@@ -89,6 +89,10 @@ class ChessOpening < ApplicationRecord
     'Benko gambit half accepted' => 'Benko gambit',
     "Benko's opening, reversed Alekhine" => "Benko's opening",
     'Mujannah opening' => 'Bird',
+    'Bird, From gambit' => "Bird",
+    'Bird, From gambit, Lasker variation' => "Bird",
+    'Bird, From gambit, Lipke variation' => "Bird",
+    'Bird, Hobbs gambit' => "Bird",
     'Blumenfeld counter-gambit accepted' => 'Blumenfeld counter-gambit',
     'Budapest defence declined' => 'Budapest gambit',
     'Caro-Masi defence' => 'Caro-Kann',
@@ -130,10 +134,6 @@ class ChessOpening < ApplicationRecord
     'Four Knights Game: Gunsberg Variation' => 'Four Knights game',
     'Scandinavian Defense: Mieses-Kotroc Variation' => 'Scandinavian',
     'Sicilian Defense: Alapin Variation' => 'Sicilian Defense',
-    'Bird, From gambit' => "Bird's opening",
-    'Bird, From gambit, Lasker variation' => "Bird's opening",
-    'Bird, From gambit, Lipke variation' => "Bird's opening",
-    'Bird, Hobbs gambit' => "Bird's opening",
   }.freeze
 
   has_many :games, foreign_key: :opening_id, dependent: :destroy
