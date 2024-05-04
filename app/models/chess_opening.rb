@@ -69,6 +69,7 @@ class ChessOpening < ApplicationRecord
     'Scandinavian (centre counter) defence' => 'Scandinavian',
     'Vienna' => 'Vienna game',
     "Semi-Benoni (`blockade variation')" => "Semi-Benoni ('blockade variation')",
+    "Trompovsky attack (Ruth,Opovcensky opening)" => "Trompovsky attack (Ruth, Opovcensky opening)",
   }.freeze
   VARIATION_ALIASES = {
     "Benko's opening, reversed Alekhine" => "reversed Alekhine",
@@ -129,6 +130,10 @@ class ChessOpening < ApplicationRecord
     'Four Knights Game: Gunsberg Variation' => 'Four Knights game',
     'Scandinavian Defense: Mieses-Kotroc Variation' => 'Scandinavian',
     'Sicilian Defense: Alapin Variation' => 'Sicilian Defense',
+    'Bird, From gambit' => "Bird's opening",
+    'Bird, From gambit, Lasker variation' => "Bird's opening",
+    'Bird, From gambit, Lipke variation' => "Bird's opening",
+    'Bird, Hobbs gambit' => "Bird's opening",
   }.freeze
 
   has_many :games, foreign_key: :opening_id, dependent: :destroy
