@@ -69,6 +69,7 @@ class ChessOpening < ApplicationRecord
     'Scandinavian (centre counter) defence' => 'Scandinavian',
     'Vienna' => 'Vienna game',
     "Semi-Benoni (`blockade variation')" => "Semi-Benoni ('blockade variation')",
+    "Trompovsky attack (Ruth,Opovcensky opening)" => "Trompovsky attack (Ruth, Opovcensky opening)",
   }.freeze
   VARIATION_ALIASES = {
     "Benko's opening, reversed Alekhine" => "reversed Alekhine",
@@ -88,6 +89,10 @@ class ChessOpening < ApplicationRecord
     'Benko gambit half accepted' => 'Benko gambit',
     "Benko's opening, reversed Alekhine" => "Benko's opening",
     'Mujannah opening' => 'Bird',
+    'Bird, From gambit' => "Bird",
+    'Bird, From gambit, Lasker variation' => "Bird",
+    'Bird, From gambit, Lipke variation' => "Bird",
+    'Bird, Hobbs gambit' => "Bird",
     'Blumenfeld counter-gambit accepted' => 'Blumenfeld counter-gambit',
     'Budapest defence declined' => 'Budapest gambit',
     'Caro-Masi defence' => 'Caro-Kann',
@@ -136,8 +141,6 @@ class ChessOpening < ApplicationRecord
   validates :ecocode, format: { with: /\A[A-Z]\d{2}\z/ }
   # Try not to allow openings with just an ECO Code
   validates_presence_of :name
-
-  delegate :count, to: :games, prefix: true
 
   @@openings = ChessOpenings.new
 
