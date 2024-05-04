@@ -137,8 +137,6 @@ class ChessOpening < ApplicationRecord
   # Try not to allow openings with just an ECO Code
   validates_presence_of :name
 
-  delegate :count, to: :games, prefix: true
-
   @@openings = ChessOpenings.new
 
   class << self
