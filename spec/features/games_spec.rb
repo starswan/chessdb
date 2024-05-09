@@ -17,6 +17,7 @@ RSpec.describe "showing a game", :js, type: :feature do
     expect(page).to have_content game.opening.ecocode
 
     expect(page).to have_content "Elm Chessboard 86 Moves"
+    expect(page).to have_content 'React Chessboard'
   end
 
   it 'can display the game moves (ruby)' do
