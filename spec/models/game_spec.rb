@@ -160,7 +160,7 @@ RSpec.describe Game, type: :model do
     #   game.update!(result: '1-0', site: 'somewhere')
     # end
 #    This should have worked and been an improvement...?
-    move_data = moves.in_groups_of(2).map.with_index { |wb, index| "#{index + 1}. #{wb.first} #{wb.last}"}
+    move_data = moves.in_groups_of(2).map.with_index { |wb, index| "#{index + 1}. #{wb.first} #{wb.last}" }
 
     tag_pgn = <<EOF
 [Date "#{tags.fetch(:Date)}"]

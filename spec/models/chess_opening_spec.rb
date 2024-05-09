@@ -5,7 +5,7 @@
 require 'rails_helper'
 
 RSpec.describe ChessOpening, type: :model do
-  let!(:opening) { create(:opening, games: [build(:game)])}
+  let!(:opening) { create(:opening, games: [build(:game)]) }
 
   it 'destroys child games when destroyed' do
     expect {

@@ -4,7 +4,7 @@
 class Move < ApplicationRecord
   belongs_to :game
 
-  validates :piece, inclusion: { in: 'KQBNRPkqbnrp'.each_char.to_a , nil: false }
+  validates :piece, inclusion: { in: 'KQBNRPkqbnrp'.each_char.to_a, nil: false }
   validates :fen, presence: true
 
   def white?
