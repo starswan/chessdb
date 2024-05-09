@@ -36,5 +36,12 @@ FactoryBot.define do
     to { 'e4' }
     piece { 'P' }
     fen { '8/8/8/8/8/8/8/8' }
+
+    trait :black do
+      move { 'e5' }
+      from { 'e7' }
+      to { 'e5' }
+      piece { 'p' }
+    end
   end
 end
