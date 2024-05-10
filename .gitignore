@@ -17,6 +17,7 @@ coverage/
 lr.state
 tmp
 node_modules
+elm-stuff
 .idea/shelf
 *.iml
 .idea
