@@ -21,7 +21,7 @@ type alias Model =
 
 
 type Message
-    = Nothing
+    = Render
 
 
 init : String -> ( Model, Cmd Message )
@@ -36,7 +36,6 @@ view model =
         rows = model.chessboard.squares |> List.reverse |> List.map squaresToTableRow
     in
         table [] rows
-    --div [] []
 
 squaresToTableRow: List Square -> Html msg
 squaresToTableRow square_list =
@@ -66,6 +65,7 @@ squareToTd square =
         bg = style "background-color" color
     in
         td [square_height, square_width, bg] []
+
 
 update : Message -> Model -> ( Model, Cmd Message )
 update message model =

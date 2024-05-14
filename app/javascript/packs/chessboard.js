@@ -7,9 +7,11 @@ import {
 } from '../Main'
 
 document.addEventListener('DOMContentLoaded', () => {
-    const target = document.getElementById('chessboard');
+    const target = document.createElement('div')
+
+    document.body.appendChild(target)
     Elm.Main.init({
         node: target,
         flags: ''
     })
-});
+})
