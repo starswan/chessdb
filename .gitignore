@@ -28,6 +28,7 @@ db/20*/*.yml
 
 /public/packs
 /public/packs-test
+/elm-stuff
 /node_modules
 /yarn-error.log
 yarn-debug.log*

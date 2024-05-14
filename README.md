@@ -1,7 +1,7 @@
 Chess DB
 --------
 
-egenerate with:
+regenerate with:
 rails new chessdb -d mysql --skip-turbolinks --skip-spring --skip-sprockets --skip-keeps --skip-git --skip-puma \
 --skip-action-text --skip-test --skip-system-test --skip-action-mailbox ---webpack=elm \
 --skip-action-cable --skip-collision-check

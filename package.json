@@ -5,15 +5,15 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^5.4.4",
-    "webpack": "^4.46.0",
-    "elm": "0.19.1-6",
-    "elm-webpack-loader": "^7.0.1"
+    "elm": "^0.19.1-6",
+    "elm-webpack-loader": "^8.0.0",
+    "webpack": "^4.46.0"
   },
   "version": "0.1.0",
   "devDependencies": {
     "elm-format": "^0.8.7",
     "elm-hot-webpack-loader": "^1.1.8",
     "elm-test": "0.19.1-revision9",
-    "webpack-dev-server": "^3"
+    "webpack-dev-server": "^4.11.0"
   }
 }
