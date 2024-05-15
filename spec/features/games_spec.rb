@@ -8,7 +8,7 @@ RSpec.describe "showing a game", :js, type: :feature do
     game.create_moves!
   end
 
-  it 'can display the game' do
+  it 'can display the game (elm)' do
     visit "/games/#{game.id}"
     sleep 20
 
@@ -17,7 +17,7 @@ RSpec.describe "showing a game", :js, type: :feature do
     expect(page).to have_content game.opening.name
   end
 
-  it 'can display the game moves' do
+  it 'can display the game moves (ruby)' do
     visit "/games/#{game.id}/moves"
     sleep 20
 
