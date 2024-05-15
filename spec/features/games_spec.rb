@@ -8,12 +8,21 @@ RSpec.describe "showing a game", :js, type: :feature do
     game.create_moves!
   end
 
-  it 'can display the game', :js do
+  it 'can display the game' do
     visit "/games/#{game.id}"
-    sleep 30
+    sleep 20
 
-    # expect(page).to have_content 'Everitt'
-    # expect(page).to have_content game.opening.ecocode
-    # expect(page).to have_content game.opening.name
+    expect(page).to have_content 'Everitt'
+    expect(page).to have_content game.opening.ecocode
+    expect(page).to have_content game.opening.name
+  end
+
+  it 'can display the game moves' do
+    visit "/games/#{game.id}/moves"
+    sleep 20
+
+    expect(page).to have_content 'Everitt'
+    expect(page).to have_content game.opening.ecocode
+    expect(page).to have_content game.opening.name
   end
 end

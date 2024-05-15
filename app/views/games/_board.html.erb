@@ -3,7 +3,7 @@
     <tr>
       <% position_row.each_char.with_index do |piece, index| %>
         <td height="45" width="45" bgcolor="<%= square_colour(row_index + index) %>">
-          <%= image_tag "Chess_#{piece_glyph(piece)}45.svg" unless piece == ' ' %>
+          <%= image_tag "/pieces/Chess_#{piece_glyph(piece)}45.svg", skip_pipeline: true unless piece == ' ' %>
         </td>
       <% end %>
     </tr>

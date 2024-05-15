@@ -1,18 +1,20 @@
 module ChessBoard exposing (..)
 
+import Position exposing (Position)
 import Square exposing (Square)
 import SquareFile
 import SquareRank exposing (SquareRank)
 
 
 type alias ChessBoard =
-    { squares : List (List Square)
+    { squares : List (List Square),
+    position: Position
     }
 
 
 start : ChessBoard
 start =
-    ChessBoard (SquareRank.all |> List.map makeRow)
+    ChessBoard (SquareRank.all |> List.map makeRow) Position.initial
 
 
 makeRow : SquareRank -> List Square
