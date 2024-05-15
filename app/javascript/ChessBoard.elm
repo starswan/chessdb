@@ -7,8 +7,8 @@ import SquareRank exposing (SquareRank)
 
 
 type alias ChessBoard =
-    { squares : List (List Square),
-    position: Position
+    { squares : List (List Square)
+    , position : Position
     }
 
 
