@@ -33,7 +33,9 @@ view : Model -> Html Message
 view model =
     let
         -- reverse the chessboard rows are we display row 8 at the top
-        rows = model.chessboard.squares |> List.reverse |> List.map squaresToTableRow
+        rows = model.chessboard.squares
+            |> List.reverse
+            |> List.map squaresToTableRow
     in
         table [] rows
 
