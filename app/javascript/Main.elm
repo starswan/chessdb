@@ -6,7 +6,7 @@
 module Main exposing (..)
 
 import Browser
-import ChessBoard exposing (ChessBoard)
+import ChessBoard exposing (ChessBoard, makeRow)
 import Html exposing (Html, img, table, td, tr)
 import Html.Attributes exposing (height, src, style, width)
 import Piece exposing (Piece, color, kind)
@@ -19,7 +19,8 @@ import SquareRank
 import String exposing (toLower)
 
 
-type alias Model = ChessBoard
+type alias Model =
+    ChessBoard
 
 
 type Message
@@ -31,65 +32,106 @@ init data =
     ( ChessBoard.start, Cmd.none )
 
 
+
+--allSquares: List (List Square)
+-- all the squares on the chess board - its a constant
+
+
+allSquares =
+    SquareRank.all |> List.map makeRow
+
+
+odd_files =
+    [ SquareFile.a, SquareFile.c, SquareFile.e, SquareFile.g ]
+
+
+odd_ranks =
+    [ SquareRank.one, SquareRank.three, SquareRank.five, SquareRank.seven ]
+
+
+square_height =
+    height 45
+
+
+square_width =
+    width 45
+
+
 view : Model -> Html Message
 view model =
     let
         -- reverse the chessboard rows are we display row 8 at the top
-        rows = model.squares
-            |> List.reverse
-            |> List.map (squaresToTableRow model.position)
+        rows =
+            allSquares
+                |> List.reverse
+                |> List.map (squaresToTableRow model.position)
     in
-        table [] rows
+    table [] rows
 
-squaresToTableRow: Position -> List Square -> Html msg
+
+squaresToTableRow : Position -> List Square -> Html msg
 squaresToTableRow position square_list =
     let
-        tds = square_list |> List.map (squareToTableCell position)
+        tds =
+            square_list |> List.map (squareToTableCell position)
     in
-        tr [] tds
+    tr [] tds
 
-square_height = height 45
-square_width = width 45
-odd_files = [SquareFile.a, SquareFile.c, SquareFile.e, SquareFile.g]
-odd_ranks = [SquareRank.one, SquareRank.three, SquareRank.five, SquareRank.seven]
 
-piece_glyph: Piece -> String
+piece_glyph : Piece -> String
 piece_glyph piece =
     let
-        second = if (piece |> color) == PieceColor.white
-                 then
-                     "l"
-                 else
-                     "d"
-    in
-        (piece |> kind |> toString |> toLower) ++ second ++ "t"
+        second =
+            if (piece |> color) == PieceColor.white then
+                "l"
 
-squareToTableCell: Position -> Square -> Html msg
+            else
+                "d"
+    in
+    (piece |> kind |> toString |> toLower) ++ second ++ "t"
+
+
+squareToTableCell : Position -> Square -> Html msg
 squareToTableCell position square =
     let
-        sq_file = square |> file
-        sq_row = square |> rank
+        sq_file =
+            square |> file
 
-        odd_file = odd_files |> List.any (\a_file -> sq_file == a_file)
-        odd_row = odd_ranks |> List.any (\a_row -> sq_row == a_row)
-        color = if (odd_file && not odd_row) || (not odd_file && odd_row)
-                then
-                    "#ffce9e"
-                else
-                    "#d18b47"
-        bg = style "background-color" color
+        sq_row =
+            square |> rank
 
-        glyph = case position |> pieceOn square of
-            Just piece ->
-                let
-                    source = "/pieces/Chess_" ++ (piece |> piece_glyph) ++ "45.svg"
-                    tag = img [src source] []
-                in
-                    [tag]
+        odd_file =
+            odd_files |> List.any (\a_file -> sq_file == a_file)
 
-            Nothing -> []
+        odd_row =
+            odd_ranks |> List.any (\a_row -> sq_row == a_row)
+
+        color =
+            if (odd_file && not odd_row) || (not odd_file && odd_row) then
+                "#ffce9e"
+
+            else
+                "#d18b47"
+
+        bg =
+            style "background-color" color
+
+        glyph =
+            case position |> pieceOn square of
+                Just piece ->
+                    let
+                        source =
+                            "/pieces/Chess_" ++ (piece |> piece_glyph) ++ "45.svg"
+
+                        tag =
+                            img [ src source ] []
+                    in
+                    [ tag ]
+
+                Nothing ->
+                    []
     in
-        td [square_height, square_width, bg] glyph
+    td [ square_height, square_width, bg ] glyph
 
 
 update : Message -> Model -> ( Model, Cmd Message )

@@ -7,14 +7,13 @@ import SquareRank exposing (SquareRank)
 
 
 type alias ChessBoard =
-    { squares : List (List Square)
-    , position : Position
+    { position : Position
     }
 
 
 start : ChessBoard
 start =
-    ChessBoard (SquareRank.all |> List.map makeRow) Position.initial
+    ChessBoard Position.initial
 
 
 makeRow : SquareRank -> List Square
