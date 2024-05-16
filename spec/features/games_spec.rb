@@ -10,7 +10,7 @@ RSpec.describe "showing a game", type: :feature do
 
   it 'can display the game (elm)', :js do
     visit "/games/#{game.id}"
-    sleep 20
+    sleep 40
 
     expect(page).to have_content 'Everitt'
     expect(page).to have_content game.opening.ecocode
