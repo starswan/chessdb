@@ -6,7 +6,7 @@
 module Main exposing (..)
 
 import Browser
-import ChessBoard exposing (ChessBoard, makeRow)
+import ChessBoard exposing (ChessBoard, allSquares, makeRow)
 import Html exposing (Html, img, table, td, tr)
 import Html.Attributes exposing (height, src, style, width)
 import Piece exposing (Piece, color, kind)
@@ -30,15 +30,6 @@ type Message
 init : String -> ( Model, Cmd Message )
 init data =
     ( ChessBoard.start, Cmd.none )
-
-
-
---allSquares: List (List Square)
--- all the squares on the chess board - its a constant
-
-
-allSquares =
-    SquareRank.all |> List.map makeRow
 
 
 odd_files =

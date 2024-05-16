@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "showing a game", :js, type: :feature do
+RSpec.describe "showing a game", type: :feature do
   let(:game) { Game.last }
 
   before do
@@ -8,7 +8,7 @@ RSpec.describe "showing a game", :js, type: :feature do
     game.create_moves!
   end
 
-  it 'can display the game (elm)' do
+  it 'can display the game (elm)', :js do
     visit "/games/#{game.id}"
     sleep 20
 
@@ -19,7 +19,6 @@ RSpec.describe "showing a game", :js, type: :feature do
 
   it 'can display the game moves (ruby)' do
     visit "/games/#{game.id}/moves"
-    sleep 20
 
     expect(page).to have_content 'Everitt'
     expect(page).to have_content game.opening.ecocode
