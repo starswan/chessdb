@@ -5,6 +5,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+// import { useState } from 'react';
+
+// import Chess from 'chess';
 
 const ChessBoard = props => (
   <div>
