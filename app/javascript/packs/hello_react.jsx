@@ -5,11 +5,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-// import { useState } from 'react';
+import { useState } from 'react';
 
-// import Chess from 'chess';
+import Chess from 'chess';
 
 function ChessBoard({name}) {
+    const [game, setGame] = useState(Chess.create());
+
     return <div>
         Hello Chessboard {name}!
         <table border="1" class="table table-striped">
