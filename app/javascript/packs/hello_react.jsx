@@ -6,6 +6,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { useState } from 'react';
+import { createRoot } from 'react-dom/client';
 
 import Chess from 'chess';
 
@@ -14,7 +15,8 @@ function ChessBoard({name}) {
 
     return <div>
         Hello Chessboard {name}!
-        <table border="1" class="table table-striped">
+        <table className="table table-striped">
+            <tbody>
             <tr>
                 <td>R1 T1</td>
                 <td>R1 T2</td>
@@ -30,6 +32,7 @@ function ChessBoard({name}) {
                 <td>R3 T2</td>
                 <td>R3 T3</td>
             </tr>
+            </tbody>
         </table>
     </div>
 }
@@ -55,7 +58,7 @@ ChessBoard.propTypes = {
 
 document.addEventListener('DOMContentLoaded', () => {
   const reactroot = document.body.appendChild(document.createElement('div'));
-  const root = ReactDOM.createRoot(reactroot);
+  const root = createRoot(reactroot);
   root.render(
       <ChessBoard name="React" />
   );
