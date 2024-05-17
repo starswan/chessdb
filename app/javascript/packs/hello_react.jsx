@@ -9,21 +9,28 @@ import PropTypes from 'prop-types'
 
 // import Chess from 'chess';
 
-const ChessBoard = props => (
-  <div>
-    Hello Chessboard {props.name}!
-    <table border="1">
-        <tr>
-            <td>R1 T1</td>
-            <td>R1 T2</td>
-        </tr>
-        <tr>
-            <td>R2 T1</td>
-            <td>R2 T2</td>
-        </tr>
-    </table>
-  </div>
-)
+function ChessBoard({name}) {
+    return <div>
+        Hello Chessboard {name}!
+        <table border="1" class="table table-striped">
+            <tr>
+                <td>R1 T1</td>
+                <td>R1 T2</td>
+                <td>R1 T3</td>
+            </tr>
+            <tr>
+                <td>R2 T1</td>
+                <td>R2 T2</td>
+                <td>R2 T3</td>
+            </tr>
+            <tr>
+                <td>R3 T1</td>
+                <td>R3 T2</td>
+                <td>R3 T3</td>
+            </tr>
+        </table>
+    </div>
+}
 
 //     <% position.each.with_index do |position_row, row_index| %>
 // <tr>
@@ -36,9 +43,9 @@ const ChessBoard = props => (
 // <% end %>
 
 
-ChessBoard.defaultProps = {
-  name: 'David'
-}
+// ChessBoard.defaultProps = {
+//   name: 'David'
+// }
 
 ChessBoard.propTypes = {
   name: PropTypes.string
