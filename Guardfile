@@ -81,7 +81,8 @@ guard :rspec, cmd: "rspec" do
   end
 end
 
-guard :rubocop do
+# Make guard correct any silly mistakes as we go along
+guard :rubocop, cli: ["-A"] do
   watch(%r{.+\.rb$})
   watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
 end

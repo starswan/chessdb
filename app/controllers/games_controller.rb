@@ -11,7 +11,6 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    @game = Game.includes(:moves).find params[:id]
     @position = ['rnbqkbnr', 'pppppppp', ' ' * 8, ' ' * 8, ' ' * 8, ' ' * 8, 'PPPPPPPP', 'RNBQKBNR']
   end
 
@@ -67,7 +66,7 @@ class GamesController < ApplicationController
 private
 
   def set_game
-    @game = Game.includes(:moves).find(params[:id])
+    @game = Game.includes(:moves, :black, :white, :opening).find params[:id]
   end
 
   def set_opening

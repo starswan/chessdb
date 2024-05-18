@@ -128,7 +128,7 @@ private
         src_col, _, _ = src_things.detect { |_ind, _src, dest| dest == ' ' }
         dest_col, _, piece = src_things.detect { |_ind, _src, dest| dest != ' ' }
       else
-        src_col, _ , _ = src_things.detect { |_col, src_piece, _dest_piece| src_piece.casecmp('K').zero? }
+        src_col, _, _ = src_things.detect { |_col, src_piece, _dest_piece| src_piece.casecmp('K').zero? }
         dest_col, _, piece = src_things.detect { |_col, _src_piece, dest_piece| dest_piece.casecmp('K').zero? }
       end
     else
