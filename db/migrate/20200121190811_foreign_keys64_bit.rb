@@ -8,7 +8,6 @@ class ForeignKeys64Bit < ActiveRecord::Migration[5.2]
     change_column :games, :white_id, :bigint
     change_column :games, :black_id, :bigint
     change_column :games, :opening_id, :bigint
-
   end
 
   def down

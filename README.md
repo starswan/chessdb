@@ -1,14 +1,14 @@
 Chess DB
 --------
 
-egenerate with:
+regenerate with:
 rails new chessdb -d mysql --skip-turbolinks --skip-spring --skip-sprockets --skip-keeps --skip-git --skip-puma \
 --skip-action-text --skip-test --skip-system-test --skip-action-mailbox ---webpack=elm \
 --skip-action-cable --skip-collision-check
 
 Chess knowledge database
 
-Bugs: Display code doesn't handle PxP e.p. properly
+Bugs: Display code doesn't handle PxP e.p. properly (nor O-O and I guess O-O-O too)
 First move not displayed same as subsequent ones. Starting position cannot be returned to.
 Once game has exceeded 35 moves, move list is useless as moves appear off-screen. Need to 'scroll' somehow
 
