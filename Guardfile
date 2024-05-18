@@ -83,6 +83,6 @@ end
 
 # Make guard correct any silly mistakes as we go along
 guard :rubocop, cli: ["-A"] do
-  watch(%r{.+\.rb$})
+  watch(%r{^app/.+\.rb$})
   watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
 end
