@@ -1,25 +1,27 @@
 require "rails_helper"
 
-RSpec.describe "showing a game", type: :feature do
+RSpec.describe "showing a game", :js, type: :feature do
   let(:game) { Game.last }
+  let(:filename) { Rails.root.join('spec', 'files', '231059_1_4.pgn').to_s }
 
   before do
-    PgnFileSplitJob.perform_later(Rails.root.join('spec', 'files', '231059_1_4.pgn').to_s, false)
+    PgnFileImportJob.perform_later(filename, false, 0, 20, 20)
     game.create_moves!
   end
 
-  it 'can display the game (elm)', :js do
+  it 'can display the game (elm)' do
     visit "/games/#{game.id}"
     sleep 10
 
-    expect(page).to have_content 'Everitt'
+    expect(page).to have_content 'Weersing'
     expect(page).to have_content game.opening.ecocode
   end
 
   it 'can display the game moves (ruby)' do
     visit "/games/#{game.id}/moves"
+    sleep 10
 
-    expect(page).to have_content 'Everitt'
+    expect(page).to have_content 'Shaddick'
     expect(page).to have_content game.opening.ecocode
     expect(page).to have_content game.opening.name
   end
