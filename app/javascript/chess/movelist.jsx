@@ -22,12 +22,19 @@ export function Movelist({game, moves_url}) {
             })
             .then((data) => {
                 const folded = data.reduce(fold_moves, { list: [], spare: null })
+                if (folded.spare !== null) {
+                    folded.list.push({ number: folded.spare.number, white: folded.spare.move, black: null})
+                }
                 setMoves(folded.list);
             });
     }, []);
 
     const move_list = moves.map((move, index) => {
-        return <tr key={move.number}><td>{index + 1}</td><td>{move.white}</td><td>{move.black}</td></tr>;
+        if (move.black !== null) {
+            return <tr key={move.number}><td>{index + 1}.</td><td>{move.white}</td><td>{move.black}</td></tr>;
+        } else {
+            return <tr key={move.number}><td>{index + 1}.</td><td>{move.white}</td></tr>;
+        }
     });
 
     return <div>
