@@ -2,6 +2,8 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
   before_action :set_opening, only: [:new, :create]
 
+  layout 'elmboard', only: :show
+
   # GET /games
   # GET /games.json
   def index
