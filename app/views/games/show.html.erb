@@ -12,9 +12,13 @@
 
 <div class="row">
   <div class="col-6">
+    <!-- Elm replaces target node, React appends -->
     <%= content_tag :div, "", id: 'elm_chessboard', data: { moves_url: "#{request.protocol}#{request.host_with_port}/games/#{@game.id}/moves.json" } %>
   </div>
   <div class="col-6">
-    <%= content_tag :div, "", id: 'react_chessboard', data: { game_id: @game.id } %>
+    <div class="row">
+      <%= content_tag :div, "", class: "col-8", id: 'react_chessboard', data: { game_id: @game.id } %>
+      <%= content_tag :div, "", class: "col-4", id: 'react_movelist', data: { game_id: @game.id } %>
+    </div>
   </div>
 </div>
