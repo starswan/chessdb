@@ -2,7 +2,7 @@
 # $Id$
 #
 class MovesController < ApplicationController
-  before_action :set_move, only: [:show, :edit, :update, :destroy]
+  before_action :set_move, only: [:show]
   before_action :set_game, only: [:index, :new, :create]
 
   # GET /moves
@@ -11,7 +11,7 @@ class MovesController < ApplicationController
     if @game.moves.count < @game.number_of_moves
       @game.create_moves!
     end
-    @moves = @game.moves
+    @moves = @game.moves.order(:number)
   end
 
   # GET /moves/1

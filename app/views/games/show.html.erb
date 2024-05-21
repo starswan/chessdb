@@ -1,11 +1,17 @@
 <p id="notice"><%= notice %></p>
 <%= render 'game', game: @game %>
-<div class="columns">
-  <div class="column">
-    <%= render 'board', position: @position %>
-  </div>
-  <%= render 'moves/move_list', moves: @game.moves %>
-</div>
+<!--<div class="columns">-->
+<!--  <div class="column">-->
+    <%#= render 'board', position: @position %>
+<!--  </div>-->
+  <%#= render 'moves/move_list', moves: @game.moves %>
+<!--</div>-->
 
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<!--<%#= link_to 'Edit', edit_game_path(@game) %> |-->
+<%#= link_to 'Back', games_path %>
+
+<div class="row">
+  <div class="col-6">
+    <%= content_tag :div, "", id: 'elm_chessboard', data: { moves_url: "#{request.protocol}#{request.host_with_port}/games/#{@game.id}/moves.json" } %>
+  </div>
+</div>

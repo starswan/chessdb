@@ -1,28 +1,27 @@
-<table class="table table-striped table-sm table-responsive">
-  <tr>
-    <td><strong>White:</strong><%= player_name(game.white) %> (<%= game.white_elo %>)</td>
-    <td><strong>Black:</strong><%= player_name(game.black) %> (<%= game.black_elo %>)</td>
-    <td>
-      <strong>Date:</strong>
-      <%= link_to game.date.to_s(:long), game %>
-    </td>
-    <td>
-      <strong>Site</strong>
-      <%= game.site %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Opening:</strong>
-      <%= game.opening.name %>/<%= game.opening.variation %>
-    </td>
-    <td>
-      <strong>Ecocode:</strong>
-      <%= game.opening.ecocode %>
-    </td>
-    <td>
-      <strong>Result:</strong>
-      <%= game.result %>
-    </td>
-  </tr>
-</table>
+<div class="row">
+  <div class="col-3"><strong>White:</strong><%= player_name(game.white) %> (<%= game.white_elo %>)</div>
+  <div class="col-3"><strong>Black:</strong><%= player_name(game.black) %> (<%= game.black_elo %>)</div>
+  <div class="col-3">
+    <strong>Date:</strong>
+    <%= link_to game.date.to_s(:long), game %>
+  </div>
+  <div class="col-3">
+    <strong>Site</strong>
+    <%= game.site %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-4">
+    <strong>Opening:</strong>
+    <%= game.opening.name %>/<%= game.opening.variation %>
+  </div>
+  <div class="col-4">
+    <strong>Ecocode:</strong>
+    <%= game.opening.ecocode %>
+  </div>
+  <div class="col-4">
+    <strong>Result:</strong>
+    <%= game.result %>
+  </div>
+</div>
+<hr/>
