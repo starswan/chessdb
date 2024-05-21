@@ -3,23 +3,13 @@ import PropTypes from 'prop-types'
 import {useState} from 'react';
 import {createRoot} from 'react-dom/client';
 
-import Chess from 'chess';
 import {piece_glyph, square_colour} from "../chess/board";
-
-const reversed_ranks = [8, 7, 6, 5, 4, 3, 2, 1];
+import Game from "../chess/game"
 
 function ChessBoard({name}) {
-    const [game, setGame] = useState(Chess.create());
+    const [game, setGame] = useState(new Game());
 
-    const board_squares = game.getStatus().board.squares
-
-    const squares_in_ranks = reversed_ranks.map((rank_number, index) => {
-        return board_squares.filter((square) => {
-            return square.rank === rank_number;
-        });
-    });
-
-    const table_rows = squares_in_ranks.map((rank_array, index) => {
+    const table_rows = game.getSquares().map((rank_array, index) => {
         const table_cells = rank_array.map((square, index) => {
             const color = square_colour(square);
             const cell_key = '' + square.rank + square.file;
