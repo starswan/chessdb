@@ -1,11 +1,9 @@
 import React from 'react'
 import {piece_glyph, square_colour} from "./board";
-import Game from "./game"
-import PropTypes from 'prop-types'
 import {useState} from 'react';
 
-export function ChessBoard({name}) {
-    const [game, setGame] = useState(new Game());
+export function ChessBoard({game}) {
+    const [getgame, setGame] = useState(game);
 
     const table_rows = game.getSquares().map((rank_array, index) => {
         const table_cells = rank_array.map((square, index) => {
@@ -26,14 +24,9 @@ export function ChessBoard({name}) {
     });
 
     return <div>
-        {name} Chessboard
+        React Chessboard
         <table>
             <tbody>{table_rows}</tbody>
         </table>
     </div>
 }
-
-ChessBoard.propTypes = {
-    name: PropTypes.string
-}
-
