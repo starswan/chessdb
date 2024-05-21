@@ -21,20 +21,24 @@ export function Movelist({game, moves_url}) {
                 return res.json();
             })
             .then((data) => {
-                console.log(data);
                 const folded = data.reduce(fold_moves, { list: [], spare: null })
                 setMoves(folded.list);
             });
     }, []);
 
-    const move_list = moves.map((move) => {
-        const item = move.white + ' ' + move.black;
-
-        return <li key={move.number}>{item}</li>;
+    const move_list = moves.map((move, index) => {
+        return <tr key={move.number}><td>{index + 1}</td><td>{move.white}</td><td>{move.black}</td></tr>;
     });
 
     return <div>
         React MoveList
-        <ol>{move_list}</ol>
+        <table className="table table-striped table-sm">
+            <tr>
+                <th></th>
+                <th>White</th>
+                <th>Black</th>
+            </tr>
+            {move_list}
+        </table>
     </div>
 }
