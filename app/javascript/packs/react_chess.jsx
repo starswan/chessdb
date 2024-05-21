@@ -15,7 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const move_list = document.getElementById('react_movelist');
     const move_root = createRoot(move_list);
+
+    const get_moves_url = move_list.getAttribute('data-moves-url')
+
     move_root.render(
-        <Movelist game={game}/>
+        <Movelist game={game} moves_url={get_moves_url}/>
     );
 })
