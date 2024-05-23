@@ -3,8 +3,9 @@ const reversed_ranks = [8, 7, 6, 5, 4, 3, 2, 1];
 import Chess from 'chess';
 
 export default class Game {
-    constructor() {
+    constructor(moves_url) {
         this.node_chess = Chess.create();
+        this.moves_url = moves_url;
     }
 
     getSquares() {
@@ -15,6 +16,14 @@ export default class Game {
                 return square.rank === rank_number;
             });
         });
+    }
+
+    getMoves() {
+        const promise = fetch(this.moves_url)
+            .then((res) => {
+                return res.json();
+            })
+        return promise;
     }
 }
 

@@ -8,17 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const target = document.getElementById('react_chessboard');
 
     const root = createRoot(target);
-    const game = new Game();
+    const move_list = document.getElementById('react_movelist');
+    const get_moves_url = move_list.getAttribute('data-moves-url')
+
+    const game = new Game(get_moves_url);
     root.render(
         <ChessBoard game={game}/>
     );
 
-    const move_list = document.getElementById('react_movelist');
     const move_root = createRoot(move_list);
-
-    const get_moves_url = move_list.getAttribute('data-moves-url')
-
     move_root.render(
-        <Movelist game={game} moves_url={get_moves_url}/>
+        <Movelist game={game}/>
     );
 })

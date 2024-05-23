@@ -12,14 +12,11 @@ function fold_moves(listwithspare, target) {
     }
 }
 
-export function Movelist({game, moves_url}) {
+export function Movelist({game}) {
     const [getgame, setGame] = useState(game);
     const [moves, setMoves] = useState([])
     useEffect(() => {
-        fetch(moves_url)
-            .then((res) => {
-                return res.json();
-            })
+        game.getMoves()
             .then((data) => {
                 const folded = data.reduce(fold_moves, { list: [], spare: null })
                 if (folded.spare !== null) {
