@@ -73,7 +73,7 @@ jobs:
 
       # Run ruby tests in headless mode
       - name: Ruby tests
-        uses: GabrielBB/xvfb-action@v1
+        uses: coactions/setup-xvfb@v1
         with:
           run: bundle exec rake spec
         env:
