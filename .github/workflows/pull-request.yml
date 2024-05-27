@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -71,8 +71,8 @@ jobs:
           POSTGRES_PASSWORD: 123rails!
           POSTGRES_HOST: localhost
 
-      - name: Install Node 16
-        uses: actions/setup-node@v3
+      - name: Install Node
+        uses: actions/setup-node@v4
         with:
           node-version: 16
 
@@ -80,10 +80,9 @@ jobs:
         run: yarn install
 
       # Run ruby tests in headless mode
+      # Run ruby tests in headless mode
       - name: Ruby tests
-        uses: GabrielBB/xvfb-action@v1
-        with:
-          run: bundle exec rake spec
+        run: xvfb-run bundle exec rake spec
         env:
           COVERAGE: 1
           POSTGRES_USER: rails
