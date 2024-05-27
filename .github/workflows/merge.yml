@@ -73,9 +73,7 @@ jobs:
 
       # Run ruby tests in headless mode
       - name: Ruby tests
-        uses: coactions/setup-xvfb@v1
-        with:
-          run: bundle exec rake spec
+        run: xvfb-run bundle exec rake spec
         env:
           COVERAGE: 0
           POSTGRES_USER: rails
