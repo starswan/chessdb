@@ -66,4 +66,39 @@ RSpec.describe PgnImportJob, type: :job do
       described_class.perform_now 'fred2', EXD5
     }.to change(Game, :count).by(1)
   end
+
+  COMMENTS = <<~COMMENTS_GAME
+[Event "London m1"]
+[Site "London"]
+[Date "1876.02.26"]
+[Round "5"]
+[White "Steinitz, William"]
+[Black "Blackburne, Joseph Henry"]
+[Result "1-0"]
+[ECO "C29"]
+[Annotator "ChessBase"]
+[PlyCount "105"]
+[EventDate "1876.02.17"]
+[Source "ChessBase"]
+[SourceDate "1998.11.10"]
+[WhiteTeamCountry "HUN"]
+[BlackTeamCountry "SWE"]
+
+1. e4 e5 2. Nc3 Nf6 3. f4 d5 4. d3 Bb4 5. fxe5 Nxe4 $6 6. dxe4 Qh4+ 7. Ke2 Bxc3
+8. bxc3 Bg4+ 9. Nf3 dxe4 10. Qd4 Bh5 11. Ke3 Bxf3 12. Bb5+ c6 13. gxf3 cxb5 14.
+Qxe4 Qh6+ 15. Kf2 Qc6 16. Qd4 Na6 17. Ba3 b4 18. Bxb4 Nxb4 19. Qxb4 Rc8 20.
+Rab1 b6 (20... Qxc3 21. Qxc3 Rxc3 22. Rxb7 Rxc2+ 23. Ke3 $11) 21. Rb3 Rd8 22.
+Re1 Rd5 23. Re4 Qh6 (23... Rc5) 24. h4 g5 $2 25. e6 fxe6 26. Qa4+ Ke7 27. Qxa7+
+Rd7 28. Qxb6 Rc8 29. Qe3 Kf7 30. Rb5 Rcd8 31. Rxg5 Rd2+ 32. Kg3 R2d6 33. Rf4+ (
+33. Reg4) 33... Ke7 34. Qe5 Rd5 35. Rg7+ Ke8 36. Qf6 Qxf6 37. Rxf6 R8d6 38.
+Rxh7 Rc5 39. Rg6 Kf8 40. h5 Rdd5 41. Rxe6 Rxh5 42. Rxh5 Rxh5 43. a4 Rc5 44. Re3
+Rc4 45. Kf2 Kf7 46. Ke2 Kf6 47. Kd3 Rxa4 48. c4 Ra1 49. c5 Ra4 50. Re4 Ra1 51.
+Kc4 Ra4+ 52. Kd5 Ra3 53. c6 1-0
+  COMMENTS_GAME
+
+  it 'parses a game with comments' do
+    expect {
+      described_class.perform_now 'comments', COMMENTS
+    }.to change(Game, :count).by(1)
+  end
 end

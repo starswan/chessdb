@@ -42,11 +42,13 @@ class Game < ApplicationRecord
   validates_length_of :pgn, maximum: 1536
 
   validate do
-    if white_elo - black_elo > MAX_GRADING_GAP && result == WHITE_RESULT
-      errors.add(:black_elo, 'White win - Grading mismatch')
-    end
-    if black_elo - white_elo > MAX_GRADING_GAP && result == BLACK_RESULT
-      errors.add(:white_elo, 'Black win - Grading mismatch')
+    if white_elo.present? && black_elo.present?
+      if white_elo - black_elo > MAX_GRADING_GAP && result == WHITE_RESULT
+        errors.add(:black_elo, 'White win - Grading mismatch')
+      end
+      if black_elo - white_elo > MAX_GRADING_GAP && result == BLACK_RESULT
+        errors.add(:white_elo, 'Black win - Grading mismatch')
+      end
     end
   end
 
@@ -64,23 +66,12 @@ class Game < ApplicationRecord
     black = find_player(tags.fetch(:Black), tags[:BlackFideId])
 
     opening = ChessOpening.find_opening(tags.fetch(:ECO), tags.fetch(:Opening), tags.fetch(:Variation), raw_pgn)
-    white_elo = tags.fetch(:WhiteElo, 0).to_i
-    black_elo = tags.fetch(:BlackElo, 0).to_i
-    # try to convert BCF grades to ELO if typed by mistake
-    if white_elo + black_elo > 0
-      if black_elo < 250
-        black_elo = 600 + black_elo * 8
-      end
-      if white_elo < 250
-        white_elo = 600 + white_elo * 8
-      end
-    end
     Game.new white: white,
              black: black,
              opening: opening,
              date: Date.parse(tags.fetch(:Date)),
-             white_elo: white_elo,
-             black_elo: black_elo,
+             white_elo: fix_elo(tags[:WhiteElo]),
+             black_elo: fix_elo(tags[:BlackElo]),
              site: tags[:Site],
              number_of_moves: (moves.size + 1) / 2
   end
@@ -106,6 +97,16 @@ class Game < ApplicationRecord
   end
 
 private
+
+  class << self
+    def fix_elo white_elo
+      if white_elo.present? && white_elo < 250
+        600 + white_elo * 8
+      else
+        white_elo
+      end
+    end
+  end
 
   def move_from_positions old_pos, new_pos
     old = old_pos.split(' ').first.split('/')
