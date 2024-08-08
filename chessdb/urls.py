@@ -31,14 +31,20 @@ Including another URLconf
 from django.urls import include, path
 from rest_framework import routers
 
-from games.views import GameViewSet
+# from games.views import GameViewSet, PlayerViewSet
+from games.views import PlayerList, PlayerDetail
 
 router = routers.DefaultRouter()
-router.register(r'games', GameViewSet)
+# router.register(r'games', GameViewSet)
+router.register(r'players', PlayerList.as_view())
+router.register(r'players/<int:pk>', PlayerDetail.as_view())
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-]
+    # urlpatterns = [
+    # path('players/', PlayerList.as_view()),
+    # path('players/<int:pk>/', PlayerDetail.as_view()),
+]    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+
