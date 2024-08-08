@@ -13,8 +13,8 @@ class Player(models.Model):
     black_games_count = models.IntegerField()
 
 class Game(models.Model):
-    white = models.ForeignKey(Player, on_delete=models.CASCADE)
-    black = models.ForeignKey(Player, on_delete=models.CASCADE)
+    white = models.ForeignKey(Player, related_name="white", on_delete=models.CASCADE)
+    black = models.ForeignKey(Player, related_name="black", on_delete=models.CASCADE)
     date = models.DateTimeField("date")
     opening = models.ForeignKey(Opening, on_delete=models.CASCADE)
 
