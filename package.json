@@ -14,6 +14,6 @@
     "elm-format": "^0.8.7",
     "elm-hot-webpack-loader": "^1.1.8",
     "elm-test": "0.19.1-revision12",
-    "webpack-dev-server": "^4.11.0"
+    "webpack-dev-server": "^5.1.0"
   }
 }
