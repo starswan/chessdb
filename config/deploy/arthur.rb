@@ -13,7 +13,7 @@ set :user, ENV["USER"]
 set :bundle_without, [:development, :test]
 # Try to speed up ruby compilation on Raspberry Pi 2
 #set :rvm_install_ruby_threads, 5
-set :rvm_ruby_string, '3.1.4@chessdb'
+set :rvm_ruby_string, '3.1.6@chessdb'
 set :rails_env, 'arthur'
 # RVM now installed on arthur via an apt package
 # Debian 11 (bullseye) gone back to non-apt
