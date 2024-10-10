@@ -438,7 +438,7 @@ GEM
       polyglot (~> 0.3)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
+    uglifier (4.2.1)
       execjs (>= 0.3.0, < 3)
     undercover (0.4.5)
       imagen (>= 0.1.8)
