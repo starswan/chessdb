@@ -160,7 +160,7 @@ class ChessOpening < ApplicationRecord
       end
       name = OPENING_ALIASES.fetch(name, name)
       variation = VARIATION_ALIASES.fetch(variation, variation)
-      if name.blank?
+      if name.blank? || variation.blank?
         first_move_line = raw_pgn.split("\n").detect { |x| x.starts_with? "1." }
         logger.info "Finding opening from #{first_move_line}"
         chess_opening = @@openings.from_string(first_move_line)
