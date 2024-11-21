@@ -93,6 +93,8 @@ class ChessOpening < ApplicationRecord
     "Modern, flohr variation" => "Modern, Flohr variation",
     "Modern, larsen variation" => "Modern, Larsen variation",
     "Modern, schmid variation" => "Modern, Schmid variation",
+    "Four pawns attack, trifunovic variation" => "Four pawns attack, Trifunovic variation",
+    "Two pawns' (lasker's) attack" => "Two pawns' (Lasker's) attack"
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
