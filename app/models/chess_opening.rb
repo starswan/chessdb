@@ -178,7 +178,7 @@ class ChessOpening < ApplicationRecord
             co.ecocode = chess_opening.ecocode
           end
         else
-          ChessOpening.find_or_create_by! name: chess_opening.name, variation: nil do |co|
+          ChessOpening.find_or_create_by! name: chess_opening.name do |co|
             co.ecocode = ecocode
           end
         end
