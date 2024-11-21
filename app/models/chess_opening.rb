@@ -172,7 +172,7 @@ class ChessOpening < ApplicationRecord
         if chess_opening.name.include?(", ")
           names = chess_opening.name.split(", ")
           ChessOpening.find_or_create_by! name: names[0], variation: names[1..].join(", ") do |co|
-            co.ecocode = ecocode
+            co.ecocode = chess_opening.ecocode
           end
         else
           ChessOpening.find_or_create_by! name: chess_opening.name, variation: nil do |co|
