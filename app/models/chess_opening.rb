@@ -88,6 +88,8 @@ class ChessOpening < ApplicationRecord
     "Grob, Fritz gambit" => "Fritz gambit",
     "Caro-Kann Defense: Classical Variation" => "Classical Variation",
     "Caro-Kann Defense: Tartakower Variation" => "Tartakower Variation",
+    "Nescafe frappe attack" => "Nescafe Frappe attack",
+    "Mokele mbembe (buecker) variation" => "Mokele Mbembe (Buecker) variation",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
