@@ -8,20 +8,22 @@ class ChessOpening < ApplicationRecord
   OPENING_ALIASES = {
     'Amar gambit' => 'Amar (Paris) opening',
     'Benoni defence' => 'Benoni',
-    "Bird's opening" => 'Bird',
+    "Bird" => "Bird's opening",
     'Budapest defence' => 'Budapest gambit',
     'Budapest' => 'Budapest gambit',
+    'Catalan' => 'Catalan Opening',
     'Caro-Kann defence' => 'Caro-Kann',
     'Czech Benoni defence' => 'Czech Benoni',
     'Benoni Defense: Czech Benoni Defense' => 'Czech Benoni',
-    'Dutch defence' => 'Dutch',
-    "Dunst (Sleipner, Heinrichsen) opening" => "Dunst (Sleipner,Heinrichsen) opening",
+    'Dutch' => 'Dutch defence',
+    "Dunst (Sleipner,Heinrichsen) opening" => "Dunst (Sleipner, Heinrichsen) opening",
     'Evans gambit declined' => 'Evans gambit',
-    'English opening' => 'English',
+    'English' => 'English opening',
+    'English Opening' => 'English opening',
     'French defence' => 'French',
     'Giuoco piano' => 'Giuoco Piano',
     'Grob' => "Grob's attack",
-    'Gruenfeld defence' => 'Gruenfeld',
+    'Gruenfeld' => 'Gruenfeld defence',
     'Latvian' => 'Latvian counter-gambit',
     'Latvian gambit' => 'Latvian counter-gambit',
     "King's Indian defence" => "King's Indian",
@@ -83,16 +85,18 @@ class ChessOpening < ApplicationRecord
     'Scheveningen, classical main line' => 'Scheveningen, classical',
     'French Defense: Steinitz Variation/ Boleslavsky Variation' => 'Steinitz, Boleslavsky variation',
     "Grob, Fritz gambit" => "Fritz gambit",
+    "Caro-Kann Defense: Classical Variation" => "Classical Variation",
+    "Caro-Kann Defense: Tartakower Variation" => "Tartakower Variation",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
     'Benko gambit half accepted' => 'Benko gambit',
     "Benko's opening, reversed Alekhine" => "Benko's opening",
-    'Mujannah opening' => 'Bird',
-    'Bird, From gambit' => "Bird",
-    'Bird, From gambit, Lasker variation' => "Bird",
-    'Bird, From gambit, Lipke variation' => "Bird",
-    'Bird, Hobbs gambit' => "Bird",
+    'Mujannah opening' => "Bird's opening",
+    'Bird, From gambit' => "Bird's opening",
+    'Bird, From gambit, Lasker variation' => "Bird's opening",
+    'Bird, From gambit, Lipke variation' => "Bird's opening",
+    'Bird, Hobbs gambit' => "Bird's opening",
     'Blumenfeld counter-gambit accepted' => 'Blumenfeld counter-gambit',
     'Budapest defence declined' => 'Budapest gambit',
     'Caro-Masi defence' => 'Caro-Kann',
@@ -100,9 +104,9 @@ class ChessOpening < ApplicationRecord
     'Caro-Kann Defense: Tartakower Variation' => 'Caro-Kann',
     'de Bruycker defence' => 'Caro-Kann',
     'Vulture defence' => 'Czech Benoni',
-    'Dutch with c4 & Nc3' => 'Dutch',
-    'Dutch with c4 & g3' => 'Dutch',
-    'Dutch-Indian' => 'Dutch',
+    'Dutch with c4 & Nc3' => 'Dutch defence',
+    'Dutch with c4 & g3' => 'Dutch defence',
+    'Dutch-Indian' => 'Dutch defence',
     'English,1...Nf6 (Anglo-Indian defense)' => 'English',
     "English Opening: King's English Variation" => 'English',
     'English orang-utan' => 'English',
@@ -111,9 +115,9 @@ class ChessOpening < ApplicationRecord
     'Evans counter-gambit' => 'Evans gambit',
     'French Defense: Steinitz Variation' => 'French',
     "Grob, Fritz gambit" => "Grob's attack",
-    'Gruenfeld with e3 & Qb3' => 'Gruenfeld',
-    'Gruenfeld with e3 Bd3' => 'Gruenfeld',
-    'Gruenfeld with Bf4 e3' => 'Gruenfeld',
+    'Gruenfeld with e3 & Qb3' => 'Gruenfeld defence',
+    'Gruenfeld with e3 Bd3' => 'Gruenfeld defence',
+    'Gruenfeld with Bf4 e3' => 'Gruenfeld defence',
     "King's Indian with e4 & g3" => "King's Indian",
     'Woozle defence' => 'Old Benoni',
     'Hawk (Habichd) defence' => 'Old Benoni',
@@ -167,12 +171,18 @@ class ChessOpening < ApplicationRecord
         logger.info "Opening #{chess_opening}"
         if chess_opening.name.include?(", ")
           names = chess_opening.name.split(", ")
-          ChessOpening.find_or_create_by! ecocode: ecocode, name: names[0], variation: names[1..].join(", ")
+          ChessOpening.find_or_create_by! name: names[0], variation: names[1..].join(", ") do |co|
+            co.ecocode = ecocode
+          end
         else
-          ChessOpening.find_or_create_by! ecocode: ecocode, name: chess_opening.name
+          ChessOpening.find_or_create_by! name: chess_opening.name, variation: nil do |co|
+            co.ecocode = ecocode
+          end
         end
       else
-        ChessOpening.find_or_create_by! ecocode: ecocode, name: name.gsub(', ', ','), variation: variation.gsub("`", "'")
+        ChessOpening.find_or_create_by! name: name.gsub(', ', ','), variation: variation.gsub("`", "'") do |co|
+          co.ecocode = ecocode
+        end
       end
     end
 
