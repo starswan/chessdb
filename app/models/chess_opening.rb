@@ -8,7 +8,7 @@ class ChessOpening < ApplicationRecord
   OPENING_ALIASES = {
     'Amar gambit' => 'Amar (Paris) opening',
     "Alekhine's defence" => "Alekhine Defense",
-    'Benoni defence' => 'Benoni',
+    'Benoni' => 'Benoni defence',
     "Bird" => "Bird's opening",
     'Budapest defence' => 'Budapest gambit',
     'Budapest' => 'Budapest gambit',
