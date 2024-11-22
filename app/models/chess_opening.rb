@@ -170,11 +170,14 @@ class ChessOpening < ApplicationRecord
   @@openings = ChessOpenings.new
 
   class << self
-    def find_opening ecocode, name, variation, raw_pgn
-      if name&.include?(',') && variation.blank? && (name&.include?('variation') || name&.exclude?(')'))
-        split_name = name.split(',')
-        name = split_name.first
+    def find_opening ecocode, tag_name, tag_variation, raw_pgn
+      if tag_name&.include?(',') && tag_variation.blank? && (tag_name&.include?('variation') || tag_name&.exclude?(')'))
+        split_name = tag_name.split(',')
+        tag_name = split_name.first
         variation = split_name[1..].join(',')
+      else
+        name = tag_name
+        variation = tag_variation
       end
       if IRREGULAR_NAMES.key?(name)
         if variation.blank?
@@ -196,6 +199,7 @@ class ChessOpening < ApplicationRecord
             co.ecocode = chess_opening.eco_code
           end
         else
+          logger.warn("Unknown Opening Input [#{tag_name}] [#{tag_variation}] output [#{chess_opening}]")
           ChessOpening.find_or_create_by! name: chess_opening.name, variation: "Unknown" do |co|
             co.ecocode = ecocode
           end
