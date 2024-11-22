@@ -17,5 +17,22 @@ RSpec.describe OpeningsController, type: :controller do
       get :index
       expect(assigns(:openings)).to eq [o1]
     end
+
+    it 'gets openings with ofsfet games' do
+      get :index, params: { page: 'A' }
+      expect(assigns(:openings)).to eq [o1]
+    end
+  end
+
+  describe '#destroy' do
+    before do
+      create(:opening)
+    end
+    let(:opening) { ChessOpening.last }
+
+    it 'destroys opening' do
+      post :destroy, params: { id: opening.id }
+      expect(ChessOpening.count).to eq(0)
+    end
   end
 end
