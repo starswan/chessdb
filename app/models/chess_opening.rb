@@ -6,7 +6,7 @@ class ChessOpening < ApplicationRecord
   self.table_name = :openings
 
   OPENING_ALIASES = {
-    'Amar gambit' => 'Amar (Paris) opening',
+    'Amar (Paris) opening' => 'Amar gambit',
     "Alekhine's defence" => "Alekhine Defense",
     'Benoni' => 'Benoni defence',
     "Bird" => "Bird's opening",
