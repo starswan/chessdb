@@ -65,6 +65,8 @@ class ChessOpening < ApplicationRecord
     'Sicilian Defence' => 'Sicilian',
     'Sicilian Defense: Alapin Variation' => 'Sicilian',
     'Reti opening' => 'Reti',
+    'Reti accepted' => 'Reti',
+    'Reti v Dutch' => 'Reti',
     'Robatsch (modern) defence' => 'Modern defence',
     'Ruy Lopez (Spanish opening)' => 'Ruy Lopez',
     'two knights' => "Two knights defence",
