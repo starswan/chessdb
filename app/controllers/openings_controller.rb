@@ -23,7 +23,7 @@ class OpeningsController < ApplicationController
 
   def destroy
     @opening.destroy
-    redirect_to openings_path(page: @opening.name.first)
+    redirect_to openings_path(page: @opening.name[0..1])
   end
 
   private
