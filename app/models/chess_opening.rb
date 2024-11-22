@@ -199,7 +199,7 @@ class ChessOpening < ApplicationRecord
             co.ecocode = chess_opening.eco_code
           end
         else
-          logger.warn("Unknown Opening Input [#{tag_name}] [#{tag_variation}] [#{first_move_line}] output [#{chess_opening.name} #{chess_opening.eco_code}]")
+          logger.warn("Unknown: [#{tag_name}] [#{tag_variation}] [#{first_move_line}] -> [#{chess_opening.name} #{chess_opening.eco_code} #{chess_opening.moves}]")
           ChessOpening.find_or_create_by! name: chess_opening.name, variation: "Unknown" do |co|
             co.ecocode = ecocode
           end
