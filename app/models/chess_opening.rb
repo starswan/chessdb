@@ -193,7 +193,7 @@ class ChessOpening < ApplicationRecord
         logger.info "Finding opening from #{first_move_line}"
         chess_opening = @@openings.from_string(first_move_line)
         logger.info "Opening #{chess_opening}"
-        if chess_opening.name.include?(", ") && chess_opening.name.exclude?("(")
+        if chess_opening.name.include?(", ") && (chessopening.include?("variation") || chess_opening.name.exclude?("("))
           names = chess_opening.name.split(", ")
           ChessOpening.find_or_create_by! name: names[0], variation: names[1..].join(", ") do |co|
             co.ecocode = chess_opening.eco_code
