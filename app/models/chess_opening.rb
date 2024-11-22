@@ -40,7 +40,6 @@ class ChessOpening < ApplicationRecord
     "King's knight's gambit" => "King's gambit",
     'KP' => "King's pawn opening",
     "King's pawn game" => "King's pawn opening",
-    'Nimzo-Indian defence' => 'Nimzo-Indian',
     'Neo-Gruenfeld defence' => 'Neo-Gruenfeld',
     'Neo-Gruenfeld (Kemeri) defence' => 'Neo-Gruenfeld',
     'Robatsch defence' => 'Modern defence',
