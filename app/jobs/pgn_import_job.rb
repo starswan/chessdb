@@ -65,7 +65,7 @@ class PgnImportJob < ApplicationJob
           WhiteElo: pgn.header.elo_white, BlackElo: pgn.header.elo_black,
           ECO: pgn.header.eco,
           Opening: pgn.header.opening,
-          Variation: pgn.header.variation&.capitalize,
+          Variation: pgn.header.variation.present? ? pgn.header.variation[0].capitalize +  pgn.header.variation[1..]: nil,
           Date: pgn.header.date, Site: pgn.header.site
         }
         if Game.find_from_tags(tags, pgn.raw_pgn).blank?
