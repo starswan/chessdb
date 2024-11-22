@@ -46,10 +46,10 @@ class ChessOpening < ApplicationRecord
     'Modern' => 'Modern defence',
     'Modern Defense: Standard Line' => 'Modern defence',
     "Nimzo-Indian defence" => "Nimzo-Indian",
-    'Old Indian defence' => 'Old Indian',
     'Old Benoni defence' => 'Old Benoni',
+    'Old Indian defence' => 'Old Indian',
     "Petrov's defence" => 'Petrov',
-    'Pirc' => 'Pirc defence',
+    'Pirc defence' => 'Pirc',
     'Ponziani opening' => 'Ponziani',
     "Philidor's defence" => 'Philidor',
     "Polish (Sokolsky) opening" => "Polish (Sokolsky)",
@@ -98,6 +98,7 @@ class ChessOpening < ApplicationRecord
     "Nescafe frappe attack" => "Nescafe Frappe attack",
     "Mokele mbembe (buecker) variation" => "Mokele Mbembe (Buecker) variation",
     "Budapest/Alekhine, Abonyi variation" => "Alekhine, Abonyi variation",
+    "Saemisch, main line" => "Saemisch variation"
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
