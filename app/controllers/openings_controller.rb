@@ -1,29 +1,38 @@
 class OpeningsController < ApplicationController
+
+  before_action :find_opening, only: %i[edit update destroy]
   # GET /openings
   # GET /openings.json
   def index
-    @openings = ChessOpening.where.not(games_count: 0).order(:name, :variation, :ecocode)
+    scope = if params[:page].present?
+              ChessOpening.where("name > ?", params[:page])
+            else
+              ChessOpening.all
+            end
+    @openings = scope.where.not(games_count: 0).order(:name, :variation, :ecocode)
   end
 
   def edit
-    @opening = ChessOpening.find params[:id]
   end
 
   def update
-    @opening = ChessOpening.find params[:id]
     @opening.update! opening_params
 
     redirect_to openings_path
   end
 
   def destroy
-    ChessOpening.find(params[:id]).destroy
-    redirect_to openings_path
+    @opening.destroy
+    redirect_to openings_path(page: @opening.name.first)
   end
 
   private
 
   def opening_params
     params.require(:opening).permit(:name, :ecocode)
+  end
+
+  def find_opening
+    @opening = ChessOpening.find(params[:id])
   end
 end

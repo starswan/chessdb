@@ -10,6 +10,7 @@ class ChessOpening < ApplicationRecord
     "Alekhine's defence" => "Alekhine Defense",
     'Benoni' => 'Benoni defence',
     "Bird" => "Bird's opening",
+    "Blackmar-Diemer" => "Blackmar-Diemer gambit",
     'Budapest defence' => 'Budapest gambit',
     'Budapest' => 'Budapest gambit',
     'Catalan' => 'Catalan Opening',
@@ -99,7 +100,7 @@ class ChessOpening < ApplicationRecord
     "Four pawns attack, trifunovic variation" => "Four pawns attack, Trifunovic variation",
     "Two pawns' (lasker's) attack" => "Two pawns' (Lasker's) attack",
     "main line" => "Main line",
-    "3.nd2" => "3.Nd2",
+    "Budapest/Alekhine, Abonyi variation" => "Alekhine, Abonyi variation",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
@@ -153,6 +154,7 @@ class ChessOpening < ApplicationRecord
     'Four Knights Game: Gunsberg Variation' => 'Four knights',
     'Scandinavian Defense: Mieses-Kotroc Variation' => 'Scandinavian',
     'Sicilian Defense: Alapin Variation' => 'Sicilian Defense',
+    "Budapest defence declined" => "Budapest defence",
   }.freeze
 
   has_many :games, foreign_key: :opening_id, dependent: :destroy
@@ -184,7 +186,7 @@ class ChessOpening < ApplicationRecord
         logger.info "Finding opening from #{first_move_line}"
         chess_opening = @@openings.from_string(first_move_line)
         logger.info "Opening #{chess_opening}"
-        if chess_opening.name.include?(", ")
+        if chess_opening.name.include?(", ") && chess_opening.name.exclude?("(")
           names = chess_opening.name.split(", ")
           ChessOpening.find_or_create_by! name: names[0], variation: names[1..].join(", ") do |co|
             co.ecocode = chess_opening.eco_code
