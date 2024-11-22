@@ -94,12 +94,6 @@ class ChessOpening < ApplicationRecord
     "Caro-Kann Defense: Tartakower Variation" => "Tartakower Variation",
     "Nescafe frappe attack" => "Nescafe Frappe attack",
     "Mokele mbembe (buecker) variation" => "Mokele Mbembe (Buecker) variation",
-    "Modern, flohr variation" => "Modern, Flohr variation",
-    "Modern, larsen variation" => "Modern, Larsen variation",
-    "Modern, schmid variation" => "Modern, Schmid variation",
-    "Four pawns attack, trifunovic variation" => "Four pawns attack, Trifunovic variation",
-    "Two pawns' (lasker's) attack" => "Two pawns' (Lasker's) attack",
-    "main line" => "Main line",
     "Budapest/Alekhine, Abonyi variation" => "Alekhine, Abonyi variation",
   }.freeze
   IRREGULAR_NAMES = {
@@ -154,7 +148,6 @@ class ChessOpening < ApplicationRecord
     'Four Knights Game: Gunsberg Variation' => 'Four knights',
     'Scandinavian Defense: Mieses-Kotroc Variation' => 'Scandinavian',
     'Sicilian Defense: Alapin Variation' => 'Sicilian Defense',
-    "Budapest defence declined" => "Budapest defence",
   }.freeze
 
   has_many :games, foreign_key: :opening_id, dependent: :destroy
