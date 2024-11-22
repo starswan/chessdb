@@ -127,7 +127,6 @@ class ChessOpening < ApplicationRecord
     'English orang-utan' => 'English',
     'English Opening: Mikenas-Carls Variation' => 'English opening',
     "English Opening: Symmetrical Variation" => "English opening",
-    'Evans gambit declined' => 'Evans gambit',
     'Evans counter-gambit' => 'Evans gambit',
     'French Defense: Steinitz Variation' => 'French defence',
     "Grob, Fritz gambit" => "Grob's attack",
