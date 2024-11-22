@@ -26,7 +26,7 @@ class ChessOpening < ApplicationRecord
     'English' => 'English opening',
     'English Opening' => 'English opening',
     'French' => 'French defence',
-    'Four knights game' => 'Four knights',
+    'Four knights' => 'Four knights game',
     'Giuoco piano' => 'Giuoco Piano',
     'Grob' => "Grob's attack",
     'Gruenfeld' => 'Gruenfeld defence',
@@ -145,7 +145,7 @@ class ChessOpening < ApplicationRecord
     'Tayler opening' => 'Scotch game',
     'Sicilian Defense: Canal-Sokolsky Attack' => 'Sicilian',
     'Boden-Kieseritsky gambit' => 'Vienna game',
-    'Four Knights Game: Gunsberg Variation' => 'Four knights',
+    'Four Knights Game: Gunsberg Variation' => 'Four knights game',
     'Scandinavian Defense: Mieses-Kotroc Variation' => 'Scandinavian',
     'Sicilian Defense: Alapin Variation' => 'Sicilian Defense',
   }.freeze
