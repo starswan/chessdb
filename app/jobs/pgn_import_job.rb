@@ -49,7 +49,7 @@ class PgnImportJob < ApplicationJob
     # Now using Bchess PGN parser - hopefully it copes with Annotated games, or can be enhanced to cope with them
     # return if game_lines.detect { |l| l.starts_with? '[Annotator' }
     #
-    pgn_games =  Bchess::PGN::Parser.new(game).parse.map do |g|
+    pgn_games = Bchess::PGN::Parser.new(game).parse.map do |g|
       pgn_game = Bchess::PGN::Game.new(g).tap { |g| g.convert_body_to_moves }
       PGNStruct.new header: pgn_game.header, moves: pgn_game.moves, raw_pgn: g.input
     end
@@ -65,7 +65,7 @@ class PgnImportJob < ApplicationJob
           WhiteElo: pgn.header.elo_white, BlackElo: pgn.header.elo_black,
           ECO: pgn.header.eco,
           Opening: pgn.header.opening,
-          Variation: pgn.header.variation,
+          Variation: pgn.header.variation.present? ? pgn.header.variation[0].capitalize +  pgn.header.variation[1..]: nil,
           Date: pgn.header.date, Site: pgn.header.site
         }
         if Game.find_from_tags(tags, pgn.raw_pgn).blank?
