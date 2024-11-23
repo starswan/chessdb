@@ -13,6 +13,7 @@ class ChessOpening < ApplicationRecord
     "Blackmar-Diemer" => "Blackmar-Diemer gambit",
     "Blackmar gambit" => "Blackmar-Diemer gambit",
     'Budapest defence' => 'Budapest gambit',
+    'Budapest defence declined' => 'Budapest gambit',
     'Budapest' => 'Budapest gambit',
     'Catalan' => 'Catalan Opening',
     'Catalan opening' => 'Catalan Opening',
