@@ -212,8 +212,9 @@ class ChessOpening < ApplicationRecord
         logger.info "Finding opening from #{first_move_line}"
         chess_opening = @@openings.from_string(first_move_line)
         logger.info "Opening #{chess_opening}"
-        if chess_opening.name.include?(", ") && (chessopening.include?("variation") || chess_opening.name.exclude?("("))
-          unless ChessOpening.find_by(name: chess_opening.name)
+        chess_opening_name = OPENING_ALIASES.fetch(chess_opening.name, chess_opening.name)
+        if chess_opening_name.include?(", ") && (chessopening.include?("variation") || chess_opening_name.exclude?("("))
+          unless ChessOpening.find_by(name: chess_opening_name)
             names = chess_opening.name.split(", ")
             if names.size == 2
               ChessOpening.find_or_create_by! name: names[0], variation: names[1..].join(", ") do |co|
@@ -227,11 +228,11 @@ class ChessOpening < ApplicationRecord
           end
         else
           logger.info("Unknown: [#{tag_name}] [#{tag_variation}] [#{first_move_line}] -> [#{chess_opening.name} #{chess_opening.eco_code} #{chess_opening.moves}]")
-          if ChessOpening.find_by(name: chess_opening.name, ecocode: chess_opening.eco_code).present?
+          if ChessOpening.find_by(name: chess_opening_name, ecocode: chess_opening.eco_code).present?
             # If there is an existing ECO code for this opening, then it's probably good - so don't override
-            ChessOpening.find_or_create_by! name: chess_opening.name, ecocode: chess_opening.eco_code, variation: "Unknown"
+            ChessOpening.find_or_create_by! name: chess_opening_name, ecocode: chess_opening.eco_code, variation: "Unknown"
           else
-            ChessOpening.find_or_create_by! name: chess_opening.name, variation: "Unknown" do |co|
+            ChessOpening.find_or_create_by! name: chess_opening_name, variation: "Unknown" do |co|
               co.ecocode = ecocode
             end
           end
