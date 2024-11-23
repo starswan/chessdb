@@ -36,7 +36,7 @@ class ChessOpening < ApplicationRecord
     'Gruenfeld' => 'Gruenfeld defence',
     'Latvian' => 'Latvian counter-gambit',
     'Latvian gambit' => 'Latvian counter-gambit',
-    "King's Indian defence" => "King's Indian",
+    "King's Indian" => "King's Indian defence",
     'KGD' => "King's gambit",
     'KGA' => "King's gambit",
     "King's knight's gambit" => "King's gambit",
@@ -141,7 +141,7 @@ class ChessOpening < ApplicationRecord
     'Gruenfeld with e3 & Qb3' => 'Gruenfeld defence',
     'Gruenfeld with e3 Bd3' => 'Gruenfeld defence',
     'Gruenfeld with Bf4 e3' => 'Gruenfeld defence',
-    "King's Indian with e4 & g3" => "King's Indian",
+    "King's Indian with e4 & g3" => "King's Indian defence",
     'Woozle defence' => 'Old Benoni',
     'Hawk (Habichd) defence' => 'Old Benoni',
     'Petrov three knights game' => 'Petrov',
@@ -163,6 +163,7 @@ class ChessOpening < ApplicationRecord
     'Sicilian Defense: Canal-Sokolsky Attack' => 'Sicilian',
     'Scandinavian Defense: Mieses-Kotroc Variation' => 'Scandinavian',
     'Sicilian Defense: Alapin Variation' => 'Sicilian Defense',
+    "Guatemala defence" => "Owen's defence"
   }.freeze
 
   has_many :games, foreign_key: :opening_id, dependent: :destroy
