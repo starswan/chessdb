@@ -93,8 +93,11 @@ class ChessOpening < ApplicationRecord
     "Queen's pawn, Torre attack" => "Torre attack",
   }.freeze
   VARIATION_ALIASES = {
+    "Advance, Nimzovich system" => "Advance, Nimzovich variation",
     "Benko's opening, reversed Alekhine" => "reversed Alekhine",
     'Charlick (Englund) gambit' => 'Englund gambit',
+    'Closed defence' => "Closed",
+    'Dragon variation' => "Dragon",
     'Franco-Indian (Keres) defence' => 'Keres defence',
     'Four Knights Game: Gunsberg Variation' => 'Gunsberg variation',
     'Four Knights Game: Spanish Variation' => 'Spanish variation',
@@ -114,11 +117,9 @@ class ChessOpening < ApplicationRecord
     "Saemisch, main line" => "Saemisch variation",
     "Dutch variation, main line" => "Dutch variation",
     "Neo Catalan accepted" => "Neo Catalan",
-    "Advance, Nimzovich system" => "Advance, Nimzovich variation",
     "4.e3 e8g8, 5.Nf3 d7d5" => "4.e3 O-O, 5.Nf3 d5",
     "4.e3 e8g8, 5.Nf3, without ...d5" => "4.e3 O-O, 5.Nf3, without ...d5",
     "e3, Huebner variation" => "Huebner variation",
-    'Closed defence' => "Closed",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
