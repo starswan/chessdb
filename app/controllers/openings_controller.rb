@@ -9,7 +9,7 @@ class OpeningsController < ApplicationController
             else
               ChessOpening.all
             end
-    @openings = scope.where.not(games_count: 0).order(:name, :variation, :ecocode)
+    @openings = scope.where.not(games_count: 0).order(:name, :variation, :ecocode).group_by(&:name)
   end
 
   def edit

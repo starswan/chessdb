@@ -11,6 +11,7 @@ class ChessOpening < ApplicationRecord
     'Benoni' => 'Benoni defence',
     "Bird" => "Bird's opening",
     "Blackmar-Diemer" => "Blackmar-Diemer gambit",
+    "Blackmar gambit" => "Blackmar-Diemer gambit",
     'Budapest defence' => 'Budapest gambit',
     'Budapest' => 'Budapest gambit',
     'Catalan' => 'Catalan Opening',
