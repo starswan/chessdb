@@ -118,6 +118,7 @@ class ChessOpening < ApplicationRecord
     "4.e3 e8g8, 5.Nf3 d7d5" => "4.e3 O-O, 5.Nf3 d5",
     "4.e3 e8g8, 5.Nf3, without ...d5" => "4.e3 O-O, 5.Nf3, without ...d5",
     "e3, Huebner variation" => "Huebner variation",
+    'Closed defence' => "Closed",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
@@ -210,14 +211,16 @@ class ChessOpening < ApplicationRecord
         chess_opening = @@openings.from_string(first_move_line)
         logger.info "Opening #{chess_opening}"
         if chess_opening.name.include?(", ") && (chessopening.include?("variation") || chess_opening.name.exclude?("("))
-          names = chess_opening.name.split(", ")
-          if names.size == 2
-            ChessOpening.find_or_create_by! name: names[0], variation: names[1..].join(", ") do |co|
-              co.ecocode = chess_opening.eco_code
-            end
-          else
-            ChessOpening.find_or_create_by! name: names[0..1].join(", "), variation: names[2..].join(", ") do |co|
-              co.ecocode = chess_opening.eco_code
+          unless ChessOpening.find_by(name: chess_opening.name)
+            names = chess_opening.name.split(", ")
+            if names.size == 2
+              ChessOpening.find_or_create_by! name: names[0], variation: names[1..].join(", ") do |co|
+                co.ecocode = chess_opening.eco_code
+              end
+            else
+              ChessOpening.find_or_create_by! name: names[0..1].join(", "), variation: names[2..].join(", ") do |co|
+                co.ecocode = chess_opening.eco_code
+              end
             end
           end
         else

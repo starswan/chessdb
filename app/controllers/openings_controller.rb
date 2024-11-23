@@ -5,7 +5,7 @@ class OpeningsController < ApplicationController
   # GET /openings.json
   def index
     scope = if params[:page].present?
-              ChessOpening.where("name > ?", params[:page])
+              ChessOpening.where("name >= ?", params[:page])
             else
               ChessOpening.all
             end
@@ -23,7 +23,7 @@ class OpeningsController < ApplicationController
 
   def destroy
     @opening.destroy
-    redirect_to openings_path(page: @opening.name[0..2])
+    redirect_to openings_path(page: @opening.name)
   end
 
   private
