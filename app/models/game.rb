@@ -43,12 +43,25 @@ class Game < ApplicationRecord
   # validate the PGN length to prevent overflow rather than limiting the move count
   validates_length_of :pgn, maximum: 1536
 
+  before_validation do
+    # try to convert BCF grades to ELO if typed by mistake
+    if white_elo + black_elo > 0
+      if black_elo < 250
+        self.black_elo = 600 + black_elo * 8
+      end
+      if white_elo < 250
+        self.white_elo = 600 + white_elo * 8
+      end
+    end
+  end
+
+  # I'm not sure whether this is actually working...
   validate do
     if white_elo - black_elo > MAX_GRADING_GAP && result == WHITE_RESULT
-      errors.add(:black_elo, 'White win - Grading mismatch')
+      errors.add(:black_elo, "White win - Grading mismatch #{white_elo} vs #{black_elo}")
     end
     if black_elo - white_elo > MAX_GRADING_GAP && result == BLACK_RESULT
-      errors.add(:white_elo, 'Black win - Grading mismatch')
+      errors.add(:white_elo, "Black win - Grading mismatch #{black_elo} vs #{white_elo} ")
     end
   end
 
@@ -68,15 +81,6 @@ class Game < ApplicationRecord
     opening = ChessOpening.find_opening(tags.fetch(:ECO), tags.fetch(:Opening), tags.fetch(:Variation), raw_pgn)
     white_elo = tags.fetch(:WhiteElo, 0).to_i
     black_elo = tags.fetch(:BlackElo, 0).to_i
-    # try to convert BCF grades to ELO if typed by mistake
-    if white_elo + black_elo > 0
-      if black_elo < 250
-        black_elo = 600 + black_elo * 8
-      end
-      if white_elo < 250
-        white_elo = 600 + white_elo * 8
-      end
-    end
     Game.new white: white,
              black: black,
              opening: opening,
