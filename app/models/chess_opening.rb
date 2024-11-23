@@ -195,6 +195,7 @@ class ChessOpening < ApplicationRecord
         name = tag_name
         variation = tag_variation
       end
+      variation.gsub!("`", "'")
       if IRREGULAR_NAMES.key?(name)
         if variation.blank?
           name, variation = IRREGULAR_NAMES.fetch(name), name
@@ -234,8 +235,15 @@ class ChessOpening < ApplicationRecord
           end
         end
       else
-        ChessOpening.find_or_create_by! name: name.gsub(', ', ','), variation: variation.gsub("`", "'") do |co|
-          co.ecocode = ecocode
+        var_names = variation.split(", ")
+        if var_names.size == 1
+          ChessOpening.find_or_create_by! name: name, variation: variation do |co|
+            co.ecocode = ecocode
+          end
+        else
+          ChessOpening.find_or_create_by! name: "#{name}, #{var_names[0]}", variation: var_names[1..].join(", ") do |co|
+            co.ecocode = ecocode
+          end
         end
       end
     end
