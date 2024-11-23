@@ -102,6 +102,8 @@ class ChessOpening < ApplicationRecord
     "Budapest/Alekhine, Abonyi variation" => "Alekhine, Abonyi variation",
     "Saemisch, main line" => "Saemisch variation",
     "Dutch variation, main line" => "Dutch variation",
+    "Neo Catalan accepted" => "Neo Catalan",
+    "Advance, Nimzovich system" => "Advance, Nimzovich variation"
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
