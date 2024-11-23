@@ -204,8 +204,13 @@ class ChessOpening < ApplicationRecord
           end
         else
           logger.info("Unknown: [#{tag_name}] [#{tag_variation}] [#{first_move_line}] -> [#{chess_opening.name} #{chess_opening.eco_code} #{chess_opening.moves}]")
-          ChessOpening.find_or_create_by! name: chess_opening.name, variation: "Unknown" do |co|
-            co.ecocode = ecocode
+          if ChessOpening.find_by(name: chess_opening.name, ecocode: chess_opening.eco_code).present?
+            # If there is an existing ECO code for this opening, then it's probably good - so don't override
+            ChessOpening.find_or_create_by! name: chess_opening.name, ecocode: chess_opening.eco_code, variation: "Unknown"
+          else
+            ChessOpening.find_or_create_by! name: chess_opening.name, variation: "Unknown" do |co|
+              co.ecocode = ecocode
+            end
           end
         end
       else
