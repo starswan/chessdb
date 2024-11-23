@@ -136,6 +136,7 @@ class ChessOpening < ApplicationRecord
     'French Defense: Steinitz Variation' => 'French',
     'Four Knights Game: Gunsberg Variation' => 'Four knights',
     'Four Knights Game: Spanish Variation' => 'Four knights',
+    "Giuoco Pianissimo" => "Giuoco Piano",
     "Grob, Fritz gambit" => "Grob's attack",
     'Gruenfeld with e3 & Qb3' => 'Gruenfeld defence',
     'Gruenfeld with e3 Bd3' => 'Gruenfeld defence',
