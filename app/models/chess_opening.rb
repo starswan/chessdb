@@ -75,7 +75,6 @@ class ChessOpening < ApplicationRecord
     'Sicilian Defence' => 'Sicilian',
     'Sicilian Defense: Alapin Variation' => 'Sicilian',
     'Reti opening' => 'Reti',
-    'Reti accepted' => 'Reti',
     'Reti v Dutch' => 'Reti',
     'Robatsch defence' => 'Robatsch (modern) defence',
     'Ruy Lopez (Spanish opening)' => 'Ruy Lopez',
@@ -90,6 +89,8 @@ class ChessOpening < ApplicationRecord
     'Vienna game' => 'Vienna',
     "Semi-Benoni (`blockade variation')" => "Semi-Benoni ('blockade variation')",
     "Trompovsky attack (Ruth,Opovcensky opening)" => "Trompovsky attack (Ruth, Opovcensky opening)",
+    "Queen's pawn, Englund gambit" => "Englund gambit",
+    "Queen's pawn, Torre attack" => "Torre attack",
   }.freeze
   VARIATION_ALIASES = {
     "Benko's opening, reversed Alekhine" => "reversed Alekhine",
@@ -173,7 +174,7 @@ class ChessOpening < ApplicationRecord
     'Sicilian Defense: Canal-Sokolsky Attack' => 'Sicilian',
     'Scandinavian Defense: Mieses-Kotroc Variation' => 'Scandinavian',
     'Sicilian Defense: Alapin Variation' => 'Sicilian Defense',
-    "Guatemala defence" => "Owen's defence"
+    "Guatemala defence" => "Owen's defence",
   }.freeze
 
   has_many :games, foreign_key: :opening_id, dependent: :destroy
@@ -210,8 +211,14 @@ class ChessOpening < ApplicationRecord
         logger.info "Opening #{chess_opening}"
         if chess_opening.name.include?(", ") && (chessopening.include?("variation") || chess_opening.name.exclude?("("))
           names = chess_opening.name.split(", ")
-          ChessOpening.find_or_create_by! name: names[0], variation: names[1..].join(", ") do |co|
-            co.ecocode = chess_opening.eco_code
+          if names.size == 2
+            ChessOpening.find_or_create_by! name: names[0], variation: names[1..].join(", ") do |co|
+              co.ecocode = chess_opening.eco_code
+            end
+          else
+            ChessOpening.find_or_create_by! name: names[0..1].join(", "), variation: names[2..].join(", ") do |co|
+              co.ecocode = chess_opening.eco_code
+            end
           end
         else
           logger.info("Unknown: [#{tag_name}] [#{tag_variation}] [#{first_move_line}] -> [#{chess_opening.name} #{chess_opening.eco_code} #{chess_opening.moves}]")
