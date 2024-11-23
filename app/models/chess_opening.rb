@@ -120,7 +120,8 @@ class ChessOpening < ApplicationRecord
     "4.e3 e8g8, 5.Nf3, without ...d5" => "4.e3 O-O, 5.Nf3, without ...d5",
     "e3, Huebner variation" => "Huebner variation",
     "Modern variation" => "Modern",
-    "Fajarowicz variation" => "Fajarowicz"
+    "Fajarowicz variation" => "Fajarowicz",
+    "Panov-Botvinnik attack" => "Panov-Botvinnik",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
