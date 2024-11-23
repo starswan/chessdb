@@ -46,10 +46,10 @@ class Game < ApplicationRecord
   before_validation do
     # try to convert BCF grades to ELO if typed by mistake
     if white_elo + black_elo > 0
-      if black_elo < 250
+      if black_elo < 250 && black_elo > 0
         self.black_elo = 600 + black_elo * 8
       end
-      if white_elo < 250
+      if white_elo < 250 && white_elo > 0
         self.white_elo = 600 + white_elo * 8
       end
     end
@@ -57,11 +57,11 @@ class Game < ApplicationRecord
 
   # I'm not sure whether this is actually working...
   validate do
-    if white_elo - black_elo > MAX_GRADING_GAP && result == WHITE_RESULT
+    if white_elo - black_elo > MAX_GRADING_GAP && result == WHITE_RESULT && black_elo > 0
       errors.add(:black_elo, "White win - Grading mismatch #{white_elo} vs #{black_elo}")
     end
-    if black_elo - white_elo > MAX_GRADING_GAP && result == BLACK_RESULT
-      errors.add(:white_elo, "Black win - Grading mismatch #{black_elo} vs #{white_elo} ")
+    if black_elo - white_elo > MAX_GRADING_GAP && result == BLACK_RESULT && white_elo > 0
+      errors.add(:white_elo, "Black win - Grading mismatch #{black_elo} vs #{white_elo}")
     end
   end
 
