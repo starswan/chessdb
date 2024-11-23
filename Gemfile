@@ -94,7 +94,7 @@ group :test do
   gem 'simplecov-lcov', require: false
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
-  gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
   gem 'faker'
 end
 # gem 'twitter-bootstrap-rails'
