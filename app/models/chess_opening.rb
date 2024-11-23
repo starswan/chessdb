@@ -170,7 +170,6 @@ class ChessOpening < ApplicationRecord
     'Pterodactyl defence' => 'Modern defence',
     "Semi-Slav Defense: Accelerated Move Order" => "Queen's Gambit Declined semi-Slav",
     'Scandinavian gambit' => 'Scandinavian',
-    'Scotch gambit' => 'Scotch',
     'Tayler opening' => 'Scotch',
     'Sicilian Defense: Canal-Sokolsky Attack' => 'Sicilian',
     'Scandinavian Defense: Mieses-Kotroc Variation' => 'Scandinavian',
