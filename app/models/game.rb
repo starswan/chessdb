@@ -38,7 +38,8 @@ class Game < ApplicationRecord
   validates_numericality_of :number_of_moves, only_integer: true
   validates_numericality_of :number_of_moves, greater_than_or_equal_to: MIN_DRAWN_GAME_LENGTH, if: ->(x) { x.result == DRAW_RESULT }
 
-  validates_numericality_of :white_elo, :black_elo, only_integer: true, greater_than_or_equal_to: MIN_GRADE, allow_nil: true
+  validates_numericality_of :white_elo, only_integer: true, greater_than_or_equal_to: MIN_GRADE, if: -> { white_elo > 0 }
+  validates_numericality_of :black_elo, only_integer: true, greater_than_or_equal_to: MIN_GRADE, if: -> { black_elo > 0 }
   validates_presence_of :opening, :site, :pgn
   # validate the PGN length to prevent overflow rather than limiting the move count
   validates_length_of :pgn, maximum: 1536
