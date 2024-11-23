@@ -103,7 +103,9 @@ class ChessOpening < ApplicationRecord
     "Saemisch, main line" => "Saemisch variation",
     "Dutch variation, main line" => "Dutch variation",
     "Neo Catalan accepted" => "Neo Catalan",
-    "Advance, Nimzovich system" => "Advance, Nimzovich variation"
+    "Advance, Nimzovich system" => "Advance, Nimzovich variation",
+    "4.e3 e8g8, 5.Nf3 d7d5" => "4.e3 O-O, 5.Nf3 d5",
+    "4.e3 e8g8, 5.Nf3, without ...d5" => "4.e3 O-O, 5.Nf3, without ...d5",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
