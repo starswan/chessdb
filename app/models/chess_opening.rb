@@ -139,6 +139,8 @@ class ChessOpening < ApplicationRecord
     "Alekhine variation" => "Alekhine",
     "Ilyin-Genevsky" => "Ilyin-Genevsky variation",
     "Stonewall variation" => "Stonewall",
+    "Stonewall with Ba3" => "Stonewall, with Ba3",
+    "Stonewall with Nc3" => "Stonewall, with Nc3",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
