@@ -277,7 +277,12 @@ class ChessOpening < ApplicationRecord
     private
 
     def tweak_variation variation
-      VARIATION_ALIASES.fetch(variation, variation).gsub(" with ", ", ").gsub!("`", "'")
+      VARIATION_ALIASES.fetch(variation, variation)
+      if variation.present?
+        variation.gsub(" with ", ", ").gsub!("`", "'")
+      else
+        variation
+      end
     end
     # def move_text(move)
     #   if move
