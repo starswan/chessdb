@@ -75,7 +75,6 @@ class ChessOpening < ApplicationRecord
     'Sicilian Defence' => 'Sicilian',
     'Sicilian Defense: Alapin Variation' => 'Sicilian',
     'Reti opening' => 'Reti',
-    'Reti v Dutch' => 'Reti',
     'Robatsch defence' => 'Robatsch (modern) defence',
     'Ruy Lopez (Spanish opening)' => 'Ruy Lopez',
     'two knights' => "Two knights defence",
@@ -103,7 +102,8 @@ class ChessOpening < ApplicationRecord
     'Four Knights Game: Spanish Variation' => 'Spanish variation',
     'Panov-Botvinnik Variation' => 'Panov-Botvinnik attack',
     'Gurgenidze counter-attack' => 'Gurgenidze system',
-    'Labourdonnais-Loewenthal variation' => 'Labourdonnais-Loewenthal (Kalashnikov) variation',
+    'Labourdonnais-Loewenthal variation' => 'Kalashnikov',
+    'Labourdonnais-Loewenthal (Kalashnikov) variation' => 'Kalashnikov',
     'Pelikan (Lasker/Sveshnikov) variation' => 'Sveshnikov variation',
     'Scheveningen, classical main line' => 'Scheveningen, classical',
     'French Defense: Steinitz Variation/ Boleslavsky Variation' => 'Steinitz, Boleslavsky variation',
@@ -129,6 +129,8 @@ class ChessOpening < ApplicationRecord
     "Bremen" => "Bremen system",
     "Averbakh system" => "Averbakh",
     "Four knights system" => "Four knights",
+    "Hanham variation" => "Hanham",
+    "Scheveningen (Paulsen)" => "Scheveningen"
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
@@ -183,6 +185,7 @@ class ChessOpening < ApplicationRecord
     'Scandinavian Defense: Mieses-Kotroc Variation' => 'Scandinavian',
     'Sicilian Defense: Alapin Variation' => 'Sicilian Defense',
     "Guatemala defence" => "Owen's defence",
+    'Reti v Dutch' => 'Reti',
   }.freeze
 
   has_many :games, foreign_key: :opening_id, dependent: :destroy
@@ -208,7 +211,7 @@ class ChessOpening < ApplicationRecord
         if variation.blank?
           name, variation = IRREGULAR_NAMES.fetch(name), name
         else
-          name, variation = IRREGULAR_NAMES.fetch(name), "#{name}/#{variation}"
+          name, variation = IRREGULAR_NAMES.fetch(name), "#{name}, #{variation}"
         end
       end
       name = OPENING_ALIASES.fetch(name, name)

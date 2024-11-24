@@ -17,7 +17,6 @@
         <tr>
           <td><%= opening.variation %>(<%= opening.ecocode %>)</td>
           <td><%= link_to opening.games_count, opening_games_path(opening) %></td>
-          <td><%= link_to 'Edit', edit_opening_path(opening) %></td>
           <td><%= link_to 'Delete', opening_path(opening), method: :delete, data: { confirm: "Delete #{opening.name} #{opening.variation}(#{opening.ecocode})?" } %></td>
         </tr>
       <% end %>
