@@ -187,7 +187,6 @@ class ChessOpening < ApplicationRecord
     'Polish defence' => "Queen's pawn game",
     'Kevitz-Trajkovich defence' => "Queen's Indian",
     "Queen's Indian accelerated" => "Queen's Indian",
-    'Reti v Dutch' => 'Reti',
     'Reti accepted' => 'Reti',
     'Norwegian defence' => 'Modern defence',
     'Pterodactyl defence' => 'Modern defence',
