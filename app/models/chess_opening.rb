@@ -219,7 +219,6 @@ class ChessOpening < ApplicationRecord
         name = tag_name
         variation = tag_variation
       end
-      variation.gsub!("`", "'")
       if IRREGULAR_NAMES.key?(name)
         if variation.blank?
           name, variation = IRREGULAR_NAMES.fetch(name), name
@@ -277,7 +276,7 @@ class ChessOpening < ApplicationRecord
       private
 
       def tweak_variation variation
-        VARIATION_ALIASES.fetch(variation, variation).gsub(" with ", ", ")
+        VARIATION_ALIASES.fetch(variation, variation).gsub(" with ", ", ").gsub!("`", "'")
       end
     end
 
