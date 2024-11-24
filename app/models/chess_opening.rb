@@ -139,8 +139,6 @@ class ChessOpening < ApplicationRecord
     "Alekhine variation" => "Alekhine",
     "Ilyin-Genevsky" => "Ilyin-Genevsky variation",
     "Stonewall variation" => "Stonewall",
-    "Stonewall with Ba3" => "Stonewall, with Ba3",
-    "Stonewall with Nc3" => "Stonewall, with Nc3",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
@@ -225,7 +223,7 @@ class ChessOpening < ApplicationRecord
         end
       end
       name = OPENING_ALIASES.fetch(name, name)
-      variation = VARIATION_ALIASES.fetch(variation, variation)
+      variation = tweak_variation(variation)
       if name.blank? || variation.blank?
         first_move_line = raw_pgn.split("\n").detect { |x| x.starts_with? "1." }
         logger.info "Finding opening from #{first_move_line}"
@@ -236,14 +234,12 @@ class ChessOpening < ApplicationRecord
           unless ChessOpening.find_by(name: chess_opening_name)
             names = chess_opening.name.split(", ")
             if names.size == 2
-              variation = names[1..].join(", ")
-              variation = VARIATION_ALIASES.fetch(variation, variation)
+              variation = tweak_variation(names[1..].join(", "))
               ChessOpening.find_or_create_by! name: names[0], variation: variation do |co|
                 co.ecocode = chess_opening.eco_code
               end
             else
-              variation =  names[2..].join(", ")
-              variation = VARIATION_ALIASES.fetch(variation, variation)
+              variation = tweak_variation(names[2..].join(", "))
               ChessOpening.find_or_create_by! name: names[0..1].join(", "), variation: variation do |co|
                 co.ecocode = chess_opening.eco_code
               end
@@ -271,6 +267,12 @@ class ChessOpening < ApplicationRecord
             co.ecocode = ecocode
           end
         end
+      end
+
+      private
+
+      def tweak_variation variation
+        VARIATION_ALIASES.fetch(variation, variation).gsub(" with ", ", ")
       end
     end
 
