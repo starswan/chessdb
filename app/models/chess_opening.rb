@@ -91,6 +91,7 @@ class ChessOpening < ApplicationRecord
     "Queen's pawn, Englund gambit" => "Englund gambit",
     "Queen's pawn, Torre attack" => "Torre attack",
     "Tennison (Lemberg,Zukertort) gambit" => "Tennison (Lemberg, Zukertort) gambit",
+    "Nimzo-Indian, e3" => "Nimzo-Indian, 4.e3",
   }.freeze
   VARIATION_ALIASES = {
     "Advance, Nimzovich system" => "Advance, Nimzovich variation",
