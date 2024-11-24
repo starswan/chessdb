@@ -90,6 +90,7 @@ class ChessOpening < ApplicationRecord
     "Trompovsky attack (Ruth,Opovcensky opening)" => "Trompovsky attack (Ruth, Opovcensky opening)",
     "Queen's pawn, Englund gambit" => "Englund gambit",
     "Queen's pawn, Torre attack" => "Torre attack",
+    "Tennison (Lemberg,Zukertort) gambit" => "Tennison (Lemberg, Zukertort) gambit",
   }.freeze
   VARIATION_ALIASES = {
     "Advance, Nimzovich system" => "Advance, Nimzovich variation",
@@ -135,6 +136,8 @@ class ChessOpening < ApplicationRecord
     "Sozen attack" => "Sozin",
     "Taimanov (Bastrikov) variation" => "Taimanov",
     "Taimanov variation" => "Taimanov",
+    "Alekhine variation" => "Alekhine",
+    "Ilyin-Genevsky" => "Ilyin-Genevsky variation",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
