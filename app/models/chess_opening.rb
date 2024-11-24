@@ -138,6 +138,7 @@ class ChessOpening < ApplicationRecord
     "Taimanov variation" => "Taimanov",
     "Alekhine variation" => "Alekhine",
     "Ilyin-Genevsky" => "Ilyin-Genevsky variation",
+    "Stonewall variation" => "Stonewall",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
@@ -233,11 +234,15 @@ class ChessOpening < ApplicationRecord
           unless ChessOpening.find_by(name: chess_opening_name)
             names = chess_opening.name.split(", ")
             if names.size == 2
-              ChessOpening.find_or_create_by! name: names[0], variation: names[1..].join(", ") do |co|
+              variation = names[1..].join(", ")
+              variation = VARIATION_ALIASES.fetch(variation, variation)
+              ChessOpening.find_or_create_by! name: names[0], variation: variation do |co|
                 co.ecocode = chess_opening.eco_code
               end
             else
-              ChessOpening.find_or_create_by! name: names[0..1].join(", "), variation: names[2..].join(", ") do |co|
+              variation =  names[2..].join(", ")
+              variation = VARIATION_ALIASES.fetch(variation, variation)
+              ChessOpening.find_or_create_by! name: names[0..1].join(", "), variation: variation do |co|
                 co.ecocode = chess_opening.eco_code
               end
             end
