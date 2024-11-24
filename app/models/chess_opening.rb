@@ -133,6 +133,8 @@ class ChessOpening < ApplicationRecord
     "Scheveningen (Paulsen)" => "Scheveningen",
     "Scheveningen variation" => "Scheveningen",
     "Sozen attack" => "Sozin",
+    "Taimanov (Bastrikov) variation" => "Taimanov",
+    "Taimanov variation" => "Taimanov",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
