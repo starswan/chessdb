@@ -126,6 +126,7 @@ class ChessOpening < ApplicationRecord
     "Exchange variation" => "Exchange",
     "Orthodox variation" => "Orthodox",
     "Bremen" => "Bremen system",
+    "Averbakh system" => "Averbakh",
     "Four knights system" => "Four knights",
   }.freeze
   IRREGULAR_NAMES = {
