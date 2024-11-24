@@ -236,7 +236,7 @@ class ChessOpening < ApplicationRecord
         chess_opening_name = OPENING_ALIASES.fetch(chess_opening.name, chess_opening.name)
         if chess_opening_name.include?(", ") && (chessopening.include?("variation") || chess_opening_name.exclude?("("))
           unless ChessOpening.find_by(name: chess_opening_name)
-            names = chess_opening.name.split(", ")
+            names = chess_opening_name.split(", ")
             if names.size == 2
               variation = tweak_variation(names[1..].join(", "))
               ChessOpening.find_or_create_by! name: names[0], variation: variation do |co|
