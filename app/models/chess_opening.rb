@@ -124,6 +124,7 @@ class ChessOpening < ApplicationRecord
     "Panov-Botvinnik attack" => "Panov-Botvinnik",
     "Leningrad variation" => "Leningrad, main variation",
     "Exchange variation" => "Exchange",
+    "Orthodox variation" => "Orthodox",
     "Bremen" => "Bremen system",
     "Four knights system" => "Four knights",
   }.freeze
