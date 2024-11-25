@@ -147,6 +147,7 @@ class ChessOpening < ApplicationRecord
     "Winawer (Nimzovich) variation" => "Winawer",
     "Dutch with c4 & Nc3" => "c4 & Nc3",
     "Dutch with c4 & g3" => "c4 & g3",
+    "Falkbeer counter-gambit" => "Falkbeer, counter-gambit"
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko Gambit',
