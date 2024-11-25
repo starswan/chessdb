@@ -15,7 +15,7 @@ class Game < ApplicationRecord
   MIN_GRADE = 1200
 
   # don't store quick draws - GMs (and IMs) have a habit of 'agreeing' quick draws
-  MIN_DRAWN_GAME_LENGTH = 20
+  MIN_DRAWN_GAME_LENGTH = 15
 
   has_many :moves, inverse_of: :game, dependent: :destroy
   belongs_to :white, class_name: 'Player', foreign_key: :white_id, counter_cache: :white_games_count
