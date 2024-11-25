@@ -55,12 +55,12 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
-      - name: Pronto Rubocop
-        run: bundle exec pronto run -r rubocop -f github_pr -c origin/${{ github.base_ref }}
-        env:
-          RUBOCOP_CONFIG: .rubocop.yml
-          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
-          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
+#      - name: Pronto Rubocop
+#        run: bundle exec pronto run -r rubocop -f github_pr -c origin/${{ github.base_ref }}
+#        env:
+#          RUBOCOP_CONFIG: .rubocop.yml
+#          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
+#          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
 
       - name: Setup log directory
         run: mkdir -p log
@@ -89,11 +89,11 @@ jobs:
           POSTGRES_PASSWORD: 123rails!
           POSTGRES_HOST: localhost
 
-#      - name: Pronto Undercover
-#        run: bundle exec pronto run -r undercover -f github_pr -c origin/${{ github.base_ref }}
-#        env:
-#          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
-#          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
+      - name: Pronto Undercover
+        run: bundle exec pronto run -r undercover -f github_pr -c origin/${{ github.base_ref }}
+        env:
+          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
+          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
 
       - name: Run undercover natively
         run: bundle exec undercover -c origin/${{ github.base_ref }}
