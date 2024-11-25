@@ -27,7 +27,7 @@ class ChessOpening < ApplicationRecord
     'Evans gambit declined' => 'Evans gambit',
     'English' => 'English opening',
     'English Opening' => 'English opening',
-    'French defense' => 'French',
+    'French defence' => 'French',
     'Four knights game' => 'Four knights',
     'Four Knights Game' => 'Four knights',
     "Gedult attack" => "Gedult's opening",
@@ -92,6 +92,7 @@ class ChessOpening < ApplicationRecord
     "Queen's pawn, Torre attack" => "Torre attack",
     "Tennison (Lemberg,Zukertort) gambit" => "Tennison (Lemberg, Zukertort) gambit",
     "Nimzo-Indian, e3" => "Nimzo-Indian, 4.e3",
+    "Nimzo-Indian, 4.e3 e8g8" => "Nimzo-Indian, 4.e3 O-O"
   }.freeze
   VARIATION_ALIASES = {
     "Advance, Nimzovich system" => "Advance, Nimzovich variation",
@@ -144,6 +145,8 @@ class ChessOpening < ApplicationRecord
     "Anglo-Gruenfeld defense" => "Anglo-Gruenfeld",
     "Nimzovich system" => "Nimzovich variation",
     "Winawer (Nimzovich) variation" => "Winawer",
+    "Dutch with c4 & Nc3" => "c4 & Nc3",
+    "Dutch with c4 & g3" => "c4 & g3",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko gambit',
