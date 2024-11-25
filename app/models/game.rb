@@ -46,13 +46,11 @@ class Game < ApplicationRecord
 
   before_validation do
     # try to convert BCF grades to ELO if typed by mistake
-    if white_elo + black_elo > 0
-      if black_elo < 250 && black_elo > 0
-        self.black_elo = 600 + black_elo * 8
-      end
-      if white_elo < 250 && white_elo > 0
-        self.white_elo = 600 + white_elo * 8
-      end
+    if black_elo < 300 && black_elo > 0
+      self.black_elo = 600 + black_elo * 8
+    end
+    if white_elo < 300 && white_elo > 0
+      self.white_elo = 600 + white_elo * 8
     end
   end
 
