@@ -230,14 +230,18 @@ class ChessOpening < ApplicationRecord
       end
       name = OPENING_ALIASES.fetch(name, name)
       variation = tweak_variation(variation)
+
       if name.blank? || variation.blank?
         first_move_line = raw_pgn.split("\n").detect { |x| x.starts_with? "1." }
         logger.info "Finding opening from #{first_move_line}"
-        chess_opening = @@openings.from_string(first_move_line)
-        logger.info "Opening #{chess_opening}"
-        chess_opening_name = OPENING_ALIASES.fetch(chess_opening.name, chess_opening.name)
+        gem_opening = @@openings.from_string(first_move_line)
+        logger.info "Opening #{gem_opening}"
+        chess_opening_name = OPENING_ALIASES.fetch(gem_opening.name, gem_opening.name)
         if chess_opening_name.include?(", ") && (chess_opening_name.include?("variation") || chess_opening_name.exclude?("("))
-          unless ChessOpening.find_by(name: chess_opening_name)
+          chess_opening = ChessOpening.find_by(name: chess_opening_name)
+          if chess_opening.present?
+            chess_opening
+          else
             names = chess_opening_name.split(", ")
             if names.size == 2
               variation = tweak_variation(names[1..].join(", "))
