@@ -248,20 +248,20 @@ class ChessOpening < ApplicationRecord
             if names.size == 2
               variation = tweak_variation(names[1..].join(", "))
               ChessOpening.find_or_create_by! name: names[0], variation: variation do |co|
-                co.ecocode = chess_opening.eco_code
+                co.ecocode = gem_opening.eco_code
               end
             else
               variation = tweak_variation(names[2..].join(", "))
               ChessOpening.find_or_create_by! name: names[0..1].join(", "), variation: variation do |co|
-                co.ecocode = chess_opening.eco_code
+                co.ecocode = gem_opening.eco_code
               end
             end
           end
         else
-          logger.info("Unknown: [#{tag_name}] [#{tag_variation}] [#{first_move_line}] -> [#{chess_opening.name} #{chess_opening.eco_code} #{chess_opening.moves}]")
-          if ChessOpening.find_by(name: chess_opening_name, ecocode: chess_opening.eco_code).present?
+          logger.info("Unknown: [#{tag_name}] [#{tag_variation}] [#{first_move_line}] -> [#{gem_opening.name} #{gem_opening.eco_code} #{gem_opening.moves}]")
+          if ChessOpening.find_by(name: chess_opening_name, ecocode: gem_opening.eco_code).present?
             # If there is an existing ECO code for this opening, then it's probably good - so don't override
-            ChessOpening.find_or_create_by! name: chess_opening_name, ecocode: chess_opening.eco_code, variation: "Unknown"
+            ChessOpening.find_or_create_by! name: chess_opening_name, ecocode: gem_opening.eco_code, variation: "Unknown"
           else
             ChessOpening.find_or_create_by! name: chess_opening_name, variation: "Unknown" do |co|
               co.ecocode = ecocode
