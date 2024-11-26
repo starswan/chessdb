@@ -76,7 +76,7 @@ class PgnImportJob < ApplicationJob
             opening = "#{db_game.opening.name}/#{db_game.opening.variation}(#{db_game.opening.ecocode})"
             logger.info "Game saved #{comment} #{db_game.date.to_s(:rfc822)} [#{p1}] vs [#{p2}] #{opening} [#{db_game.result}]"
           else
-            logger.warn "Game errors #{db_game.errors.full_messages}"
+            logger.warn "Game errors #{db_game.errors.messages}"
           end
         end
       end

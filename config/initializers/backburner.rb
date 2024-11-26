@@ -8,7 +8,7 @@ Backburner.configure do |config|
   config.primary_queue = 'default'
   config.logger = Rails.logger
   # retrying a job is unlikely to work unless its a deadlock issue
-  config.max_job_retries = 15
+  config.max_job_retries = 20
   # some big file parsing takes longer than 2 minutes - 166 seconds measured for 1.4Gb
   # under load, 5 minute timeout isn't enough
   config.respond_timeout = 600

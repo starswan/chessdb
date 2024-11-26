@@ -2,25 +2,24 @@
 
 <h1>Openings</h1>
 
-<table class="table table-striped table-sm table-responsive">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Variation</th>
-      <th>Games</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @openings.each do |opening| %>
+<% @openings.each do |name, group| %>
+  <table class="table table-striped table-sm table-responsive">
+    <thead>
       <tr>
-        <td><%= opening.name %></td>
-        <td><%= opening.variation %>(<%= opening.ecocode %>)</td>
-        <td><%= link_to opening.games_count, opening_games_path(opening) %></td>
-        <td><%= link_to 'Edit', edit_opening_path(opening) %></td>
-        <td><%= link_to 'Destroy', opening_path(opening), method: :delete, data: { confirm: "Delete #{opening.name} #{opening.variation}(#{opening.ecocode})?" } %></td>
+        <th><%= name %></th>
+        <th>Games</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% group.each do |opening| %>
+        <tr>
+          <td><%= opening.variation %> - (<%= opening.ecocode %>)</td>
+          <td><%= l(opening.updated_at) %> - <%= link_to opening.games_count, opening_games_path(opening) %></td>
+          <td><%= link_to 'Delete', opening_path(opening), method: :delete, data: { confirm: "Delete #{opening.name} #{opening.variation}(#{opening.ecocode})?" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

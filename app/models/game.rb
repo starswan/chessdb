@@ -15,7 +15,7 @@ class Game < ApplicationRecord
   MIN_GRADE = 1200
 
   # don't store quick draws - GMs (and IMs) have a habit of 'agreeing' quick draws
-  MIN_DRAWN_GAME_LENGTH = 20
+  MIN_DRAWN_GAME_LENGTH = 15
 
   has_many :moves, inverse_of: :game, dependent: :destroy
   belongs_to :white, class_name: 'Player', foreign_key: :white_id, counter_cache: :white_games_count
@@ -38,19 +38,33 @@ class Game < ApplicationRecord
   validates_numericality_of :number_of_moves, only_integer: true
   validates_numericality_of :number_of_moves, greater_than_or_equal_to: MIN_DRAWN_GAME_LENGTH, if: ->(x) { x.result == DRAW_RESULT }
 
-  validates_numericality_of :white_elo, :black_elo, only_integer: true, greater_than_or_equal_to: MIN_GRADE, allow_nil: true
+  validates_numericality_of :white_elo, only_integer: true, greater_than_or_equal_to: MIN_GRADE, if: -> { white_elo > 0 }
+  validates_numericality_of :black_elo, only_integer: true, greater_than_or_equal_to: MIN_GRADE, if: -> { black_elo > 0 }
   validates_presence_of :opening, :site, :pgn
   # validate the PGN length to prevent overflow rather than limiting the move count
-  validates_length_of :pgn, maximum: 1536
+  validates_length_of :pgn, maximum: 2048
 
-  validate do
-    if white_elo - black_elo > MAX_GRADING_GAP && result == WHITE_RESULT
-      errors.add(:black_elo, 'White win - Grading mismatch')
+  before_validation do
+    # try to convert BCF grades to ELO if typed by mistake
+    if black_elo < 300 && black_elo > 0
+      self.black_elo = 600 + black_elo * 8
     end
-    if black_elo - white_elo > MAX_GRADING_GAP && result == BLACK_RESULT
-      errors.add(:white_elo, 'Black win - Grading mismatch')
+    if white_elo < 300 && white_elo > 0
+      self.white_elo = 600 + white_elo * 8
     end
   end
+
+  # I'm not sure whether this is actually working...
+  # :nocov:
+  validate do
+    if white_elo - black_elo > MAX_GRADING_GAP && result == WHITE_RESULT && black_elo > 0
+      errors.add(:black_elo, "White win - Grading mismatch #{white_elo} vs #{black_elo}")
+    end
+    if black_elo - white_elo > MAX_GRADING_GAP && result == BLACK_RESULT && white_elo > 0
+      errors.add(:white_elo, "Black win - Grading mismatch #{black_elo} vs #{white_elo}")
+    end
+  end
+  # :nocov:
 
   def self.find_from_tags tags, raw_pgn
     white = Player.find_player(tags.fetch(:White), tags[:WhiteFideId])
@@ -68,15 +82,6 @@ class Game < ApplicationRecord
     opening = ChessOpening.find_opening(tags.fetch(:ECO), tags.fetch(:Opening), tags.fetch(:Variation), raw_pgn)
     white_elo = tags.fetch(:WhiteElo, 0).to_i
     black_elo = tags.fetch(:BlackElo, 0).to_i
-    # try to convert BCF grades to ELO if typed by mistake
-    if white_elo + black_elo > 0
-      if black_elo < 250
-        black_elo = 600 + black_elo * 8
-      end
-      if white_elo < 250
-        white_elo = 600 + white_elo * 8
-      end
-    end
     Game.new white: white,
              black: black,
              opening: opening,

@@ -15,12 +15,12 @@ RSpec.describe OpeningsController, type: :controller do
 
     it 'gets openings with games' do
       get :index
-      expect(assigns(:openings)).to eq [o1]
+      expect(assigns(:openings)).to eq({o1.name => [o1]})
     end
 
-    it 'gets openings with ofsfet games' do
+    it 'gets openings with offset games' do
       get :index, params: { page: 'A' }
-      expect(assigns(:openings)).to eq [o1]
+      expect(assigns(:openings)).to eq({o1.name => [o1]})
     end
   end
 
