@@ -78,6 +78,7 @@ class ChessOpening < ApplicationRecord
     'Sicilian Defense: Alapin Variation' => 'Sicilian, Alapin variation',
     'Reti opening' => 'Reti',
     'Robatsch defence' => 'Robatsch (modern) defence',
+    "Russian variation" => "Russian",
     'Ruy Lopez (Spanish opening)' => 'Ruy Lopez',
     'two knights' => "Two knights defence",
     'two knights defence' => "Two knights defence",
@@ -297,7 +298,9 @@ class ChessOpening < ApplicationRecord
     def tweak_variation variation
       VARIATION_ALIASES.fetch(variation, variation)
       if variation.present?
-        variation.gsub(" with ", ", ").gsub("`", "'")
+        #  avoid the automatic with - it might create too many variations
+        # variation.gsub(" with ", ", ").gsub("`", "'")
+        variation.gsub("`", "'")
       else
         variation
       end
