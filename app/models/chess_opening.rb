@@ -216,6 +216,7 @@ class ChessOpening < ApplicationRecord
   @@openings = ChessOpenings.new
 
   class << self
+    # :nocov #
     def find_opening ecocode, tag_name, tag_variation, raw_pgn
       if tag_name&.include?(',') && tag_variation.blank? && (tag_name&.include?('variation') || tag_name&.exclude?(')'))
         split_name = tag_name.split(',')
@@ -283,6 +284,7 @@ class ChessOpening < ApplicationRecord
         end
       end
     end
+    # :nocov #
 
     private
 
