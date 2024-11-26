@@ -116,6 +116,7 @@ class ChessOpening < ApplicationRecord
     "Classical variation" => "Classical",
     "Dutch variation, main line" => "Dutch variation",
     'Dragon variation' => "Dragon",
+    "exchange" => "Exchange",
     "Fajarowicz variation" => "Fajarowicz",
     'Franco-Indian (Keres) defence' => 'Keres defence',
     'Four Knights Game: Gunsberg Variation' => 'Gunsberg variation',
@@ -225,7 +226,7 @@ class ChessOpening < ApplicationRecord
   @@openings = ChessOpenings.new
 
   class << self
-    # :nocov #
+    # :nocov:
     def find_opening ecocode, tag_name, tag_variation, raw_pgn
       if tag_name&.include?(',') && tag_variation.blank? && (tag_name&.include?('variation') || tag_name&.exclude?(')'))
         split_name = tag_name.split(',')
@@ -292,7 +293,7 @@ class ChessOpening < ApplicationRecord
         end
       end
     end
-    # :nocov #
+    # :nocov:
 
     private
 
