@@ -245,9 +245,8 @@ class ChessOpening < ApplicationRecord
 
       if name.blank? || variation.blank?
         first_move_line = raw_pgn.split("\n").detect { |x| x.starts_with? "1." }
-        logger.info "Finding opening from #{first_move_line}"
         gem_opening = @@openings.from_string(first_move_line)
-        logger.info "Opening #{gem_opening}"
+        logger.info "Opening from #{first_move_line} #{gem_opening.eco_code} #{gem_opening.name} #{gem_opening.moves}"
         chess_opening_name = OPENING_ALIASES.fetch(gem_opening.name, gem_opening.name)
         if chess_opening_name.include?(", ") && (chess_opening_name.include?("variation") || chess_opening_name.exclude?("("))
           chess_opening = ChessOpening.find_by(name: chess_opening_name)
