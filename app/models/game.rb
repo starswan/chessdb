@@ -55,7 +55,7 @@ class Game < ApplicationRecord
   end
 
   # I'm not sure whether this is actually working...
-  # nocov:
+  # :nocov:
   validate do
     if white_elo - black_elo > MAX_GRADING_GAP && result == WHITE_RESULT && black_elo > 0
       errors.add(:black_elo, "White win - Grading mismatch #{white_elo} vs #{black_elo}")
@@ -64,7 +64,7 @@ class Game < ApplicationRecord
       errors.add(:white_elo, "Black win - Grading mismatch #{black_elo} vs #{white_elo}")
     end
   end
-  # nocov:
+  # :nocov:
 
   def self.find_from_tags tags, raw_pgn
     white = Player.find_player(tags.fetch(:White), tags[:WhiteFideId])

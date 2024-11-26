@@ -164,6 +164,7 @@ class ChessOpening < ApplicationRecord
     "Dutch with c4 & g3" => "c4 and g3",
     "Falkbeer counter-gambit" => "Falkbeer, counter-gambit",
     "Urusov gambit, Panov variation" => "Urusov gambit - Panov variation",
+    "Wormald (Alapin) attack" => "Wormald attack",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko Gambit',
