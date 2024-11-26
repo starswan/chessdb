@@ -99,6 +99,8 @@ class ChessOpening < ApplicationRecord
   VARIATION_ALIASES = {
     "Advance, Nimzovich system" => "Advance, Nimzovich variation",
     "Alapin's variation (2.c3)" => "Alapin variation",
+    "advance variation" => "Advance",
+    "Anglo-Gruenfeld defense" => "Anglo-Gruenfeld",
     "Benko's opening, reversed Alekhine" => "reversed Alekhine",
     "Boleslavsky variation" => "Boleslavsky",
     "Canal-Sokolsky (Nimzovich-Rossolimo, Moscow) attack" => "Canal-Sokolsky attack",
@@ -112,6 +114,7 @@ class ChessOpening < ApplicationRecord
     'Franco-Indian (Keres) defence' => 'Keres defence',
     'Four Knights Game: Gunsberg Variation' => 'Gunsberg variation',
     'Four Knights Game: Spanish Variation' => 'Spanish variation',
+    "Four pawns attack, main line" => "Four pawns attack - main line",
     'Panov-Botvinnik Variation' => 'Panov-Botvinnik attack',
     "Kan variation" => "Kan",
     'Gurgenidze counter-attack' => 'Gurgenidze system',
@@ -154,9 +157,10 @@ class ChessOpening < ApplicationRecord
     "Anglo-Gruenfeld defense" => "Anglo-Gruenfeld",
     "Nimzovich system" => "Nimzovich variation",
     "Winawer (Nimzovich) variation" => "Winawer",
-    "Dutch with c4 & Nc3" => "c4 & Nc3",
-    "Dutch with c4 & g3" => "c4 & g3",
-    "Falkbeer counter-gambit" => "Falkbeer, counter-gambit"
+    "Dutch with c4 & Nc3" => "c4 and Nc3",
+    "Dutch with c4 & g3" => "c4 and g3",
+    "Falkbeer counter-gambit" => "Falkbeer, counter-gambit",
+    "Urusov gambit, Panov variation" => "Urusov gambit - Panov variation",
   }.freeze
   IRREGULAR_NAMES = {
     'Benko gambit accepted' => 'Benko Gambit',
@@ -164,10 +168,6 @@ class ChessOpening < ApplicationRecord
     'Benko gambit half accepted' => 'Benko Gambit',
     "Benko's opening, reversed Alekhine" => "Benko's opening",
     'Mujannah opening' => "Bird's opening",
-    'Bird, From gambit' => "Bird's opening",
-    'Bird, From gambit, Lasker variation' => "Bird's opening",
-    'Bird, From gambit, Lipke variation' => "Bird's opening",
-    'Bird, Hobbs gambit' => "Bird's opening",
     'Boden-Kieseritsky gambit' => 'Vienna',
     'Blumenfeld counter-gambit accepted' => 'Blumenfeld counter-gambit',
     'Caro-Masi defence' => 'Caro-Kann',
