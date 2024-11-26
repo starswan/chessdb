@@ -101,6 +101,7 @@ class ChessOpening < ApplicationRecord
     "Advance, Nimzovich system" => "Advance, Nimzovich variation",
     "Alapin's variation (2.c3)" => "Alapin variation",
     "advance variation" => "Advance",
+    "advance" => "Advance",
     "Anglo-Gruenfeld defense" => "Anglo-Gruenfeld",
     "Advance variation" => "Advance",
     "Averbakh system" => "Averbakh",
