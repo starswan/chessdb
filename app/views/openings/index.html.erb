@@ -15,8 +15,8 @@
     <tbody>
       <% group.each do |opening| %>
         <tr>
-          <td><%= opening.variation %> - <%= l(opening.updated_at) %> - (<%= opening.ecocode %>)</td>
-          <td><%= link_to opening.games_count, opening_games_path(opening) %></td>
+          <td><%= opening.variation %> - (<%= opening.ecocode %>)</td>
+          <td><%= l(opening.updated_at) %> - <%= link_to opening.games_count, opening_games_path(opening) %></td>
           <td><%= link_to 'Delete', opening_path(opening), method: :delete, data: { confirm: "Delete #{opening.name} #{opening.variation}(#{opening.ecocode})?" } %></td>
         </tr>
       <% end %>
