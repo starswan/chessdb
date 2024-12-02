@@ -10,6 +10,16 @@
 #
 THE_RAILS_ENV    = ENV['RAILS_ENV'] || 'development'
 
+CHESSDB_TABLES = %w[
+  ar_internal_metadata
+  schema_migrations
+  games
+  moves
+  openings
+  players
+].freeze
+
+
 Backup::Model.new(:db_backup, 'Backup chessdb database') do
 
   database_yml = File.expand_path('../../config/database.yml',  __FILE__)
@@ -20,7 +30,7 @@ Backup::Model.new(:db_backup, 'Backup chessdb database') do
   ##
   # MySQL [Database]
   #
-  database MySQL do |db|
+  database PostgreSQL do |db|
     # To dump all databases, set `db.name = :all` (or leave blank)
     db.name               = config[THE_RAILS_ENV]["database"]
     db.username           = config[THE_RAILS_ENV]["username"]
@@ -32,9 +42,11 @@ Backup::Model.new(:db_backup, 'Backup chessdb database') do
     # table names should be prefixed with a database name.
     # e.g. ["db_name.table_to_skip", ...]
     db.skip_tables        = []
+    db.only_tables        = CHESSDB_TABLES
+
     #db.skip_tables        = ["skip", "these", "tables"]
     #db.only_tables        = ["only", "these" "tables"]
-    db.additional_options = ["--quick", "--single-transaction"]
+    db.additional_options = ["--no-owner", "--no-privileges", "--format=plain", "--quote-all-identifiers"]
     # Optional: Use to set the location of this utility
     #   if it cannot be found by name in your $PATH
     # db.mysqldump_utility = "/opt/local/bin/mysqldump"
