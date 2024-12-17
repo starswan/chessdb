@@ -247,14 +247,12 @@ class ChessOpening < ApplicationRecord
       end
       name = OPENING_ALIASES.fetch(name, name)
       variation = tweak_variation(variation)
+      first_move_line = raw_pgn.split("\n").detect { |x| x.starts_with? "1." }
 
-      if name.blank? || variation.blank?
-        first_move_line = raw_pgn.split("\n").detect { |x| x.starts_with? "1." }
-        if first_move_line.present?
-          gem_opening = @@openings.from_string(first_move_line)
-          logger.info "Opening from #{first_move_line} #{gem_opening.eco_code} #{gem_opening.name} #{gem_opening.moves}"
-          chess_opening_name = OPENING_ALIASES.fetch(gem_opening.name, gem_opening.name)
-        end
+      if (name.blank? || variation.blank?) && first_move_line.present?
+        gem_opening = @@openings.from_string(first_move_line)
+        logger.info "Opening from #{first_move_line} #{gem_opening.eco_code} #{gem_opening.name} #{gem_opening.moves}"
+        chess_opening_name = OPENING_ALIASES.fetch(gem_opening.name, gem_opening.name)
         if chess_opening_name.include?(", ") && (chess_opening_name.include?("variation") || chess_opening_name.exclude?("("))
           chess_opening = ChessOpening.find_by(name: chess_opening_name)
           if chess_opening.present?
