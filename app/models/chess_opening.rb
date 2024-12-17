@@ -282,7 +282,7 @@ class ChessOpening < ApplicationRecord
             end
           end
         end
-      else
+      elsif variation.present?
         var_names = variation.split(", ")
         if var_names.size == 1
           ChessOpening.find_or_create_by! name: name, variation: variation do |co|
@@ -292,6 +292,10 @@ class ChessOpening < ApplicationRecord
           ChessOpening.find_or_create_by! name: "#{name}, #{var_names[0]}", variation: var_names[1..].join(", ") do |co|
             co.ecocode = ecocode
           end
+        end
+      else
+        ChessOpening.find_or_create_by! name: name, variation: "" do |co|
+          co.ecocode = ecocode
         end
       end
     end
