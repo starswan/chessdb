@@ -53,10 +53,9 @@ class PgnImportJob < ApplicationJob
       pgn_game = Bchess::PGN::Game.new(g).tap { |g| g.convert_body_to_moves }
       PGNStruct.new header: pgn_game.header, moves: pgn_game.moves, raw_pgn: g.input
     end
-    pgn_games.each do |pgn|
+    # There appear to be many games w/o any moves at all but valiud headers
+    pgn_games.reject { |g| g.moves.empty? }.each do |pgn|
       next unless [:player_white, :player_black, :eco].all? { |tag| pgn.header.public_send(tag).present? }
-      # There appear to be many games w/o any moves at all but valiud headers
-      # next if pgn.moves.size < 10
       # logger.warn("White/Black/ECO missing") && return unless [:White, :Black, :ECO].all? { |tag| pgn.tags.has_key?(tag) }
       Game.transaction do
         logger.info "#{comment} #{pgn.header.player_white} vs #{pgn.header.player_black}"
