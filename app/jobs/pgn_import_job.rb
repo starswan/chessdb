@@ -54,10 +54,9 @@ class PgnImportJob < ApplicationJob
       PGNStruct.new header: pgn_game.header, moves: pgn_game.moves, raw_pgn: g.input
     end
     pgn_games.each do |pgn|
-      # return unless [:player_white, :player_black, :elo_white, :elo_black, :eco].all? { |tag| pgn.header.public_send(tag).present? }
       next unless [:player_white, :player_black, :eco].all? { |tag| pgn.header.public_send(tag).present? }
-      # next unless pgn.raw_pgn.split("\n").detect { |x| x.starts_with? "1." }.present?
-      next if pgn.moves.size < 10
+      # There appear to be many games w/o any moves at all but valiud headers
+      next if pgn.moves.size < 4
       # logger.warn("White/Black/ECO missing") && return unless [:White, :Black, :ECO].all? { |tag| pgn.tags.has_key?(tag) }
       Game.transaction do
         logger.info "#{comment} #{pgn.header.player_white} vs #{pgn.header.player_black}"
