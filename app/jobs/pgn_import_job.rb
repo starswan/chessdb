@@ -56,7 +56,8 @@ class PgnImportJob < ApplicationJob
     pgn_games.each do |pgn|
       # return unless [:player_white, :player_black, :elo_white, :elo_black, :eco].all? { |tag| pgn.header.public_send(tag).present? }
       next unless [:player_white, :player_black, :eco].all? { |tag| pgn.header.public_send(tag).present? }
-      next unless pgn.raw_pgn.split("\n").detect { |x| x.starts_with? "1." }.present?
+      # next unless pgn.raw_pgn.split("\n").detect { |x| x.starts_with? "1." }.present?
+      next if pgn.moves.size < 5
       # logger.warn("White/Black/ECO missing") && return unless [:White, :Black, :ECO].all? { |tag| pgn.tags.has_key?(tag) }
       Game.transaction do
         logger.info "#{comment} #{pgn.header.player_white} vs #{pgn.header.player_black}"
