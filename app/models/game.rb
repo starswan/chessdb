@@ -7,12 +7,12 @@ class Game < ApplicationRecord
   WHITE_RESULT = '1-0'
   BLACK_RESULT = '0-1'
 
-  MAX_GRADING_GAP = 800
+  MAX_GRADING_GAP = 900
   # For now, limit the database to games with a sensible move limit. That way the 'pgn' column doesn't have to be to big
   # MAX_GAME_LENGTH = 120
   # Both players need to be at least as strong as me otherwise they might just be producing garbage
   # would be useful to understand non-played moves though...?
-  MIN_GRADE = 1200
+  MIN_GRADE = 1100
 
   # don't store quick draws - GMs (and IMs) have a habit of 'agreeing' quick draws
   MIN_DRAWN_GAME_LENGTH = 15
