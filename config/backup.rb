@@ -8,7 +8,6 @@
 #
 # $ backup perform -t backup [-c <path_to_configuration_file>]
 #
-THE_RAILS_ENV    = ENV['RAILS_ENV'] || 'development'
 
 CHESSDB_TABLES = %w[
   ar_internal_metadata
@@ -25,19 +24,19 @@ Backup::Model.new(:db_backup, 'Backup chessdb database') do
   database_yml = File.expand_path('../../config/database.yml',  __FILE__)
 
   require 'yaml'
-  config = YAML.load_file(database_yml)
+  config = YAML.load_file(database_yml).fetch(ENV.fetch('RAILS_ENV', 'development'))
 
   ##
   # MySQL [Database]
   #
   database PostgreSQL do |db|
     # To dump all databases, set `db.name = :all` (or leave blank)
-    db.name               = config[THE_RAILS_ENV]["database"]
-    db.username           = config[THE_RAILS_ENV]["username"]
-    db.password           = config[THE_RAILS_ENV]["password"]
-    db.host               = config[THE_RAILS_ENV]["host"]
-    db.port               = config[THE_RAILS_ENV]["port"]
-    db.socket             = config[THE_RAILS_ENV]["socket"]
+    db.name               = config["database"]
+    db.username           = config["username"]
+    db.password           = config["password"]
+    db.host               = config["host"]
+    db.port               = config["port"]
+    db.socket             = config["socket"]
     # Note: when using `skip_tables` with the `db.name = :all` option,
     # table names should be prefixed with a database name.
     # e.g. ["db_name.table_to_skip", ...]

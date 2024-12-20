@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_11_25_194421) do
+ActiveRecord::Schema.define(version: 2024_12_20_162738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2024_11_25_194421) do
     t.integer "white_elo"
     t.integer "black_elo"
     t.integer "number_of_moves", limit: 2, null: false
-    t.string "pgn", limit: 2048, null: false
+    t.string "pgn", limit: 2560, null: false
     t.string "site"
     t.index ["white_id", "black_id", "opening_id", "date"], name: "index_games_on_white_id_and_black_id_and_opening_id_and_date"
   end

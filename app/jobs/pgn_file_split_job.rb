@@ -6,7 +6,7 @@ class PgnFileSplitJob < ApplicationJob
   # lower priority than the imports themselves
   queue_priority 30
 
-  FILE_SLICE_SIZE = 10_000
+  FILE_SLICE_SIZE = 20_000
 
   def perform(filename, delete_flag)
     game_count = File.open(filename, 'r', encoding: 'ISO-8859-15') do |file|
