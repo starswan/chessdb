@@ -42,7 +42,7 @@ class Game < ApplicationRecord
   validates_numericality_of :black_elo, only_integer: true, greater_than_or_equal_to: MIN_GRADE, if: -> { black_elo > 0 }
   validates_presence_of :opening, :site, :pgn
   # validate the PGN length to prevent overflow rather than limiting the move count
-  validates_length_of :pgn, maximum: 2048
+  validates_length_of :pgn, maximum: 2560
 
   before_validation do
     # try to convert BCF grades to ELO if typed by mistake
