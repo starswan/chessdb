@@ -39,6 +39,7 @@ arthur:
 chessone:
   adapter: postgresql
   database: chessdb_development
+  host: localhost
   port: 5442
   username: rails
   password: 123rails!
