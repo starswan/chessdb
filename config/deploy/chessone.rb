@@ -15,6 +15,7 @@ set :bundle_without, [:development, :test]
 #set :rvm_install_ruby_threads, 5
 set :rvm_ruby_string, '3.1.6@chessdb'
 set :rails_env, 'chessone'
+set :rvm_type, :user
 
 # Extended Server Syntax
 # ======================
