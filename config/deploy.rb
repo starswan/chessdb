@@ -4,7 +4,7 @@
 # RVM bootstrap
 #
 require 'capistrano/ext/multistage'
-set :stages, %w(alice pifive athur nx6325 ford)
+set :stages, %w(alice pifive athur chessone)
 set :default_stage, 'arthur'
 set :linked_dirs, %w{node_modules}
 
