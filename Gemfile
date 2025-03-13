@@ -7,7 +7,7 @@ source 'http://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
 
-gem 'mysql2'
+# gem 'mysql2'
 
 gem 'pg', platforms: :ruby
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
