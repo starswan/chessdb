@@ -127,7 +127,7 @@ Layout/LeadingCommentSpace:
     - 'config/deploy.rb'
     - 'config/deploy/alice.rb'
     - 'config/deploy/arthur.rb'
-    - 'config/deploy/ford.rb'
+    - 'config/deploy/chessone.rb'
     - 'config/initializers/backburner.rb'
 
 # Offense count: 79
@@ -169,7 +169,7 @@ Layout/SpaceAfterComma:
 Layout/SpaceInsideArrayLiteralBrackets:
   Exclude:
     - 'config/environments/arthur.rb'
-    - 'config/environments/ford.rb'
+    - 'config/environments/chessone.rb'
     - 'config/environments/production.rb'
     - 'config/initializers/backburner.rb'
 
@@ -461,7 +461,7 @@ Style/FormatString:
 Style/GlobalStdStream:
   Exclude:
     - 'config/environments/arthur.rb'
-    - 'config/environments/ford.rb'
+    - 'config/environments/chessone.rb'
     - 'config/environments/production.rb'
 
 # Offense count: 29
@@ -476,7 +476,7 @@ Style/HashSyntax:
     - 'config/deploy.rb'
     - 'config/deploy/alice.rb'
     - 'config/deploy/arthur.rb'
-    - 'config/deploy/ford.rb'
+    - 'config/deploy/chessone.rb'
     - 'config/initializers/backburner.rb'
     - 'spec/controllers/games_controller_spec.rb'
     - 'spec/controllers/moves_controller_spec.rb'

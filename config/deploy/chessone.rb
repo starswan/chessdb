@@ -7,14 +7,14 @@
 #role :app, %w{deploy@example.com}
 #role :web, %w{deploy@example.com}
 #role :db,  %w{deploy@example.com}
-set :deploy_to, "/home/steve/chessdb"
-set :user, "steve"
+set :deploy_to, "/home/stephen/chessdb"
+set :user, "stephen"
 set :use_sudo, false
 set :bundle_without, [:development, :test]
 # Try to speed up ruby compilation on Raspberry Pi 2
 #set :rvm_install_ruby_threads, 5
-set :rvm_ruby_string, '2.6.6@chessdb'
-set :rails_env, 'ford'
+set :rvm_ruby_string, '3.1.6@chessdb'
+set :rails_env, 'chessone'
 
 # Extended Server Syntax
 # ======================
@@ -23,7 +23,7 @@ set :rails_env, 'ford'
 # used to set extended properties on the server.
 
 #server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
-server 'ford', :web, :app, :db, :primary => true
+server 'chessone', :web, :app, :db, :primary => true
 
 # Custom SSH Options
 # ==================
