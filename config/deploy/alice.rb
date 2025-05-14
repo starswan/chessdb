@@ -16,7 +16,7 @@ set :use_sudo, false
 set :bundle_without, [:development, :test]
 # Try to speed up ruby compilation on Raspberry Pi 2
 #set :rvm_install_ruby_threads, 5
-set :rvm_ruby_string, '3.1.6@chessdb'
+set :rvm_ruby_string, '3.2.8@chessdb'
 
 # Extended Server Syntax
 # ======================
