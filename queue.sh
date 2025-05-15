@@ -6,7 +6,7 @@ export HOME=`echo ~`
 source $HOME/.bash_login
 dirname=`dirname $0`
 cd $dirname
-source $RVM_DIR/environments/ruby-3.1.6@chessdb
+source $RVM_DIR/environments/ruby-3.2.8@chessdb
 bundle check || bundle install
 program='queue'
 pidfile="tmp/pids/$program.pid"

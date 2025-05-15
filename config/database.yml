@@ -36,13 +36,13 @@ arthur:
   username: rails
   password: 123rails!
 
-ford:
-#  <<: *default
-#  reconnect: true
+chessone:
   adapter: postgresql
   database: chessdb_development
-  host: arthur2
-  port: 3306
+  host: localhost
+  port: 5442
+  username: rails
+  password: 123rails!
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
