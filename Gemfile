@@ -5,7 +5,7 @@
 source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
+gem 'rails', '~> 8.1.1'
 
 # gem 'mysql2'
 
