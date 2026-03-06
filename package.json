@@ -13,7 +13,7 @@
   "devDependencies": {
     "elm-format": "^0.8.8",
     "elm-hot-webpack-loader": "^1.1.8",
-    "elm-test": "0.19.1-revision16",
+    "elm-test": "0.19.1-revision17",
     "webpack-dev-server": "^4.11.0"
   }
 }
