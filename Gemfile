@@ -121,5 +121,5 @@ gem 'chess_openings'
 # gem 'activerecord_dumper', git: 'https://github.com/spijet/activerecord_dumper', branch: 'master', require: 'ar_dumper'
 
 gem "backburner", "~> 1.6"
-gem "addressable", "~> 2.8"
+gem "addressable", "~> 2.9"
 gem "yaml_db"
