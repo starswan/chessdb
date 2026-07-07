@@ -128,7 +128,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    date (3.4.1)
+    date (3.5.1)
     debug_inspector (1.2.0)
     deep_merge (1.0.1)
     diff-lcs (1.5.1)
@@ -235,7 +235,7 @@ GEM
     nenv (0.3.0)
     net-http (0.9.1)
       uri (>= 0.11.1)
-    net-imap (0.4.20)
+    net-imap (0.4.24)
       date
       net-protocol
     net-pop (0.1.2)
@@ -442,7 +442,7 @@ GEM
       unicode-display_width (>= 1.1.1, < 4)
     thor (1.4.0)
     tilt (2.3.0)
-    timeout (0.4.3)
+    timeout (0.6.1)
     treetop (1.6.12)
       polyglot (~> 0.3)
     tzinfo (2.0.6)
