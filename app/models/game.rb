@@ -112,6 +112,24 @@ class Game < ApplicationRecord
     end
   end
 
+  def create_unique_moves!
+    parser = Bchess::PGN::Parser.new(pgn)
+    first_game = parser.parse.first
+    parsed_game = Bchess::PGN::Game.new(first_game)
+    parsed_game.convert_body_to_moves
+
+    board = Bchess::Board.new
+    board.read_fen
+    parsed_game.moves.each_with_index do |move, index|
+      old_piece = move.fetch(:piece)
+      old_fen = board.fen
+      board_piece = board.at(old_piece.column, old_piece.row)
+      raise "Failed move #{move}" unless board.move(board_piece, move.fetch(:column), move.fetch(:row), move.fetch(:promoted_piece))
+      # FenPieceIndex.new(old_fen: old_fen, fen: board.fen, piece: board_piece, index: index)
+      moves.create! move_from_positions(old_fen, board.fen).merge(move: board_piece.to_s, number: index, fen: board.fen)
+    end
+  end
+
 private
 
   def move_from_positions old_pos, new_pos
