@@ -7,17 +7,22 @@
 #role :app, %w{deploy@example.com}
 #role :web, %w{deploy@example.com}
 #role :db,  %w{deploy@example.com}
+
+server "arthur.broadband",
+       user: ENV.fetch("USER"),
+       roles: %w{web app db}
+
 set :deploy_to, "#{ENV['HOME']}/chessdb"
-set :user, ENV["USER"]
+# set :user, ENV["USER"]
 # set :use_sudo, false
-set :bundle_without, [:development, :test]
+# set :bundle_without, [:development, :test]
 # Try to speed up ruby compilation on Raspberry Pi 2
 #set :rvm_install_ruby_threads, 5
-set :rvm_ruby_string, '3.2.8@chessdb'
+set :rvm_ruby_version, '3.2.8@chessdb'
 set :rails_env, 'arthur'
 # RVM now installed on arthur via an apt package
 # Debian 11 (bullseye) gone back to non-apt
-set :rvm_type, "/usr/share/rvm"
+set :rvm_type, :user
 
 # Extended Server Syntax
 # ======================
@@ -26,7 +31,7 @@ set :rvm_type, "/usr/share/rvm"
 # used to set extended properties on the server.
 
 #server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
-server 'arthur', :web, :app, :db, :primary => true
+# server 'arthur', :web, :app, :db, :primary => true
 
 # Custom SSH Options
 # ==================

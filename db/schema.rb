@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_12_20_162738) do
-
+ActiveRecord::Schema[7.0].define(version: 2026_11_10_215251) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "timescaledb"
@@ -22,8 +21,8 @@ ActiveRecord::Schema.define(version: 2024_12_20_162738) do
     t.date "date", null: false
     t.bigint "opening_id"
     t.string "result", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "white_elo"
     t.integer "black_elo"
     t.integer "number_of_moves", limit: 2, null: false
@@ -48,8 +47,8 @@ ActiveRecord::Schema.define(version: 2024_12_20_162738) do
     t.string "ecocode"
     t.string "name"
     t.string "variation"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "games_count", default: 0, null: false
     t.index ["ecocode", "name"], name: "index_openings_on_ecocode_and_name"
     t.index ["ecocode"], name: "index_openings_on_ecocode"
@@ -57,8 +56,8 @@ ActiveRecord::Schema.define(version: 2024_12_20_162738) do
 
   create_table "players", force: :cascade do |t|
     t.integer "fideid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "first_name"
     t.string "last_name", null: false
     t.integer "white_games_count", limit: 2, default: 0, null: false

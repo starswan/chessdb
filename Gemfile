@@ -5,25 +5,28 @@
 source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
+# gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
+gem 'rails', '~> 7.0', '< 7.1'
 
 # gem 'mysql2'
 
 gem 'pg', platforms: :ruby
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 5.0'
+# gem 'webpacker', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.13'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+gem "cssbundling-rails"
+gem "jsbundling-rails"
+gem "propshaft"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
 gem 'auto_strip_attributes'
 
-gem 'sassc-rails'
-# gem 'sprockets', '~> 4'
 # Use Uglifier as compressor for JavaScript assets
 # At the moment, don't compress JavaScript assets as its slow and doesn't work on the RPi2
 gem 'uglifier', '>= 1.3.0'
@@ -44,16 +47,20 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # but apparently skeleton is popular - and there are at least 15 others
 # http://senelda.com/blog/15-alternatives-bootstrap-foundation-skeleton/
 
+gem "passenger"
+
 # Use Capistrano for deployment
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   #gem 'byebug'
 
-  gem 'capistrano', '~> 2.15.11'
-  gem 'capistrano-ext'
-  gem 'capistrano-rails'
-  gem 'rvm-capistrano', require: false
+  gem "capistrano", ">=3"
+  gem "capistrano-bundler"
+  gem "capistrano-passenger", require: false
+  gem "capistrano-rails"
+  gem "capistrano-rvm", require: false
+
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
 
