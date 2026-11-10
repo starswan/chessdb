@@ -2,18 +2,22 @@
   "name": "chessdb",
   "private": true,
   "dependencies": {
-    "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "^5.4.4",
-    "elm": "^0.19.1-6",
-    "elm-webpack-loader": "^7.0.1",
-    "webpack": "^4.46.0"
+    "@popperjs/core": "^2.11.8",
+    "@rails/activestorage": "^7.0.1000",
+    "@rails/ujs": "^7.0.1000",
+    "bootstrap": "^5.3.8",
+    "esbuild": "^0.15.18",
+    "elm": "^0.19.1-6"
   },
   "version": "0.1.0",
   "devDependencies": {
     "elm-format": "^0.8.8",
-    "elm-hot-webpack-loader": "^1.1.8",
     "elm-test": "0.19.1-revision17",
-    "webpack-dev-server": "^4.11.0"
+    "esbuild-plugin-elm": "^0.0.12",
+    "sass": "^1.106.0"
+  },
+  "scripts": {
+    "build": "node ./esbuild.config.js",
+    "build:css": "sass --quiet-deps -I node_modules app/assets/stylesheets/application.scss:app/assets/builds/application.css"
   }
 }

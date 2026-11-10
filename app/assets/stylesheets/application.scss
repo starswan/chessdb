@@ -12,6 +12,6 @@
  *
  */
 //@import "bulma";
-@import "tether";
-@import "bootstrap";
-@import "./*";
+@import "bootstrap/scss/bootstrap";
+@import "chessboard";
+@import "scaffolds";

@@ -4,7 +4,7 @@
 
 import {
     Elm
-} from '../Main'
+} from 'Main.elm'
 
 document.addEventListener('DOMContentLoaded', () => {
     const target = document.getElementById('elm_chessboard');

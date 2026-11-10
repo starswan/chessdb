@@ -31,3 +31,4 @@ db/20*/*.yml
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+app/assets/builds/*
