@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@rails/activestorage": "^7.0.1000",
+    "@rails/activestorage": "^8.1.401",
     "@rails/ujs": "^7.0.1000",
     "bootstrap": "^5.3.8",
     "esbuild": "^0.15.18",
