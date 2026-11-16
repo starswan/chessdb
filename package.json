@@ -14,7 +14,7 @@
     "elm-format": "^0.8.8",
     "elm-test": "0.19.1-revision17",
     "esbuild-plugin-elm": "^0.0.12",
-    "sass": "^1.106.0"
+    "sass": "^1.108.2"
   },
   "scripts": {
     "build": "node ./esbuild.config.js",
